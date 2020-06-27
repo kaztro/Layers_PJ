@@ -27,7 +27,6 @@ CREATE TABLE USUARIO(
 	direccion TEXT NOT NULL,
 	telFijo VARCHAR(8) NOT NULL,
 	telMovil VARCHAR(8) NOT NULL,
-    enabled BOOL NOT NULL,
 	id_municipio INTEGER NOT NULL,
 	FOREIGN KEY(id_municipio) REFERENCES MUNICIPIO(id_municipio)
 );
