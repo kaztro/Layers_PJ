@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.uca.capas.domain.CentroEscolar;
+import com.uca.capas.domain.Departamento;
 import com.uca.capas.domain.Estudiante;
 import com.uca.capas.domain.Materia;
+import com.uca.capas.domain.Municipio;
 import com.uca.capas.domain.Usuario;
 import com.uca.capas.service.CentroEscolarService;
 import com.uca.capas.service.DepartamentoService;
@@ -97,6 +99,51 @@ public class MainController {
 	}
 	/*----------------------------------------------*/
 	
+	/*--------INGRESAR CAMPOS A TABLAS-----------*/
+	@RequestMapping("/ingresarMat")
+	public ModelAndView ingresarMat() {
+		ModelAndView mav = new ModelAndView();
+		Materia materia = new Materia();
+		mav.addObject("materia", materia);
+		mav.setViewName("ingresarMat");
+		return mav;
+	}
 	
+	@RequestMapping("/ingresarEst")
+	public ModelAndView ingresarEst() {
+		ModelAndView mav = new ModelAndView();
+		Estudiante estudiante = new Estudiante();
+		estudiante.setfNac(new java.util.Date());
+		
+		List<CentroEscolar> cEscolares = null;
+		try { cEscolares = cEscolar.findAll(); }
+		catch(Exception e) { e.printStackTrace(); }
+		
+		mav.addObject("cEscolares", cEscolares);
+		mav.addObject("estudiante", estudiante);
+		mav.setViewName("ingresarEst");
+		return mav;
+	}
+	
+	public ModelAndView ingresarUser() {
+		ModelAndView mav = new ModelAndView();
+		Usuario usuario = new Usuario();
+		usuario.setfNac((new java.util.Date()));;
+		
+		List<Departamento> departamentos = null;
+		try { departamentos = departamento.findAll(); }
+		catch(Exception e) { e.printStackTrace(); }
+		
+		List<Municipio> municipios = null;
+		try { municipios = municipio.findAll(); }
+		catch(Exception e) { e.printStackTrace(); }
+		
+		mav.addObject("departamentos", departamentos);
+		mav.addObject("municipios", municipios);
+		mav.addObject("usuario", usuario);
+		mav.setViewName("ingresarUser");
+		return mav;
+	}
+	/*----------------------------------------------*/
 	
 }
