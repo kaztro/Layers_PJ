@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.uca.capas.domain.CentroEscolar;
 import com.uca.capas.domain.Estudiante;
 import com.uca.capas.domain.Materia;
+import com.uca.capas.domain.Usuario;
 import com.uca.capas.service.CentroEscolarService;
 import com.uca.capas.service.DepartamentoService;
 import com.uca.capas.service.EstudianteService;
@@ -37,19 +39,14 @@ public class MainController {
 	@Autowired
 	private UsuarioService usuario;
 	
-	/*--------EXPENDIENTES QUE SE MOSTRARAN-----------*/
+	/*--------LISTAS QUE SE MOSTRARAN-----------*/
 	@RequestMapping("/listEstud")
 	public ModelAndView listEstud() {
 		ModelAndView mav = new ModelAndView();
 		
 		List<Estudiante> estudiantes = null;
-		try {
-			
-			estudiantes = estudiante.findAll();
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
+		try { estudiantes = estudiante.findAll(); }
+		catch (Exception e) { e.printStackTrace(); }
 		
 		mav.addObject("estudiantes", estudiantes);
 		mav.setViewName("listEstud");
@@ -62,40 +59,44 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		
 		List<Materia> materias = null;
-		try {
-			
-			materias = materia.findAll();
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
+		try { materias = materia.findAll(); }
+		catch (Exception e) { e.printStackTrace(); }
 		
 		mav.addObject("materias", materias);
 		mav.setViewName("listMat");
+		
+		return mav;
+	}
+	
+	@RequestMapping("/listCEsc")
+	public ModelAndView listCEsc() {
+		ModelAndView mav = new ModelAndView();
+		
+		List<CentroEscolar> cEscolares = null;
+		try { cEscolares = cEscolar.findAll(); }
+		catch (Exception e) { e.printStackTrace(); }
+		
+		mav.addObject("cEscolares", cEscolares);
+		mav.setViewName("listCEsc");
+		
+		return mav;
+	}
+	
+	@RequestMapping("/listUsers")
+	public ModelAndView listUsers() {
+		ModelAndView mav = new ModelAndView();
+		
+		List<Usuario> usuarios = null;
+		try { usuarios = usuario.findAll(); }
+		catch (Exception e) { e.printStackTrace(); }
+		
+		mav.addObject("usuarios", usuarios);
+		mav.setViewName("listUsers");
 		
 		return mav;
 	}
 	/*----------------------------------------------*/
 	
-	/*---------CATALOGOS QUE SE MOSTRARAN-----------*/
-	@RequestMapping("/listMat")
-	public ModelAndView listMat() {
-		ModelAndView mav = new ModelAndView();
-		
-		List<Materia> materias = null;
-		try {
-			
-			materias = materia.findAll();
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		mav.addObject("materias", materias);
-		mav.setViewName("listMat");
-		
-		return mav;
-	}
-	/*----------------------------------------------*/
+	
+	
 }
-
