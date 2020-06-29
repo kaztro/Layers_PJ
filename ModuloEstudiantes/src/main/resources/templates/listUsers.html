@@ -17,9 +17,9 @@
         <th:block th:each="usuario, row: ${usuarios}">
             <tr>
                 <th></th>
-                <th th:text="${usuarios.id_usuario}"></th>
-                <th th:text="${usuarios.username}"></th>
-                <th th:text="${usuarios.id_rol}"></th>
+                <th th:text="${usuario.id_usuario}"></th>
+                <th th:text="${usuario.username}"></th>
+                <th th:text="${usuario.id_rol}"></th>
                 <th th:text="${usuario.estadoDelegate}"></th>
             </tr>
         </th:block>

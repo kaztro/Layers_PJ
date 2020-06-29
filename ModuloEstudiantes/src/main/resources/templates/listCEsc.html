@@ -17,10 +17,10 @@
         <th:block th:each="centroEscolar, row: ${centrosEscolares}">
             <tr>
                 <th ></th>
-                <th th:text="${centrosEscolares.id_centro}"></th>
-                <th th:text="${centrosEscolares.nombre}"></th>
-                <th th:text="${centrosEscolares.descripcion}"></th>
-                <th th:text="${estudiante.estadoDelegate}"></th>
+                <th th:text="${centrosEscolar.id_centro}"></th>
+                <th th:text="${centrosEscolar.nombre}"></th>
+                <th th:text="${centrosEscolar.descripcion}"></th>
+                <th th:text="${centrosEscolar.estadoDelegate}"></th>
             </tr>
         </th:block>
     </table>

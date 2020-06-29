@@ -17,10 +17,10 @@
         <th:block th:each="materia, row: ${materias}">
             <tr>
                 <th></th>
-                <th th:text="${materias.id_materia}"></th>
-                <th th:text="${materias.nombre}"></th>
-                <th th:text="${materias.descripcion}"></th>
-                <th th:text="${materias.estadoDelegate}"></th>
+                <th th:text="${materia.id_materia}"></th>
+                <th th:text="${materia.materia}"></th>
+                <th th:text="${materia.descripcion}"></th>
+                <th th:text="${materia.estadoDelegate}"></th>
             </tr>
         </th:block>
     </table>
