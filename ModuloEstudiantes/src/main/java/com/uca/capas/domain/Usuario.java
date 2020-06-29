@@ -57,6 +57,14 @@ public class Usuario {
 	@Transient
 	private Integer id_municipio;
 	
+	//Foreign - roles
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_rol")
+	private Roles roles;
+	
+	@Transient
+	private Integer id_rol;
+	
 	public String getEstadoDelegate() {
 		if(this.enabled_u==null) return "";
 		else {
