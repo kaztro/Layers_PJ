@@ -25,6 +25,8 @@ public class AdminController {
 	
 	@Autowired
 	private UsuarioService usuario;
+	
+	/*--------LISTAS QUE SE MOSTRARAN-----------*/
 
 	@RequestMapping("/listMaterias")
 	public ModelAndView listMaterias() {

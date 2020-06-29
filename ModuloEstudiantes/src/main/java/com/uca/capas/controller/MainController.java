@@ -55,51 +55,11 @@ public class MainController {
 		
 		return mav;
 	}
-	
-	@RequestMapping("/listMat")
-	public ModelAndView listMat() {
-		ModelAndView mav = new ModelAndView();
-		
-		List<Materia> materias = null;
-		try { materias = materia.findAll(); }
-		catch (Exception e) { e.printStackTrace(); }
-		
-		mav.addObject("materias", materias);
-		mav.setViewName("listMat");
-		
-		return mav;
-	}
-	
-	@RequestMapping("/listCEsc")
-	public ModelAndView listCEsc() {
-		ModelAndView mav = new ModelAndView();
-		
-		List<CentroEscolar> cEscolares = null;
-		try { cEscolares = cEscolar.findAll(); }
-		catch (Exception e) { e.printStackTrace(); }
-		
-		mav.addObject("cEscolares", cEscolares);
-		mav.setViewName("listCEsc");
-		
-		return mav;
-	}
-	
-	@RequestMapping("/listUsers")
-	public ModelAndView listUsers() {
-		ModelAndView mav = new ModelAndView();
-		
-		List<Usuario> usuarios = null;
-		try { usuarios = usuario.findAll(); }
-		catch (Exception e) { e.printStackTrace(); }
-		
-		mav.addObject("usuarios", usuarios);
-		mav.setViewName("listUsers");
-		
-		return mav;
-	}
 	/*----------------------------------------------*/
 	
 	/*--------INGRESAR CAMPOS A TABLAS-----------*/
+	//Probablemente en AdminController
+	
 	@RequestMapping("/ingresarMat")
 	public ModelAndView ingresarMat() {
 		ModelAndView mav = new ModelAndView();
