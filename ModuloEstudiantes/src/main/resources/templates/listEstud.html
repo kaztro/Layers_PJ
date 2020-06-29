@@ -1,10 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Expediente de estudiantes</title>
 </head>
 <body>
+	
+	<!--
+	<h1>Expedientes de Estudiantes-Pantalla Inicial</h1>
+	<form>
+		<label>Buscar estudiante por: </label>
+		<select name = "" th:field="*{}">
+            <option th:each="", row: ${}" th:value="${}" th:text="${}"></option>
+        </select>
+		<label>Valor de búsqueda: </label>
+		<input type = "text">
+		<input type = "submit" value = "Buscar">
+	</form>
+	-->
+	
+	<table>
+		<thead>
+			<th>Acción</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Materias aprobadas</th>
+            <th>Materias reprobadas</th>
+            <th>Promedio</th>   
+		</thead>
 
+		<th:block th:each="estudiante, row: ${estudiantes}">
+			<tr>
+				<th>
+					<input type = "button" value = "EdicionEstu">
+					<input type = "button" value = "matCursadas">
+				</th>
+                <th th:text="${estudiante.nombres}"></th>
+                <th th:text="${estudiante.apellidos}"></th>
+                <th th:text="${estudiante.nombres}"></th>
+                <th th:text="${estudiante.apellidos}"></th>
+                <th th:text=""></th> 
+			</tr>
+		</th:block>
+		
+	</table>
+	
+	
 </body>
 </html>
