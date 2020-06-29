@@ -22,8 +22,8 @@ public class MateriaCursada {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id_materiaCursada;
 
-	@Column(name="ano")
-	private Date ano;
+	@Column(name="anho")
+	private Date anho;
 	
 	@Column(name="ciclo")
 	private String ciclo;
@@ -56,11 +56,11 @@ public class MateriaCursada {
 	}
 
 	public Date getAno() {
-		return ano;
+		return anho;
 	}
 
 	public void setAno(Date ano) {
-		this.ano = ano;
+		this.anho = ano;
 	}
 
 	public String getCiclo() {
