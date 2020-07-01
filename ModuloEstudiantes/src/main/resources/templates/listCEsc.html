@@ -16,11 +16,18 @@
         </thead>
         <th:block th:each="centroEscolar, row: ${centrosEscolares}">
             <tr>
-                <th ></th>
-                <th th:text="${centrosEscolar.id_centro}"></th>
-                <th th:text="${centrosEscolar.nombre}"></th>
-                <th th:text="${centrosEscolar.descripcion}"></th>
-                <th th:text="${centrosEscolar.estadoDelegate}"></th>
+                <form th:action="@{/listCEscolares}" method="POST">
+                    <th></th>
+                    <th><p th:text="${centroEscolar.id_centro}"></p></th>
+                    <th><p th:text="${centroEscolar.nombre}"></p></th>
+                    <th><p th:text="${centroEscolar.descripcion}"></p></th>
+                    <th><p th:text="${centroEscolar.estadoDelegate}"></p>
+                        <select name="estadoCE" id="estadoCE" th:field="${centroEscolar.enabled_ce}">
+                            <option value="true">Disponible</option>
+                            <option value="false">No Disponible</option>
+                        </select>
+                    </th>
+                </form>
             </tr>
         </th:block>
     </table>

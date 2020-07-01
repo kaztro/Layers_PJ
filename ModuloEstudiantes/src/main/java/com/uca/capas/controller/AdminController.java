@@ -18,13 +18,13 @@ import com.uca.capas.service.UsuarioService;
 public class AdminController {
 
 	@Autowired
-	private CentroEscolarService centroEscolar;
+	private CentroEscolarService centroEscolarService;
 	
 	@Autowired
-	private MateriaService materia;
+	private MateriaService materiaService;
 	
 	@Autowired
-	private UsuarioService usuario;
+	private UsuarioService usuarioService;
 	
 	/*--------LISTAS QUE SE MOSTRARAN-----------*/
 
@@ -32,15 +32,16 @@ public class AdminController {
 	public ModelAndView listMaterias() {
 		ModelAndView mav = new ModelAndView();
 		
-		List<Materia> materias = null;
+		List<Materia> materiasL = null;
 		try { 
-			materias = materia.findAll(); 
+			materiasL = materiaService.findAll(); 
 		}
 		catch (Exception e) {
 			e.printStackTrace(); 
 		}
 		
-		mav.addObject("materias", materias);
+		mav.addObject("materia", new Materia());
+		mav.addObject("materiasL", materiasL);
 		mav.setViewName("listMat");
 		
 		return mav;
@@ -52,12 +53,13 @@ public class AdminController {
 		
 		List<CentroEscolar> cEscolares = null;
 		try { 
-			cEscolares = centroEscolar.findAll(); 
+			cEscolares = centroEscolarService.findAll(); 
 		}
 		catch (Exception e) { 
 			e.printStackTrace(); 
 		}
 		
+		mav.addObject("centroEscolar", new CentroEscolar());
 		mav.addObject("cEscolares", cEscolares);
 		mav.setViewName("listCEsc");
 		
@@ -69,9 +71,14 @@ public class AdminController {
 		ModelAndView mav = new ModelAndView();
 		
 		List<Usuario> usuarios = null;
-		try { usuarios = usuario.findAll(); }
-		catch (Exception e) { e.printStackTrace(); }
+		try {
+			usuarios = usuarioService.findAll(); 
+		}
+		catch (Exception e) {
+			e.printStackTrace(); 
+		}
 		
+		mav.addObject("usuario", new Usuario());
 		mav.addObject("usuarios", usuarios);
 		mav.setViewName("listUsers");
 		

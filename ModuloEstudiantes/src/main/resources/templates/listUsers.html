@@ -16,11 +16,18 @@
         </thead>
         <th:block th:each="usuario, row: ${usuarios}">
             <tr>
-                <th></th>
-                <th th:text="${usuario.id_usuario}"></th>
-                <th th:text="${usuario.username}"></th>
-                <th th:text="${usuario.id_rol}"></th>
-                <th th:text="${usuario.estadoDelegate}"></th>
+                <form th:action="@{/listUsuario}" method="POST">
+                    <th></th>
+                    <th><p th:text="${usuario.id_usuario}"></p></th>
+                    <th><p th:text="${usuario.username}"></p></th>
+                    <th><p th:text="${usuario.id_rol}"></p></th>
+                    <th><p th:text="${usuario.estadoDelegate}"></p>
+                        <select name="estadoU" id="estadoU" th:field="${usuario.enabled_u}">
+                            <option value="true">Disponible</option>
+                            <option value="false">No Disponible</option>
+                        </select>
+                    </th>
+                </form>
             </tr>
         </th:block>
     </table>
