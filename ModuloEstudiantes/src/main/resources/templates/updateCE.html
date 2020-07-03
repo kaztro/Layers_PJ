@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizando...</title>
+</head>
+
+<body>
+    <form action="#" th:action="@{/actualizar/centro/{id_centro}(id_centro=${centroEscolar.id_centro})}" th:object="${centroEscolar}" method="GET">
+
+        <input type="hidden" th:field="${centroEscolar.id_materia}" readonly="readonly">
+
+        <label for="nombre">Nombre del centro escolar: </label>
+        <input type="text" th:field="${centroEscolar.materia}">
+        <br>
+        <span th:errors="*{nombre}" style="color: red;"></span>
+        <br>
+
+        <label for="descripcion">Descripcion: </label>
+        <input type="text" th:field="${centroEscolar.descripcion}">
+        <br>
+        <span th:errors="${centroEscolar.descripcion}" style="color: red;"></span>
+        <br>
+		<label for="estado" class="col-form-label">Estado:</label>
+        <select class="form-control" name="estado" id="estado" th:field=${centroEscolar.enabled_m}>
+            <option th:value="${true}">Disponible</option>
+            <option th:value="${false}">No Disponible</option>
+        </select>
+        <input type="submit" value="Actualizar">
+    </form>
+</body>
+
+</html>

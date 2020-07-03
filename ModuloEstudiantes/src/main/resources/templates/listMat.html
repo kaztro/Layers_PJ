@@ -1,43 +1,58 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Materias - Listado</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/style/css/main.css" th:href="@{/style/css/main.css}" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 </head>
+
 <body>
-    <table>
-        <thead>
-            <th>Acci&oacute;n</th>
-            <th>C&oacute;digo</th>
-            <th>Nombre</th>
-            <th>Descripci&oacute;n</th>
-            <th>Estado</th>
-        </thead>
-        <th:block th:each="materiaL, row: ${materiasL}">
-            <tr>
-                <form th:action="@{/listMaterias}" th:object="${materia}" method="POST">
-                    <th>
-                        <button type="submit" name="action" value="actualizar">Actualizar</button>
-                    </th>
-                    <th><p name="c_materia" th:text="${materiaL.id_materia}"></p>
-                        <input type="hidden" th:field="${materia.id_materia}" readonly="readonly">
-                    </th>
-                    <th><p th:text="${materiaL.materia}"></p>
-                        <input type="text" th:field="${materia.materia}">
-                    </th>
-                    <th><p th:text="${materiaL.descripcion}"></p>
-                       <input type="text" th:field="${materia.descripcion}">
-                    </th>
-                    <th><p th:text="${materiaL.estadoDelegate}"></p>
-                        <select name="estadoMat" id="estadoMat" th:field="${materia.enabled_m}">
-                            <option th:value="${true}">Disponible</option>
-                            <option th:value="${false}">No Disponible</option>
-                        </select>
-                    </th>
-                </form>
-            </tr>
-        </th:block>
-    </table>
+    <div class="container">
+        <div class="card">
+            <div class="card-block">
+                <table class="table table-hover">
+                    <thead>
+                        <th>Acci&oacute;n</th>
+                        <th>C&oacute;digo</th>
+                        <th>Nombre</th>
+                        <th>Descripci&oacute;n</th>
+                        <th>Estado</th>
+                    </thead>
+                    <th:block th:each="materiaL, row: ${materiasL}">
+                        <tr>
+                            <th>
+                                <a th:href="@{/editar/materia/{id_materia}(id_materia=${materiaL.id_materia})}" class="btn btn-primary bEdit"><i class="fas fa-edit">Editar</i></a>
+                            </th>
+                            <th>
+                                <p th:text="${materiaL.id_materia}"></p>
+                            </th>
+                            <th>
+                                <p th:text="${materiaL.materia}"></p>
+                            </th>
+                            <th>
+                                <p th:text="${materiaL.descripcion}"></p>
+                            </th>
+                            <th>
+                                <p th:text="${materiaL.estadoDelegate}"></p>
+                            </th>
+                        </tr>
+                    </th:block>
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

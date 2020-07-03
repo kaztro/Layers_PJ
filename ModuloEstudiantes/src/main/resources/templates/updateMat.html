@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizando...</title>
+</head>
+
+<body>
+    <form action="#" th:action="@{/actualizar/materia/{id_materia}(id_materia=${materia.id_materia})}" th:object="${materia}" method="GET">
+
+        <input type="hidden" th:field="${materia.id_materia}" readonly="readonly">
+
+        <label for="nombre">Nombre de la materia: </label>
+        <input type="text" th:field="${materia.materia}">
+        <br>
+        <span th:errors="*{materia}" style="color: red;"></span>
+        <br>
+
+        <label for="apellido">Descripcion: </label>
+        <input type="text" th:field="${materia.descripcion}">
+        <br>
+        <span th:errors="${materia.descripcion}" style="color: red;"></span>
+        <br>
+		<label for="estado" class="col-form-label">Estado:</label>
+        <select class="form-control" name="estado" id="estado" th:field=${materia.enabled_m}>
+            <option th:value="${true}">Disponible</option>
+            <option th:value="${false}">No Disponible</option>
+        </select>
+        <input type="submit" value="Actualizar">
+    </form>
+</body>
+
+</html>
