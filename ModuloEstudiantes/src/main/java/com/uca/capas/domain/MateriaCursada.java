@@ -23,7 +23,7 @@ public class MateriaCursada {
 	private Integer id_materiaCursada;
 
 	@Column(name="anho")
-	private Date anho;
+	private String anho;
 	
 	@Column(name="ciclo")
 	private String ciclo;
@@ -55,12 +55,12 @@ public class MateriaCursada {
 		this.id_materiaCursada = id_materiaCursada;
 	}
 
-	public Date getAno() {
+	public String getAno() {
 		return anho;
 	}
 
-	public void setAno(Date ano) {
-		this.anho = ano;
+	public void setAno(String anho) {
+		this.anho = anho;
 	}
 
 	public String getCiclo() {
