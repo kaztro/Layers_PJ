@@ -25,7 +25,7 @@
         </thead>
         <th:block th:each="usuario, row: ${usuarios}">
             <tr>
-                <form th:action="@{/listUsuario}" method="POST">
+                <form th:action="@{/listUsuarios}" method="POST">
                     <th></th>
                     <th><p th:text="${usuario.id_usuario}"></p></th>
                     <th><p th:text="${usuario.username}"></p></th>

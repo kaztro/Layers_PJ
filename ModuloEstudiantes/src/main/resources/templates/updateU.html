@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizando...</title>
+<body>
+	<form action="#" th:action="@{/actualizar/usuario/{id_usuario}(id_usuario=${usuario.id_usuario})}" th:object="${usuario}" method="GET">
+
+        <input type="hidden" th:field="${usuario.id_usuario}" readonly="readonly">
+
+        <label for="nombre">Nombre: </label>
+        <input type="text" th:field="${usuario.nombre}">
+        <br>
+        <span th:errors="*{usuario}" style="color: red;"></span>
+        <br>
+
+		<label for="apellido">Apellido: </label>
+        <input type="text" th:field="${usuario.apellido}">
+        <br>
+        <span th:errors="*{usuario}" style="color: red;"></span>
+        <br>
+		
+		<label for="fNac">Fecha de Nacimiento: </label>
+        <td><input type="text" th:field="${usuario.fNac}">
+        	<script type="text/javascript">
+		        $(function () {
+	            	$('#fnacimiento').datepicker({
+	            		format: 'dd/mm/yyyy'
+		            });
+		        });
+		    </script></td>
+        <br>
+        <span th:errors="*{usuario}" style="color: red;"></span>
+        <br>
+		
+		<label for="username">Nombre de usuario: </label>
+        <input type="text" th:field="${usuario.username}">
+        <br>
+        <span th:errors="*{usuario}" style="color: red;"></span>
+        <br>
+		
+		<label for="password">Password: </label>
+        <input type="password" th:field="${usuario.password}">
+        <br>
+        <span th:errors="*{usuario}" style="color: red;"></span>
+        <br>
+		
+        <label for="direccion">Direccion: </label>
+        <input type="text" th:field="${usuario.direccion}">
+        <br>
+        <span th:errors="${materia.descripcion}" style="color: red;"></span>
+        <br>
+        
+        <label for="telFijo">Tel. Fijo: </label>
+        <input type="text" th:field="${usuario.telFijo}">
+        <br>
+        <span th:errors="*{usuario}" style="color: red;"></span>
+        <br>
+        
+        <label for="telMovil">Tel. Movil: </label>
+        <input type="text" th:field="${usuario.telMovil}">
+        <br>
+        <span th:errors="*{usuario}" style="color: red;"></span>
+        <br>
+        
+        <!-- FALTAN LOS MUNICIPIOS Y FALTA TAMBIEN CAMBIAR QUE TIPO DE USUARIO ES -->
+        
+		<label for="enabled_u" class="col-form-label">Estado:</label>
+        <select class="form-control" name="enabled_u" id="estado" th:field=${usuario.enabled_u}>
+            <option th:value="${true}">Activo</option>
+            <option th:value="${false}">Inactivo</option>
+        </select>
+        <input type="submit" value="Actualizar">
+    </form>
+</body>
+</html>
