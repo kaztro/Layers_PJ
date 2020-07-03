@@ -13,5 +13,7 @@ public interface CentroEscolarService {
 	
 	//Agregar - Editar
 	public void save(CentroEscolar centroEscolar) throws DataAccessException;
+	
+	public CentroEscolar findOne(Integer code) throws DataAccessException;
 
 }

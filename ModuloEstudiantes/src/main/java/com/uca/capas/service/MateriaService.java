@@ -13,5 +13,7 @@ public interface MateriaService {
 	
 	//Agregar - Editar
 	public void save(Materia materia) throws DataAccessException;
+	
+	public Materia findOne(Integer code) throws DataAccessException;
 
 }

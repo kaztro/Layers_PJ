@@ -26,4 +26,10 @@ public class MateriaServiceImpl implements MateriaService{
 		
 	}
 
+	@Override
+	public Materia findOne(Integer code) throws DataAccessException {
+		return materiaRepo.getOne(code);
+		
+	}
+
 }

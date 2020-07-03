@@ -6,4 +6,5 @@ import com.uca.capas.domain.Materia;
 
 public interface MateriaRepo extends JpaRepository<Materia, Integer> {
 
+	
 }

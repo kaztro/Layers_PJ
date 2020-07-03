@@ -26,4 +26,9 @@ public class CentroEscolarServiceImpl implements CentroEscolarService{
 		
 	}
 
+	@Override
+	public CentroEscolar findOne(Integer code) throws DataAccessException {
+		return centroEscolarRepo.getOne(code);
+	}
+
 }
