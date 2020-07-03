@@ -26,4 +26,9 @@ public class UsuarioServiceImpl implements UsuarioService{
 		
 	}
 
+	@Override
+	public Usuario findOne(Integer code) throws DataAccessException {
+		return usuarioRepo.getOne(code);
+	}
+	
 }

@@ -91,7 +91,7 @@ public class AdminController {
 	//UPDATE - Materia
 
 	@GetMapping("editar/materia/{id_materia}")
-	public String formularioActualizacion(@PathVariable("id_materia") int id, Model model) {
+	public String formularioActualizacionMat(@PathVariable("id_materia") int id, Model model) {
 		Materia materia = this.materiaService.findOne(id);
 
 		model.addAttribute("materia", materia);
@@ -99,7 +99,7 @@ public class AdminController {
 	}
 
 	@GetMapping("actualizar/materia/{id_materia}")
-	public ModelAndView update(@Valid Materia materia,
+	public ModelAndView updateMat(@Valid Materia materia,
 			BindingResult result, Model model) {
 		ModelAndView mav = new ModelAndView();
 		if(result.hasErrors()) {
@@ -161,8 +161,16 @@ public class AdminController {
 	
 	//update - Usuarios
 	
+	@GetMapping("editar/usuario/{id_usuario}")
+	public String formularioActualizacionU(@PathVariable("id_usuario") int id, Model model) {
+		Usuario usuario = this.usuarioService.findOne(id);
+
+		model.addAttribute("usuario", usuario);
+		return "updateU";
+	}
+	
 	@GetMapping("actualizar/usuario/{id_usuario}")
-	public ModelAndView update(@Valid Usuario usuario,
+	public ModelAndView updateU(@Valid Usuario usuario,
 			BindingResult result, Model model) {
 		ModelAndView mav = new ModelAndView();
 		if(result.hasErrors()) {

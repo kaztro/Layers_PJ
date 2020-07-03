@@ -14,4 +14,5 @@ public interface UsuarioService {
 	//Agregar - Editar
 	public void save(Usuario usuario) throws DataAccessException;
 	
+	public Usuario findOne(Integer code) throws DataAccessException;
 }
