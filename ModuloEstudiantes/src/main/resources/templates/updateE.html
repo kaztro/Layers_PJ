@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Nuevo expediente</title>
+</head>
+<body>
+	<form action="#"  th:action="@{/actualizar/estudiante/{id_estudiante}(id_estudiante=${estudiante.id_estudiante})}" th:object="${estudiante}" method="GET">
+		
+		<input type="hidden" th:field="${estudiante.id_estudiante}" readonly="readonly">
+		
+		<label for="nombres">Nombres: </label>
+        <input type="text" th:field="${estudiante.nombres}">
+        <br>
+        <span th:errors="*{nombres}" style="color: red;"></span>
+        <br>
+
+		<label for="apellidos">Apellidos: </label>
+        <input type="text" th:field="${estudiante.apellidos}">
+        <br>
+        <span th:errors="*{apellidos}" style="color: red;"></span>
+        <br>
+		
+		<label for="cMinoridad">Carné de minoridad: </label>
+        <input type="text" th:field="${estudiante.cMinoridad}">
+        <br>
+        <span th:errors="*{cMinoridad}" style="color: red;"></span>
+        <br>
+		
+		<label for="fNac">Fecha de Nacimiento: </label>
+        <input type="text" th:field="${estudiante.fNac}">
+        <br>
+       
+		<label for="direccion">Direccion: </label>
+        <input type="text" th:field="${estudiante.direccion}">
+        <br>
+        <span th:errors="*{direccion}" style="color: red;"></span>
+        <br>
+		
+		<label for="telFijo">Tel. Fijo: </label>
+        <input type="text" th:field="${estudiante.telFijo}">
+        <br>
+        <span th:errors="*{telFijo}" style="color: red;"></span>
+        <br>
+        
+        <label for="telMovil">Tel. Movil: </label>
+        <input type="text" th:field="${estudiante.telMovil}">
+        <br>
+		
+		<label for="nombreMadre">Nombre de la madre: </label>
+        <input type="text" th:field="${estudiante.nombreMadre}">
+        <br>
+        <span th:errors="*{nombreMadre}" style="color: red;"></span>
+        <br>
+		
+		<label for="nombrePadre">Nombre del padre: </label>
+        <input type="text" th:field="${estudiante.nombrePadre}">
+        <br>
+        <span th:errors="*{nombrePadre}" style="color: red;"></span>
+        <br>
+                
+        <label for="telFijo">Tel. Fijo: </label>
+        <input type="text" th:field="${estudiante.telFijo}">
+        <br>
+        <span th:errors="*{telFijo}" style="color: red;"></span>
+        <br>
+        
+        <label for="centroEscolar" class="col-form-label">Centro Escolar:</label>
+		<select class="form-control" name="centroEscolar" id="centroEscolar" th:field=${estudiante.centroEscolar}>
+            <option th:each="centroEscolar, row: ${listcentroEscolar}" th:value="${centroEscolar.id_centro}" th:text="${centroEscolar.nombre}"></option>
+        </select>
+        <input type="submit" value="Actualizar">
+		
+	</form>
+</body>
+</html>
