@@ -7,56 +7,69 @@
 <body>
 	<form action="#"  th:action="@{/actualizar/estudiante/{id_estudiante}(id_estudiante=${estudiante.id_estudiante})}" th:object="${estudiante}" method="GET">
 		
-		<label for="nombre">Nombre: </label>
-        <input type="text" th:field="${usuario.nombre}">
+		<input type="hidden" th:field="${estudiante.id_estudiante}" readonly="readonly">
+		
+		<label for="nombres">Nombres: </label>
+        <input type="text" th:field="${estudiante.nombres}">
         <br>
-        <span th:errors="*{nombre}" style="color: red;"></span>
+        <span th:errors="*{nombres}" style="color: red;"></span>
         <br>
 
-		<label for="apellido">Apellido: </label>
-        <input type="text" th:field="${usuario.apellido}">
+		<label for="apellidos">Apellidos: </label>
+        <input type="text" th:field="${estudiante.apellidos}">
         <br>
-        <span th:errors="*{apellido}" style="color: red;"></span>
+        <span th:errors="*{apellidos}" style="color: red;"></span>
+        <br>
+		
+		<label for="cMinoridad">Carné de minoridad: </label>
+        <input type="text" th:field="${estudiante.cMinoridad}">
+        <br>
+        <span th:errors="*{cMinoridad}" style="color: red;"></span>
         <br>
 		
 		<label for="fNac">Fecha de Nacimiento: </label>
-        <td><input type="text" th:field="${usuario.fNac}">
-        </td>
+        <input type="text" th:field="${estudiante.fNac}">
         <br>
-        <!-- <span th:errors="*{usuario}" style="color: red;"></span>-->
-        <br>
-		
-		<label for="username">Nombre de usuario: </label>
-        <input type="text" th:field="${usuario.username}">
-        <br>
-        <span th:errors="*{username}" style="color: red;"></span>
-        <br>
-		
-		<label for="password">Password: </label>
-        <input type="text" th:field="${usuario.password}">
-        <br>
-        <span th:errors="*{password}" style="color: red;"></span>
-        <br>
-		
-        <label for="direccion">Direccion: </label>
-        <input type="text" th:field="${usuario.direccion}">
+       
+		<label for="direccion">Direccion: </label>
+        <input type="text" th:field="${estudiante.direccion}">
         <br>
         <span th:errors="*{direccion}" style="color: red;"></span>
         <br>
-        
-        <label for="telFijo">Tel. Fijo: </label>
-        <input type="text" th:field="${usuario.telFijo}">
+		
+		<label for="telFijo">Tel. Fijo: </label>
+        <input type="text" th:field="${estudiante.telFijo}">
         <br>
         <span th:errors="*{telFijo}" style="color: red;"></span>
         <br>
         
         <label for="telMovil">Tel. Movil: </label>
-        <input type="text" th:field="${usuario.telMovil}">
+        <input type="text" th:field="${estudiante.telMovil}">
         <br>
-        <span th:errors="*{telMovil}" style="color: red;"></span>
+		
+		<label for="nombreMadre">Nombre de la madre: </label>
+        <input type="text" th:field="${estudiante.nombreMadre}">
         <br>
-        <input type="text" th:field="${usuario.roles.id_rol}">
-        <input type="text" th:field="${usuario.municipio.id_municipio}">
+        <span th:errors="*{nombreMadre}" style="color: red;"></span>
+        <br>
+		
+		<label for="nombrePadre">Nombre del padre: </label>
+        <input type="text" th:field="${estudiante.nombrePadre}">
+        <br>
+        <span th:errors="*{nombrePadre}" style="color: red;"></span>
+        <br>
+                
+        <label for="telFijo">Tel. Fijo: </label>
+        <input type="text" th:field="${estudiante.telFijo}">
+        <br>
+        <span th:errors="*{telFijo}" style="color: red;"></span>
+        <br>
+        
+        <label for="centroEscolar" class="col-form-label">Centro Escolar:</label>
+		<select class="form-control" name="centroEscolar" id="centroEscolar" th:field=${estudiante.centroEscolar}>
+            <option th:each="centroEscolar, row: ${listcentroEscolar}" th:value="${centroEscolar.nombre}" th:text=${centroEscolar.id_centro}></option>
+        </select>
+        <input type="submit" value="Actualizar">
 		
 	</form>
 </body>
