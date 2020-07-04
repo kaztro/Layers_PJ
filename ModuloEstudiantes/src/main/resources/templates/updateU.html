@@ -12,57 +12,53 @@
         <label for="nombre">Nombre: </label>
         <input type="text" th:field="${usuario.nombre}">
         <br>
-        <span th:errors="*{usuario}" style="color: red;"></span>
+        <span th:errors="*{nombre}" style="color: red;"></span>
         <br>
 
 		<label for="apellido">Apellido: </label>
         <input type="text" th:field="${usuario.apellido}">
         <br>
-        <span th:errors="*{usuario}" style="color: red;"></span>
+        <span th:errors="*{apellido}" style="color: red;"></span>
         <br>
 		
 		<label for="fNac">Fecha de Nacimiento: </label>
         <td><input type="text" th:field="${usuario.fNac}">
-        	<script type="text/javascript">
-		        $(function () {
-	            	$('#fnacimiento').datepicker({
-	            		format: 'dd/mm/yyyy'
-		            });
-		        });
-		    </script></td>
+        </td>
         <br>
-        <span th:errors="*{usuario}" style="color: red;"></span>
+        <!-- <span th:errors="*{usuario}" style="color: red;"></span>-->
         <br>
 		
 		<label for="username">Nombre de usuario: </label>
         <input type="text" th:field="${usuario.username}">
         <br>
-        <span th:errors="*{usuario}" style="color: red;"></span>
+        <span th:errors="*{username}" style="color: red;"></span>
         <br>
 		
 		<label for="password">Password: </label>
-        <input type="password" th:field="${usuario.password}">
+        <input type="text" th:field="${usuario.password}">
         <br>
-        <span th:errors="*{usuario}" style="color: red;"></span>
+        <span th:errors="*{password}" style="color: red;"></span>
         <br>
 		
         <label for="direccion">Direccion: </label>
         <input type="text" th:field="${usuario.direccion}">
         <br>
-        <span th:errors="${materia.descripcion}" style="color: red;"></span>
+        <span th:errors="*{direccion}" style="color: red;"></span>
         <br>
         
         <label for="telFijo">Tel. Fijo: </label>
         <input type="text" th:field="${usuario.telFijo}">
         <br>
-        <span th:errors="*{usuario}" style="color: red;"></span>
+        <span th:errors="*{telFijo}" style="color: red;"></span>
         <br>
         
         <label for="telMovil">Tel. Movil: </label>
         <input type="text" th:field="${usuario.telMovil}">
         <br>
-        <span th:errors="*{usuario}" style="color: red;"></span>
+        <span th:errors="*{telMovil}" style="color: red;"></span>
         <br>
+        <input type="text" th:field="${usuario.roles.id_rol}">
+        <input type="text" th:field="${usuario.municipio.id_municipio}">
         
         <!-- FALTAN LOS MUNICIPIOS Y FALTA TAMBIEN CAMBIAR QUE TIPO DE USUARIO ES -->
         

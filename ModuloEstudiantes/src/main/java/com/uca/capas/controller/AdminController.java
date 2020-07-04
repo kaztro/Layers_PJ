@@ -182,7 +182,7 @@ public class AdminController {
 	public ModelAndView updateU(@Valid Usuario usuario, BindingResult result, Model model) {
 		ModelAndView mav = new ModelAndView();
 		if (result.hasErrors()) {
-			mav.setViewName("actualizar");
+			mav.setViewName("updateU");
 		} else {
 			usuarioService.save(usuario);
 

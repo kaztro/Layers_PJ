@@ -1,5 +1,6 @@
 package com.uca.capas.domain;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(schema="public", name="USUARIO")
@@ -38,6 +41,7 @@ public class Usuario {
 	private String apellido;
 	
 	@Column(name="fNac")
+	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Date fNac;
 	
 	@Column(name="direccion")
@@ -62,6 +66,22 @@ public class Usuario {
 	@JoinColumn(name="id_rol")
 	private Roles roles;
 	
+	public Roles getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Roles roles) {
+		this.roles = roles;
+	}
+
+	public Integer getId_rol() {
+		return id_rol;
+	}
+
+	public void setId_rol(Integer id_rol) {
+		this.id_rol = id_rol;
+	}
+
 	@Transient
 	private Integer id_rol;
 	
@@ -121,6 +141,8 @@ public class Usuario {
 	}
 
 	public Date getfNac() {
+		//SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		//return formatter.format(fNac);
 		return fNac;
 	}
 
