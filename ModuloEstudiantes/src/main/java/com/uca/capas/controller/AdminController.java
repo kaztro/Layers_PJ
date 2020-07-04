@@ -15,9 +15,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.uca.capas.domain.CentroEscolar;
 import com.uca.capas.domain.Materia;
+import com.uca.capas.domain.Municipio;
 import com.uca.capas.domain.Usuario;
 import com.uca.capas.service.CentroEscolarService;
 import com.uca.capas.service.MateriaService;
+import com.uca.capas.service.MunicipioService;
 import com.uca.capas.service.UsuarioService;
 
 @Controller
@@ -31,6 +33,9 @@ public class AdminController {
 
 	@Autowired
 	private UsuarioService usuarioService;
+
+	@Autowired
+	private MunicipioService municipioService;
 
 	/*--------LISTAS QUE SE MOSTRARAN-----------*/
 
@@ -87,8 +92,8 @@ public class AdminController {
 
 		return mav;
 	}
-	
-	//UPDATE - Materia
+
+	// UPDATE - Materia
 
 	@GetMapping("editar/materia/{id_materia}")
 	public String formularioActualizacionMat(@PathVariable("id_materia") int id, Model model) {
@@ -99,68 +104,72 @@ public class AdminController {
 	}
 
 	@GetMapping("actualizar/materia/{id_materia}")
-	public ModelAndView updateMat(@Valid Materia materia,
-			BindingResult result, Model model) {
+	public ModelAndView updateMat(@Valid Materia materia, BindingResult result, Model model) {
 		ModelAndView mav = new ModelAndView();
-		if(result.hasErrors()) {
-			mav.setViewName("actualizar");
-		}else {
-		materiaService.save(materia);
-		
-		model.addAttribute("materias", this.materiaService.findAll());
+		if (result.hasErrors()) {
+			mav.setViewName("updateMat");
+		} else {
+			materiaService.save(materia);
 
-		List<Materia> materiasL = null;
-		try {
-			materiasL = materiaService.findAll();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			model.addAttribute("materias", this.materiaService.findAll());
 
-		mav.addObject("materia", new Materia());
-		mav.addObject("materiasL", materiasL);
-		mav.setViewName("listMat");
+			List<Materia> materiasL = null;
+			try {
+				materiasL = materiaService.findAll();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			mav.addObject("materia", new Materia());
+			mav.addObject("materiasL", materiasL);
+			mav.setViewName("listMat");
 		}
 		return mav;
 	}
-	
-	//update - Centros escolaares
-	
+
+	// update - Centros escolaares
+
 	@GetMapping("editar/centro/{id_centro}")
-	public String formularioActualizacionCE(@PathVariable("id_centro") int id, Model model) {
+	public ModelAndView formularioActualizacionCE(@PathVariable("id_centro") int id, Model model) {
+
+		ModelAndView mav = new ModelAndView();
 		CentroEscolar centroEscolar = this.centroEscolarService.findOne(id);
 
+		List<Municipio> municipios = municipioService.findAll();
+
 		model.addAttribute("centroEscolar", centroEscolar);
-		return "updateCE";
+		mav.addObject("municipios", municipios);
+		mav.setViewName("updateCE");
+		return mav;
 	}
 
 	@GetMapping("actualizar/centro/{id_centro}")
-	public ModelAndView updateCE(@Valid CentroEscolar centroEscolar,
-			BindingResult result, Model model) {
+	public ModelAndView updateCE(@Valid CentroEscolar centroEscolar, BindingResult result, Model model) {
 		ModelAndView mav = new ModelAndView();
-		
-		if(result.hasErrors()) {
-			mav.setViewName("actualizar");
-		}else {
+
+		if (result.hasErrors()) {
+			mav.setViewName("updateCE");
+		} else {
 			centroEscolarService.save(centroEscolar);
-		
-		model.addAttribute("centrosEscolares", this.centroEscolarService.findAll());
 
-		List<CentroEscolar> centrosL = null;
-		try {
-			centrosL = centroEscolarService.findAll();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			model.addAttribute("centrosEscolares", this.centroEscolarService.findAll());
 
-		mav.addObject("centroEscolar", new CentroEscolar());
-		mav.addObject("centroL", centrosL);
-		mav.setViewName("listCEsc");
+			List<CentroEscolar> cEscolares = null;
+			try {
+				cEscolares = centroEscolarService.findAll();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			mav.addObject("centroEscolar", new CentroEscolar());
+			mav.addObject("cEscolares", cEscolares);
+			mav.setViewName("listCEsc");
 		}
 		return mav;
 	}
-	
-	//update - Usuarios
-	
+
+	// update - Usuarios
+
 	@GetMapping("editar/usuario/{id_usuario}")
 	public String formularioActualizacionU(@PathVariable("id_usuario") int id, Model model) {
 		Usuario usuario = this.usuarioService.findOne(id);
@@ -168,28 +177,27 @@ public class AdminController {
 		model.addAttribute("usuario", usuario);
 		return "updateU";
 	}
-	
+
 	@GetMapping("actualizar/usuario/{id_usuario}")
-	public ModelAndView updateU(@Valid Usuario usuario,
-			BindingResult result, Model model) {
+	public ModelAndView updateU(@Valid Usuario usuario, BindingResult result, Model model) {
 		ModelAndView mav = new ModelAndView();
-		if(result.hasErrors()) {
+		if (result.hasErrors()) {
 			mav.setViewName("actualizar");
-		}else {
+		} else {
 			usuarioService.save(usuario);
-		
-		model.addAttribute("usuarios", this.usuarioService.findAll());
 
-		List<Usuario> usuariosL = null;
-		try {
-			usuariosL = usuarioService.findAll();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			model.addAttribute("usuarios", this.usuarioService.findAll());
 
-		mav.addObject("usuario", new Usuario());
-		mav.addObject("usuariosL", usuariosL);
-		mav.setViewName("listUsers");
+			List<Usuario> usuariosL = null;
+			try {
+				usuariosL = usuarioService.findAll();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			mav.addObject("usuario", new Usuario());
+			mav.addObject("usuariosL", usuariosL);
+			mav.setViewName("listUsers");
 		}
 		return mav;
 	}

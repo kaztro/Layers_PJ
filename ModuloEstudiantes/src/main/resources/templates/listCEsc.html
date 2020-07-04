@@ -29,25 +29,29 @@
                         <th>C&oacute;digo</th>
                         <th>Nombre</th>
                         <th>Descripci&oacute;n</th>
+                        <th>Municipio</th>
                         <th>Estado</th>
                     </thead>
-                    <th:block th:each="centroEscolar, row: ${centrosEscolares}">
+                    <th:block th:each="cEscolares, row: ${cEscolares}">
                         <tr>
                             <th>
-                                <a th:href="@{/editar/centro/{id_centro}(id_centro=${centroEscolar.id_centro})}"
+                                <a th:href="@{/editar/centro/{id_centro}(id_centro=${cEscolares.id_centro})}"
                                     class="btn btn-primary bEdit"><i class="fas fa-edit">Editar</i></a>
                             </th>
                             <th>
-                                <p th:text="${centroEscolar.id_centro}"></p>
+                                <p th:text="${cEscolares.id_centro}"></p>
                             </th>
                             <th>
-                                <p th:text="${centroEscolar.nombre}"></p>
+                                <p th:text="${cEscolares.nombre}"></p>
                             </th>
                             <th>
-                                <p th:text="${centroEscolar.descripcion}"></p>
+                                <p th:text="${cEscolares.descripcion}"></p>
                             </th>
                             <th>
-                                <p th:text="${centroEscolar.estadoDelegate}"></p>
+                                <p th:text="${cEscolares.municipio.municipio}"></p>
+                            </th>
+                            <th>
+                                <p th:text="${cEscolares.estadoDelegate}"></p>
                             </th>
                         </tr>
                     </th:block>

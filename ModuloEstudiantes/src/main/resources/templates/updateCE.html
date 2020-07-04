@@ -10,24 +10,30 @@
 <body>
     <form action="#" th:action="@{/actualizar/centro/{id_centro}(id_centro=${centroEscolar.id_centro})}" th:object="${centroEscolar}" method="GET">
 
-        <input type="hidden" th:field="${centroEscolar.id_materia}" readonly="readonly">
+        <input type="hidden" th:field="${centroEscolar.id_centro}" readonly="readonly">
 
         <label for="nombre">Nombre del centro escolar: </label>
-        <input type="text" th:field="${centroEscolar.materia}">
+        <input type="text" th:field="${centroEscolar.nombre}">
         <br>
         <span th:errors="*{nombre}" style="color: red;"></span>
         <br>
-
         <label for="descripcion">Descripcion: </label>
         <input type="text" th:field="${centroEscolar.descripcion}">
         <br>
         <span th:errors="${centroEscolar.descripcion}" style="color: red;"></span>
         <br>
 		<label for="estado" class="col-form-label">Estado:</label>
-        <select class="form-control" name="estado" id="estado" th:field=${centroEscolar.enabled_m}>
+        <select class="form-control" name="estado" id="estado" th:field=${centroEscolar.enabled_ce}>
             <option th:value="${true}">Disponible</option>
             <option th:value="${false}">No Disponible</option>
         </select>
+        
+        <input type="hidden" th:field="${centroEscolar.municipio.id_municipio}">
+        <!-- 
+        <select th:field="${centroEscolar.id_municipio}">
+            <option th:each="municipio, row: ${municipios}" th:value="${municipio.id_municipio}" th:text="${municipio.municipio}"></option>
+        </select>
+        -->
         <input type="submit" value="Actualizar">
     </form>
 </body>
