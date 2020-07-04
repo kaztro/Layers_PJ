@@ -67,7 +67,7 @@
         
         <label for="centroEscolar" class="col-form-label">Centro Escolar:</label>
 		<select class="form-control" name="centroEscolar" id="centroEscolar" th:field=${estudiante.centroEscolar}>
-            <option th:each="centroEscolar, row: ${listcentroEscolar}" th:value="${centroEscolar.nombre}" th:text=${centroEscolar.id_centro}></option>
+            <option th:each="centroEscolar, row: ${listcentroEscolar}" th:value="${centroEscolar.id_centro}" th:text="${centroEscolar.nombre}"></option>
         </select>
         <input type="submit" value="Actualizar">
 		
