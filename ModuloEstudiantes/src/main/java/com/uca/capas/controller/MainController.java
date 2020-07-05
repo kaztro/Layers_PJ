@@ -123,7 +123,7 @@ public class MainController {
 			}
 			String mensaje ="Expediente creado con éxito";
 			mav.addObject("mensaje", mensaje);
-			mav.setViewName("index");
+			mav.setViewName("main");
 		}
 		return mav;
 	}
