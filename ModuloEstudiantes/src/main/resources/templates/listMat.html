@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Materias - Listado</title>
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/style/css/main.css" th:href="@{/style/css/main.css}" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
@@ -34,7 +36,7 @@
                     <th:block th:each="materiaL, row: ${materiasL}">
                         <tr>
                             <th>
-                                <a th:href="@{/editar/materia/{id_materia}(id_materia=${materiaL.id_materia})}" class="btn btn-primary bEdit"><i class="fas fa-edit">Editar</i></a>
+                                <a th:href="@{/editar/materia/{id_materia}(id_materia=${materiaL.id_materia})}" class="btn btn-primary bEdit"><i class="fa fa-edit"></i></a>
                             </th>
                             <th>
                                 <p th:text="${materiaL.id_materia}"></p>

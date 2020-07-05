@@ -1,0 +1,27 @@
+.bEdit {
+  background-color: DodgerBlue; /* Blue background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  font-size: 16px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+}
+
+.bEdit2 {
+  background-color: DodgerBlue; /* Blue background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  cursor: pointer; /* Mouse pointer on hover */
+  padding: 0.5em;
+}
+
+a, i {
+  padding: 0.5em;
+}
+
+a{
+  text-decoration: none;
+}
+
+.vis {
+  display: none;
+}

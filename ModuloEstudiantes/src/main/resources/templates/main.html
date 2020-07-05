@@ -1,14 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="../static/style/css/main.css" th:href="@{/style/css/main.css}" type="text/css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
-	<p><span th:text="${mensaje}" ></span></p>
-	
-	<form th:action="@{/ingresarEst}" method="post">
-		<input type="submit" value="Agregar Nuevo Expediente">
+	<p><span th:text="${mensaje}"></span></p>
+	<label>Buscar alumno por: </label>
+	<select id="selection">
+		<option value="0" selected>Selecciones criterio [Nombres, Apellidos]</option>
+		<option value="1">Buscar por nombre</option>
+		<option value="2">Buscar por apellido</option>
+	</select>
+	<br>
+	<!--Nombre-->
+	<form th:action="@{/busqueda}" method="post" th:object="${estudiante}" class="vis" id="nombresid">
+		<label>Valor de b&uacute;squeda: </label>
+		<input type="text" th:field="${estudiante.nombres}" placeholder="Nombre" th:name="valNombre">
+		<input type="submit" id="btnNombre" name="action" value="buscarnombre">
 	</form>
+	<!--Apellido-->
+	<form th:action="@{/busqueda}" method="post" class="vis" id="apellidosid">
+		<label>Valor de b&uacute;squeda: </label>
+		<input type="text" th:field="${estudiante.apellidos}" placeholder="Apellido" th:name="valApellido">
+		<input type="submit" id="btnApellido" name="action" value="buscarapellido">
+	</form>
+
+	<a th:href="@{/ingresarEst}" type="submit" class="btn btn-primary bEdit2"><i class="fa fa-plus"></i>Agregar Nuevo
+		Expediente</a>
+
+	<script>
+		$(function () {
+			$("#selection").on('change', function () {
+				var valor = $(this).val();
+				switch (valor) {
+					case "0":
+						$("#nombresid").show();
+						$("#apellidosid").hide();
+						$("#btnApellido").hide();
+						$("#btnNombre").hide();
+						break;
+
+					case "1":
+						$("#nombresid").show();
+						$("#apellidosid").hide();
+						$("#btnApellido").hide();
+						$("#btnNombre").show();
+						break;
+
+					case "2":
+						$("#nombresid").hide();
+						$("#apellidosid").show();
+						$("#btnNombre").hide();
+						$("#btnApellido").show();
+						break;
+				}
+			}).change();
+		});
+	</script>
 </body>
+
 </html>

@@ -16,4 +16,8 @@ public interface MateriaCursadaService {
 	public void save(MateriaCursada mC) throws DataAccessException;
 
 	List<MateriaCursadaDTO> regitroDto() throws DataAccessException;
+
+	List<MateriaCursadaDTO> buscarNombres(String nombre) throws DataAccessException;
+
+	List<MateriaCursadaDTO> buscarApellidos(String nombre) throws DataAccessException;
 }

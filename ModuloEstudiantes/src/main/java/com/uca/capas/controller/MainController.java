@@ -80,7 +80,12 @@ public class MainController {
 	@RequestMapping(value="/principal")
 	public ModelAndView coordinadorMain() {
 		ModelAndView mav = new ModelAndView();
+		
+		Estudiante estudiante = new Estudiante();
+		
 		String mensaje ="";
+		
+		mav.addObject("estudiante", estudiante);
 		mav.addObject("mensaje", mensaje);
 		mav.setViewName("main");
 		return mav;
