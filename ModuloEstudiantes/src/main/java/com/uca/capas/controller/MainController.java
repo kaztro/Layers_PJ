@@ -2,8 +2,13 @@ package com.uca.capas.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,7 +29,7 @@ import com.uca.capas.service.UsuarioService;
 public class MainController {
 	
 	@Autowired
-	private EstudianteService estudiante;
+	private EstudianteService estudianteService;
 	
 	@Autowired
 	private DepartamentoService departamento;
@@ -47,7 +52,7 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		
 		List<Estudiante> estudiantes = null;
-		try { estudiantes = estudiante.findAll(); }
+		try { estudiantes = estudianteService.findAll(); }
 		catch (Exception e) { e.printStackTrace(); }
 		
 		mav.addObject("estudiantes", estudiantes);
@@ -69,6 +74,18 @@ public class MainController {
 		return mav;
 	}
 	
+	
+	//Creo que esto va en CoordinadorController (Fredy)
+	
+	@RequestMapping(value="/principal")
+	public ModelAndView coordinadorMain() {
+		ModelAndView mav = new ModelAndView();
+		String mensaje ="";
+		mav.addObject("mensaje", mensaje);
+		mav.setViewName("main");
+		return mav;
+	}
+	
 	@RequestMapping("/ingresarEst")
 	public ModelAndView ingresarEst() {
 		ModelAndView mav = new ModelAndView();
@@ -84,6 +101,34 @@ public class MainController {
 		mav.setViewName("ingresarEst");
 		return mav;
 	}
+	
+	@PostMapping("/validarEst")
+	public ModelAndView validarEst(@Valid @ModelAttribute Estudiante estudiante, BindingResult result) {
+		ModelAndView mav = new ModelAndView();
+		if(result.hasErrors()) {
+			estudiante.setfNac(new java.util.Date());
+			
+			List<CentroEscolar> cEscolares = null;
+			try { cEscolares = cEscolar.findAll(); }
+			catch(Exception e) { e.printStackTrace(); }
+			
+			mav.addObject("cEscolares", cEscolares);
+			mav.addObject("estudiante", estudiante);
+			mav.setViewName("ingresarEst");
+		}else {
+			try {
+				estudianteService.save(estudiante);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			String mensaje ="Expediente creado con éxito";
+			mav.addObject("mensaje", mensaje);
+			mav.setViewName("index");
+		}
+		return mav;
+	}
+	
+	///////////////////////////////////////////////////////////////////
 	
 	public ModelAndView ingresarUser() {
 		ModelAndView mav = new ModelAndView();

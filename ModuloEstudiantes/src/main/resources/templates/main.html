@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<p><span th:text="${mensaje}" ></span></p>
+	
+	<form th:action="@{/ingresarEst}" method="post">
+		<input type="submit" value="Agregar Nuevo Expediente">
+	</form>
+</body>
+</html>

@@ -16,6 +16,7 @@ public class CoordinadorController {
 	@Autowired
 	private MateriaCursadaService materiaCursadaService;
 	
+	
 	@RequestMapping(value="/expedientes")
 	public ModelAndView expedientes() {
 		ModelAndView mav = new ModelAndView();
@@ -29,5 +30,8 @@ public class CoordinadorController {
 		mav.setViewName("listExpedientes");
 		return mav;
 	}
+	
+	
+	
 
 }
