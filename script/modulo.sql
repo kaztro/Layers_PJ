@@ -1002,10 +1002,7 @@ insert into ESTUDIANTE (nombres, apellidos, cminoridad, fnac, direccion, telfijo
 
 
 --MATERIAS CURSADAS
-insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (6, 48, '2015', 1, 5.7);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (8, 35, '2013', 2, 6.3);
-insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (2, 80, '2020', 1, 4.7);
-insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (6, 5, '2014', 2, 4.3);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (8, 68, '2015', 2, 7.4);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (2, 86, '2013', 1, 5.3);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (9, 62, '2018', 1, 6.4);
@@ -1024,7 +1021,6 @@ insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) value
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (9, 59, '2018', 1, 6.3);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (6, 39, '2019', 2, 8.2);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (4, 45, '2013', 2, 8.8);
-insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (5, 83, '2015', 2, 4.3);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (6, 36, '2010', 1, 4.2);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (4, 23, '2020', 2, 7.2);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (3, 60, '2010', 2, 9.5);
@@ -1043,12 +1039,10 @@ insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) value
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (5, 100, '2014', 2, 5.2);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (6, 97, '2019', 2, 6.5);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (4, 73, '2016', 1, 4.6);
-insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (5, 79, '2020', 2, 4.8);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (5, 29, '2016', 2, 8.4);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (6, 22, '2011', 2, 8.4);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (6, 14, '2017', 2, 4.5);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (5, 93, '2016', 1, 6.7);
-insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (4, 79, '2014', 2, 5.8);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (1, 100, '2014', 2, 4.1);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (6, 95, '2017', 1, 6.7);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (4, 53, '2010', 2, 4.1);
@@ -1057,7 +1051,6 @@ insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) value
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (8, 57, '2016', 2, 6.9);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (3, 96, '2016', 2, 6.4);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (2, 66, '2020', 2, 6.7);
-insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (5, 42, '2010', 2, 4.3);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (9, 55, '2013', 2, 7.8);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (8, 26, '2013', 2, 6.9);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (3, 81, '2011', 1, 6.6);
@@ -1073,7 +1066,6 @@ insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) value
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (1, 16, '2020', 2, 4.8);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (7, 39, '2014', 1, 4.0);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (2, 92, '2011', 2, 5.8);
-insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (6, 70, '2014', 2, 5.1);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (9, 41, '2018', 1, 8.6);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (5, 61, '2019', 2, 6.7);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (3, 55, '2020', 1, 7.7);
@@ -1099,7 +1091,6 @@ insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) value
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (4, 24, '2017', 1, 5.0);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (1, 38, '2014', 2, 7.1);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (6, 23, '2017', 2, 7.7);
-insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (6, 43, '2018', 2, 4.2);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (1, 7, '2015', 1, 6.6);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (3, 77, '2017', 1, 9.9);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (8, 3, '2017', 1, 5.4);
@@ -1113,10 +1104,8 @@ insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) value
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (5, 13, '2012', 2, 6.9);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (5, 40, '2011', 1, 4.7);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (4, 15, '2020', 1, 6.5);
-insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (2, 65, '2016', 1, 5.7);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (3, 28, '2014', 2, 6.2);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (8, 64, '2011', 1, 4.4);
-insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (5, 5, '2012', 2, 5.2);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (8, 74, '2018', 1, 8.7);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (1, 49, '2011', 2, 7.2);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (2, 14, '2019', 2, 4.1);
@@ -1170,7 +1159,6 @@ insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) value
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (2, 45, '2016', 1, 6.8);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (8, 15, '2018', 1, 9.8);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (3, 47, '2019', 1, 5.0);
-insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (2, 30, '2014', 2, 5.3);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (3, 50, '2018', 1, 6.0);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (3, 66, '2015', 2, 6.3);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (6, 95, '2020', 1, 9.4);
@@ -1184,7 +1172,6 @@ insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) value
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (1, 66, '2016', 1, 9.2);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (8, 3, '2017', 2, 4.5);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (3, 54, '2015', 1, 7.1);
-insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (3, 83, '2019', 2, 5.6);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (6, 58, '2019', 1, 8.9);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (5, 32, '2010', 1, 6.2);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (9, 84, '2011', 2, 9.4);
@@ -1198,7 +1185,5 @@ insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) value
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (1, 68, '2016', 2, 9.2);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (4, 39, '2019', 2, 9.4);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (8, 84, '2017', 1, 5.9);
-insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (1, 65, '2016', 2, 5.7);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (4, 27, '2016', 2, 7.0);
 insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (4, 11, '2019', 1, 7.4);
-insert into MATERIA_CURSADA (id_materia, id_estudiante, anho, ciclo, nota) values (2, 99, '2011', 2, 4.9);
