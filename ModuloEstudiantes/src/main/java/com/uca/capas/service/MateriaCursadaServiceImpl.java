@@ -40,11 +40,12 @@ public class MateriaCursadaServiceImpl implements MateriaCursadaService {
 	public List<MateriaCursadaDTO> regitroDto() throws DataAccessException{
 		List<MateriaCursadaDTO> expedientes = materiaCursadaRepo.registroDTO().stream().map(obj->{
 				MateriaCursadaDTO mc = new MateriaCursadaDTO();
-				mc.setNombre(obj[0].toString());
-				mc.setApellido(obj[1].toString());
-				mc.setAprovadas(obj[2].toString());
-				mc.setReprobadas(obj[3].toString());
-				mc.setPromedio(obj[4].toString());
+				mc.setId_estudiante(obj[0].toString());
+				mc.setNombre(obj[1].toString());
+				mc.setApellido(obj[2].toString());
+				mc.setAprovadas(obj[3].toString());
+				mc.setReprobadas(obj[4].toString());
+				mc.setPromedio(obj[5].toString());
 				return mc;
 		}).collect(Collectors.toList());
 		return expedientes;
@@ -54,11 +55,12 @@ public class MateriaCursadaServiceImpl implements MateriaCursadaService {
 	public List<MateriaCursadaDTO> buscarNombres(String nombre) throws DataAccessException{
 		List<MateriaCursadaDTO> expedientes = materiaCursadaRepo.buscarNombres(nombre).stream().map(obj->{
 				MateriaCursadaDTO mc = new MateriaCursadaDTO();
-				mc.setNombre(obj[0].toString());
-				mc.setApellido(obj[1].toString());
-				mc.setAprovadas(obj[2].toString());
-				mc.setReprobadas(obj[3].toString());
-				mc.setPromedio(obj[4].toString());
+				mc.setId_estudiante(obj[0].toString());
+				mc.setNombre(obj[1].toString());
+				mc.setApellido(obj[2].toString());
+				mc.setAprovadas(obj[3].toString());
+				mc.setReprobadas(obj[4].toString());
+				mc.setPromedio(obj[5].toString());
 				return mc;
 		}).collect(Collectors.toList());
 		return expedientes;
@@ -68,11 +70,12 @@ public class MateriaCursadaServiceImpl implements MateriaCursadaService {
 	public List<MateriaCursadaDTO> buscarApellidos(String apellidos) throws DataAccessException{
 		List<MateriaCursadaDTO> expedientes = materiaCursadaRepo.buscarApellidos(apellidos).stream().map(obj->{
 				MateriaCursadaDTO mc = new MateriaCursadaDTO();
-				mc.setNombre(obj[0].toString());
-				mc.setApellido(obj[1].toString());
-				mc.setAprovadas(obj[2].toString());
-				mc.setReprobadas(obj[3].toString());
-				mc.setPromedio(obj[4].toString());
+				mc.setId_estudiante(obj[0].toString());
+				mc.setNombre(obj[1].toString());
+				mc.setApellido(obj[2].toString());
+				mc.setAprovadas(obj[3].toString());
+				mc.setReprobadas(obj[4].toString());
+				mc.setPromedio(obj[5].toString());
 				return mc;
 		}).collect(Collectors.toList());
 		return expedientes;

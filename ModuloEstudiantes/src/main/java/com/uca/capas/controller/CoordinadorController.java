@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -108,16 +107,19 @@ public class CoordinadorController {
 	
 	//Actualizar Expediente
 	
-	@GetMapping("/editar/expediente/{id_estudiante}")
-	public ModelAndView updateEst(@PathVariable(name= "id_estudiante") int id, Model model) {
+	@RequestMapping("/editar/expediente")
+	public ModelAndView updateEst(@RequestParam(value= "id_estudiante") String id) {
 		ModelAndView mav = new ModelAndView();
-		Estudiante estudiante = estudianteService.findOne(id);
+		Estudiante estudiante = null;
 		List<CentroEscolar> cEscolares = null;
-		try { cEscolares = cEscolar.findAll(); }
-		catch(Exception e) { e.printStackTrace(); }
-		
-		//mav.addObject("cEscolares", cEscolares);
-		model.addAttribute("estudiante", estudiante);
+		Integer my_id = Integer.parseInt(id);
+		try {
+			cEscolares = cEscolar.findAll();
+			estudiante = estudianteService.findOne(my_id);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		mav.addObject("cEscolares", cEscolares);
 		mav.addObject("estudiante", estudiante);
 		mav.setViewName("updateE");
 		return mav;

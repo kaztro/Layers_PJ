@@ -10,7 +10,7 @@ import com.uca.capas.domain.MateriaCursada;
 
 public interface MateriaCursadaRepo extends JpaRepository<MateriaCursada, Integer> {
 
-	@Query(nativeQuery = true, value = "SELECT e.nombres, e.apellidos, CASE WHEN ma.aprobadas IS NULL THEN 0 ELSE ma.aprobadas END, CASE WHEN ma.reprobadas IS NULL THEN 0 ELSE ma.reprobadas END, CASE WHEN ROUND(AVG(mc.nota),2) IS NULL THEN 0.0 ELSE ROUND(AVG(mc.nota),2) END AS promedio "
+	@Query(nativeQuery = true, value = "SELECT e.id_estudiante, e.nombres, e.apellidos, CASE WHEN ma.aprobadas IS NULL THEN 0 ELSE ma.aprobadas END, CASE WHEN ma.reprobadas IS NULL THEN 0 ELSE ma.reprobadas END, CASE WHEN ROUND(AVG(mc.nota),2) IS NULL THEN 0.0 ELSE ROUND(AVG(mc.nota),2) END AS promedio "
 			+ "FROM( "
 			+ "SELECT cru.id_estudiante, CASE WHEN COUNT(cru.nota) IS NULL THEN 0 ELSE COUNT(cru.nota) END AS Aprobadas, CASE WHEN fir.reprobadas IS NULL THEN 0 ELSE fir.reprobadas END AS Reprobadas "
 			+ "FROM( "
@@ -27,7 +27,7 @@ public interface MateriaCursadaRepo extends JpaRepository<MateriaCursada, Intege
 			+ "ORDER BY e.id_estudiante DESC")
 	public List<Object[]> registroDTO() throws DataAccessException;
 
-	@Query(nativeQuery = true, value = "SELECT e.nombres, e.apellidos, CASE WHEN ma.aprobadas IS NULL THEN 0 ELSE ma.aprobadas END, CASE WHEN ma.reprobadas IS NULL THEN 0 ELSE ma.reprobadas END, CASE WHEN ROUND(AVG(mc.nota),2) IS NULL THEN 0.0 ELSE ROUND(AVG(mc.nota),2) END AS promedio "
+	@Query(nativeQuery = true, value = "SELECT e.id_estudiante, e.nombres, e.apellidos, CASE WHEN ma.aprobadas IS NULL THEN 0 ELSE ma.aprobadas END, CASE WHEN ma.reprobadas IS NULL THEN 0 ELSE ma.reprobadas END, CASE WHEN ROUND(AVG(mc.nota),2) IS NULL THEN 0.0 ELSE ROUND(AVG(mc.nota),2) END AS promedio "
 			+ "FROM( "
 			+ "SELECT cru.id_estudiante, CASE WHEN COUNT(cru.nota) IS NULL THEN 0 ELSE COUNT(cru.nota) END AS Aprobadas, CASE WHEN fir.reprobadas IS NULL THEN 0 ELSE fir.reprobadas END AS Reprobadas "
 			+ "FROM( "
@@ -41,10 +41,10 @@ public interface MateriaCursadaRepo extends JpaRepository<MateriaCursada, Intege
 			+ "FULL OUTER JOIN public.materia_cursada AS mc " + "ON ma.id_estudiante = mc.id_estudiante "
 			+ "FULL OUTER JOIN public.estudiante AS e " + "ON mc.id_estudiante = e.id_estudiante "
 			+ "WHERE e.nombres = :nombres "
-			+ "GROUP BY e.id_estudiante, mc.id_estudiante, e.nombres, e.apellidos, ma.aprobadas, ma.reprobadas")
+			+ "GROUP BY e.id_estudiante, mc.id_estudiante, e.nombres, e.apellidos, ma.aprobadas, ma.reprobadas, e.id_estudiante")
 	public List<Object[]> buscarNombres(String nombres) throws DataAccessException;
 
-	@Query(nativeQuery = true, value = "SELECT e.nombres, e.apellidos, CASE WHEN ma.aprobadas IS NULL THEN 0 ELSE ma.aprobadas END, CASE WHEN ma.reprobadas IS NULL THEN 0 ELSE ma.reprobadas END, CASE WHEN ROUND(AVG(mc.nota),2) IS NULL THEN 0.0 ELSE ROUND(AVG(mc.nota),2) END AS promedio "
+	@Query(nativeQuery = true, value = "SELECT e.id_estudiante, e.nombres, e.apellidos, CASE WHEN ma.aprobadas IS NULL THEN 0 ELSE ma.aprobadas END, CASE WHEN ma.reprobadas IS NULL THEN 0 ELSE ma.reprobadas END, CASE WHEN ROUND(AVG(mc.nota),2) IS NULL THEN 0.0 ELSE ROUND(AVG(mc.nota),2) END AS promedio "
 			+ "FROM( "
 			+ "SELECT cru.id_estudiante, CASE WHEN COUNT(cru.nota) IS NULL THEN 0 ELSE COUNT(cru.nota) END AS Aprobadas, CASE WHEN fir.reprobadas IS NULL THEN 0 ELSE fir.reprobadas END AS Reprobadas "
 			+ "FROM( "
@@ -58,7 +58,7 @@ public interface MateriaCursadaRepo extends JpaRepository<MateriaCursada, Intege
 			+ "FULL OUTER JOIN public.materia_cursada AS mc " + "ON ma.id_estudiante = mc.id_estudiante "
 			+ "FULL OUTER JOIN public.estudiante AS e " + "ON mc.id_estudiante = e.id_estudiante "
 			+ "WHERE e.apellidos = :apellidos "
-			+ "GROUP BY e.id_estudiante, mc.id_estudiante, e.nombres, e.apellidos, ma.aprobadas, ma.reprobadas")
+			+ "GROUP BY e.id_estudiante, mc.id_estudiante, e.nombres, e.apellidos, ma.aprobadas, ma.reprobadas, e.id_estudiante")
 	public List<Object[]> buscarApellidos(String apellidos) throws DataAccessException;
 
 }

@@ -2,12 +2,19 @@ package com.uca.capas.dto;
 
 public class MateriaCursadaDTO {
 	
+	private String id_estudiante;
 	private String nombre;
 	private String apellido;
 	private String aprobadas;
 	private String reprobadas;
 	private String promedio;
 	
+	public String getId_estudiante() {
+		return id_estudiante;
+	}
+	public void setId_estudiante(String id_estudiante) {
+		this.id_estudiante = id_estudiante;
+	}
 	public String getNombre() {
 		return nombre;
 	}
