@@ -20,16 +20,16 @@
 	</select>
 	<br>
 	<!--Nombre-->
-	<form th:action="@{/busqueda}" method="post" th:object="${estudiante}" class="vis" id="nombresid">
+	<form th:action="@{/busqueda}" method="post" class="vis" id="nombresid">
 		<label>Valor de b&uacute;squeda: </label>
-		<input type="text" th:field="${estudiante.nombres}" placeholder="Nombre" th:name="valNombre">
-		<input type="submit" id="btnNombre" name="action" value="buscarnombre">
+		<input type="text" placeholder="Nombre" th:name="valNombre">
+		<button type="submit" id="btnNombre" name="action" value="buscarnombre"><i class="fa fa-search"></i>Buscar</button>
 	</form>
 	<!--Apellido-->
 	<form th:action="@{/busqueda}" method="post" class="vis" id="apellidosid">
 		<label>Valor de b&uacute;squeda: </label>
-		<input type="text" th:field="${estudiante.apellidos}" placeholder="Apellido" th:name="valApellido">
-		<input type="submit" id="btnApellido" name="action" value="buscarapellido">
+		<input type="text" placeholder="Apellido" th:name="valApellido">
+		<button type="submit" id="btnApellido" name="action" value="buscarapellido"><i class="fa fa-search"></i>Buscar</button>
 	</form>
 
 	<a th:href="@{/ingresarEst}" type="submit" class="btn btn-primary bEdit2"><i class="fa fa-plus"></i>Agregar Nuevo
