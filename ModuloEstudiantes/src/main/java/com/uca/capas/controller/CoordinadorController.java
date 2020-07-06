@@ -108,7 +108,7 @@ public class CoordinadorController {
 	//Actualizar Expediente
 	
 	@RequestMapping("/editar/expediente")
-	public ModelAndView updateEst(@RequestParam(value= "id_estudiante") String id) {
+	public ModelAndView updateEst(@RequestParam(value= "estudiante_id") String id) {
 		ModelAndView mav = new ModelAndView();
 		Estudiante estudiante = null;
 		List<CentroEscolar> cEscolares = null;

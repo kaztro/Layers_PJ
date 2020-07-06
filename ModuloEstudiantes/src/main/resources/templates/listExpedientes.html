@@ -39,7 +39,7 @@
                                 <a class="btn btn-primary bEdit" th:href="@{/editar/expediente/}"><i
                                         class="fa fa-edit"></i></a>
                                 <a class="btn btn-primary bEdit"><i class="fa fa-edit"></i></a>
-                                <p class="vis" th:text="${expediente.id_estudiante}" th:name="id_estudiante"></p>
+                                <input class="vis" th:name="estudiante_id" th:field=${expediente.id_estudiante}>
                             </th>
                             <th>
                                 <p th:text="${expediente.nombre}"></p>
