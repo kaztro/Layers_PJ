@@ -19,6 +19,11 @@ public class EstudianteServiceImpl implements EstudianteService {
 	public List<Estudiante> findAll() throws DataAccessException {
 		return estudianteRepo.findAll();
 	}
+
+	@Override
+	public Estudiante findOne(Integer code) throws DataAccessException {
+		return estudianteRepo.getOne(code);
+	}
 	
 	@Override
 	public void findOneByName(String name) throws DataAccessException {

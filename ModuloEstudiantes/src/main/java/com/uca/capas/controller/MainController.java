@@ -34,8 +34,8 @@ public class MainController {
 	@Autowired
 	private DepartamentoService departamento;
 	
-	@Autowired
-	private CentroEscolarService cEscolar;
+	//@Autowired
+	//private CentroEscolarService cEscolar;
 	
 	@Autowired
 	private MateriaService materia;
@@ -74,62 +74,6 @@ public class MainController {
 		return mav;
 	}
 	
-	
-	//Creo que esto va en CoordinadorController (Fredy)
-	
-	@RequestMapping(value="/principal")
-	public ModelAndView coordinadorMain() {
-		ModelAndView mav = new ModelAndView();
-		
-		String mensaje ="";
-		mav.addObject("mensaje", mensaje);
-		mav.setViewName("main");
-		return mav;
-	}
-	
-	@RequestMapping("/ingresarEst")
-	public ModelAndView ingresarEst() {
-		ModelAndView mav = new ModelAndView();
-		Estudiante estudiante = new Estudiante();
-		estudiante.setfNac(new java.util.Date());
-		
-		List<CentroEscolar> cEscolares = null;
-		try { cEscolares = cEscolar.findAll(); }
-		catch(Exception e) { e.printStackTrace(); }
-		
-		mav.addObject("cEscolares", cEscolares);
-		mav.addObject("estudiante", estudiante);
-		mav.setViewName("ingresarEst");
-		return mav;
-	}
-	
-	@PostMapping("/validarEst")
-	public ModelAndView validarEst(@Valid @ModelAttribute Estudiante estudiante, BindingResult result) {
-		ModelAndView mav = new ModelAndView();
-		if(result.hasErrors()) {
-			estudiante.setfNac(new java.util.Date());
-			
-			List<CentroEscolar> cEscolares = null;
-			try { cEscolares = cEscolar.findAll(); }
-			catch(Exception e) { e.printStackTrace(); }
-			
-			mav.addObject("cEscolares", cEscolares);
-			mav.addObject("estudiante", estudiante);
-			mav.setViewName("ingresarEst");
-		}else {
-			try {
-				estudianteService.save(estudiante);
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-			String mensaje ="Expediente creado con éxito";
-			mav.addObject("mensaje", mensaje);
-			mav.setViewName("main");
-		}
-		return mav;
-	}
-	
-	///////////////////////////////////////////////////////////////////
 	
 	public ModelAndView ingresarUser() {
 		ModelAndView mav = new ModelAndView();

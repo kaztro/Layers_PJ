@@ -33,8 +33,8 @@
                     <th:block th:each="expediente, row: ${expedientes}">
                         <tr>
                             <th>
-                            	<a class="btn btn-primary bEdit"><i class="fas fa-edit">Boton1</i></a>
-                                <a class="btn btn-primary bEdit"><i class="fas fa-edit">Boton2</i></a>
+                            	<a class="btn btn-primary bEdit" th:href="@{'/editar/expediente/' + ${expediente.id_estudiante}}"><i class="fas fa-edit">Editar</i></a>
+                                <a class="btn btn-primary bEdit"><i class="fas fa-edit">Materias</i></a>
                             </th>
                             <th>
                                 <p th:text="${expediente.nombre}"></p>

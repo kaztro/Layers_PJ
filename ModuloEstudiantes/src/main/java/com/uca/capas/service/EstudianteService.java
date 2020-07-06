@@ -11,6 +11,9 @@ public interface EstudianteService {
 	//Buscar todos
 	public List<Estudiante> findAll() throws DataAccessException;
 	
+	//Buscar uno
+	public Estudiante findOne(Integer code) throws DataAccessException;
+	
 	//Buscar un estudiante - nombres
 	public void findOneByName(String name) throws DataAccessException;
 	

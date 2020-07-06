@@ -7,7 +7,7 @@
 <body>
 	<form action="#"  th:action="@{/actualizar/estudiante/{id_estudiante}(id_estudiante=${estudiante.id_estudiante})}" th:object="${estudiante}" method="GET">
 		
-		<input type="hidden" th:field="${estudiante.id_estudiante}" readonly="readonly">
+		<input type="hidden" th:field="${estudiante.id_estudiante}">
 		
 		<label for="nombres">Nombres: </label>
         <input type="text" th:field="${estudiante.nombres}">
@@ -57,12 +57,6 @@
         <input type="text" th:field="${estudiante.nombrePadre}">
         <br>
         <span th:errors="*{nombrePadre}" style="color: red;"></span>
-        <br>
-                
-        <label for="telFijo">Tel. Fijo: </label>
-        <input type="text" th:field="${estudiante.telFijo}">
-        <br>
-        <span th:errors="*{telFijo}" style="color: red;"></span>
         <br>
         
         <label for="centroEscolar" class="col-form-label">Centro Escolar:</label>
