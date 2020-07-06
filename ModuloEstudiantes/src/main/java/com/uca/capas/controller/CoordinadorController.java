@@ -105,7 +105,7 @@ public class CoordinadorController {
 	}
 	
 	
-	//Actualizar Expediente
+	//Actualizar Expediente - POR ID
 	
 	@RequestMapping("/editar/expediente")
 	public ModelAndView updateEst(@RequestParam(value= "estudiante_id") String id) {

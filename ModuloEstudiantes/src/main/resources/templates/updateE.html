@@ -5,7 +5,7 @@
 <title>Nuevo expediente</title>
 </head>
 <body>
-	<form action="#"  th:action="@{/actualizar/estudiante/{id_estudiante}(id_estudiante=${estudiante.id_estudiante})}" th:object="${estudiante}" method="GET">
+	<form action="#"  th:action="@{/actualizar/estudiante/{id_estudiante}(id_estudiante=${estudiante.id_estudiante})}" th:object="${estudiante}" method="POST">
 		
 		<input type="hidden" th:field="${estudiante.id_estudiante}">
 		
