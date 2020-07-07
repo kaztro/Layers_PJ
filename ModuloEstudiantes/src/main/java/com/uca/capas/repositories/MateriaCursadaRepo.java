@@ -60,5 +60,12 @@ public interface MateriaCursadaRepo extends JpaRepository<MateriaCursada, Intege
 			+ "WHERE e.apellidos = :apellidos "
 			+ "GROUP BY e.id_estudiante, mc.id_estudiante, e.nombres, e.apellidos, ma.aprobadas, ma.reprobadas, e.id_estudiante")
 	public List<Object[]> buscarApellidos(String apellidos) throws DataAccessException;
+	
+	@Query(nativeQuery=true, value="SELECT mc.id_materiacursada, m.materia, mc.anho, mc.ciclo, mc.nota, CASE WHEN mc.nota >= 6 THEN 'Aprobada' ELSE 'Reprobada' END AS Respuesta "+
+			"FROM public.materia_cursada AS mc "+
+			"INNER JOIN public.materia AS m "+
+			"ON mc.id_materia = m.id_materia "+
+			"WHERE id_estudiante= :id")
+	public List<Object[]> mostrarMaterias(Integer id) throws DataAccessException;
 
 }
