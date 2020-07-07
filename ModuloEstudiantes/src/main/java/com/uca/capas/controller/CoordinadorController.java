@@ -16,12 +16,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.uca.capas.domain.CentroEscolar;
+import com.uca.capas.domain.Departamento;
 import com.uca.capas.domain.Estudiante;
+import com.uca.capas.domain.Municipio;
 import com.uca.capas.dto.ExpedienteDTO;
 import com.uca.capas.dto.MateriaCursadaDTO;
 import com.uca.capas.service.CentroEscolarService;
+import com.uca.capas.service.DepartamentoService;
 import com.uca.capas.service.EstudianteService;
 import com.uca.capas.service.MateriaCursadaService;
+import com.uca.capas.service.MunicipioService;
 
 @Controller
 public class CoordinadorController {
@@ -34,6 +38,12 @@ public class CoordinadorController {
 	
 	@Autowired
 	private CentroEscolarService cEscolar;
+	
+	@Autowired
+	private DepartamentoService departamentoService; 
+	
+	@Autowired
+	private MunicipioService municipioService;
 	
 	//Mostrar todos los expedientes
 	@RequestMapping(value="/expedientes")
@@ -114,12 +124,18 @@ public class CoordinadorController {
 		ModelAndView mav = new ModelAndView();
 		
 		List<CentroEscolar> cEscolares = null;
+		List<Departamento> departamentos = null;
+		List<Municipio> municipios = null;
 		Estudiante estudiante = estudianteService.findOne(Integer.parseInt(id));
 		try {
 			cEscolares = cEscolar.findAll();
+			departamentos = departamentoService.findAll();
+			municipios = municipioService.findAll();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		mav.addObject("departamentos", departamentos);
+		mav.addObject("municipios", municipios);
 		mav.addObject("cEscolares", cEscolares);
 		mav.addObject("estudiante", estudiante);
 		
