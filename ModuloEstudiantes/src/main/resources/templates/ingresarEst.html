@@ -57,18 +57,13 @@
         <span th:errors="*{nombrePadre}" style="color: red;"></span>
         <br>
         
-        <!--        
-        <label for="telFijo">Tel. Fijo: </label>
-        <input type="text" th:field="${estudiante.telFijo}">
-        <br>
-        <span th:errors="*{telFijo}" style="color: red;"></span>
-        <br>
-        -->
-        
         <label for="centroEscolar" class="col-form-label">Centro Escolar:</label>
 		<select class="form-control" name="centroEscolar" id="centroEscolar" th:field=${estudiante.centroEscolar.id_centro}>
             <option th:each="centroEscolar, row: ${cEscolares}" th:value="${centroEscolar.id_centro}" th:text="${centroEscolar.nombre}"></option>
         </select>
+        <br>
+        
+        
         <input type="submit" value="Ingresar">
 		
 	</form>

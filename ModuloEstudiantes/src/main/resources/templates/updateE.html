@@ -5,7 +5,7 @@
 <title>Nuevo expediente</title>
 </head>
 <body>
-	<form action="#"  th:action="@{/actualizar/estudiante/{id_estudiante}(id_estudiante=${estudiante.id_estudiante})}" th:object="${estudiante}" method="POST">
+	<form action="#"  th:action="@{/actualizar/expediente/{id_estudiante}(id_estudiante=${estudiante.id_estudiante})}" th:object="${estudiante}">
 		
 		<input type="hidden" th:field="${estudiante.id_estudiante}">
 		
@@ -59,10 +59,19 @@
         <span th:errors="*{nombrePadre}" style="color: red;"></span>
         <br>
         
+        <!--
         <label for="centroEscolar" class="col-form-label">Centro Escolar:</label>
 		<select class="form-control" name="centroEscolar" id="centroEscolar" th:field=${estudiante.centroEscolar}>
             <option th:each="centroEscolar, row: ${listcentroEscolar}" th:value="${centroEscolar.id_centro}" th:text="${centroEscolar.nombre}"></option>
         </select>
+        <br>
+        -->
+        <label for="centroEscolar" class="col-form-label">Centro Escolar:</label>
+		<select class="form-control" name="centroEscolar" id="centroEscolar" th:field=${estudiante.centroEscolar.id_centro}>
+            <option th:each="centroEscolar, row: ${cEscolares}" th:value="${centroEscolar.id_centro}" th:text="${centroEscolar.nombre}"></option>
+        </select>
+        <br>
+        
         <input type="submit" value="Actualizar">
 		
 	</form>
