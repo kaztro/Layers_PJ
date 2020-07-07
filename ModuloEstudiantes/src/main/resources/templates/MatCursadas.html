@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Expedientes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materia Cursada</title>
+</head>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
@@ -24,47 +24,41 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
 	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 	crossorigin="anonymous"></script>
-</head>
-
 <body>
-	<div class="container">
+    <div class="container">
 		<div class="card">
 			<div class="card-block">
 				<table class="table table-hover">
 					<thead>
 						<th>Acci&oacute;n</th>
-						<th>Nombre</th>
-						<th>Apellido</th>
-						<th>Materias aprobadas</th>
-						<th>Materias reprobadas</th>
-						<th>Promedio</th>
+						<th>Materia</th>
+						<th>A&ntilde;o</th>
+						<th>Ciclo</th>
+						<th>Nota</th>
+						<th>Resultado</th>
 					</thead>
 					<th:block th:each="expediente, row: ${expedientes}">
 						<tr>
 							<th>
-								<form th:action="@{/editar/expediente}" method="post">
-									<input th:name="id_estudiante" th:value="${expediente.id_estudiante}" class="vis">
+								<form method="post">
+									<input th:name="id_materiacursada" th:value="${expediente.id_materiacursada}" class="vis">
 									<button type="submit" class="btn btn-primary bEdit"><i class="fa fa-edit"></i></button>
 								</form>
-								<form th:action="@{/materiasCursadas}" method="post">
-									<input th:name="id_estudianteM" th:value="${expediente.id_estudiante}" class="vis">
-									<button type="submit" class="btn btn-primary bEdit"><i class="fa fa-edit"></i></button>
-								</form>
-								<p th:text="${expediente.id_estudiante}" class="vis"></p>
+								<p th:text="${expediente.id_materiacursada}" class="vis"></p>
 							<th>
-								<p th:text="${expediente.nombre}"></p>
+								<p th:text="${expediente.materia}"></p>
 							</th>
 							<th>
-								<p th:text="${expediente.apellido}"></p>
+								<p th:text="${expediente.anho}"></p>
 							</th>
 							<th>
-								<p th:text="${expediente.aprobadas}"></p>
+								<p th:text="${expediente.ciclo}"></p>
 							</th>
 							<th>
-								<p th:text="${expediente.reprobadas}"></p>
+								<p th:text="${expediente.nota}"></p>
 							</th>
 							<th>
-								<p th:text="${expediente.promedio}"></p>
+								<p th:text="${expediente.respuesta}"></p>
 							</th>
 						</tr>
 					</th:block>
@@ -73,5 +67,4 @@
 		</div>
 	</div>
 </body>
-
 </html>
