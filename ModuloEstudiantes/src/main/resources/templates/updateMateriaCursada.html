@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<form th:action="@{/actualizar/materiaCursada/{id_materiaCursada}(id_materiaCursada=${materiaCursada.id_materiaCursada})}" th:object="${materiaCursada}">
+		
+		<input type="hidden" th:field="${materiaCursada.id_materiaCursada}">
+		
+		<label>Estudiante: </label>
+        <input type="text" th:field="${materiaCursada.estudiente.nombres}" readonly="readonly">
+        <br>
+        
+        <label>Año: </label>
+        <input type="number" step="1" min="2005" max="2020" th:field="${materiaCursada.anho}">
+        <br>
+        <span th:errors="*{anho}" style="color: red;"></span>
+        <br>
+        
+        <label for="ciclo" class="col-form-label">Ciclo:</label>
+		<select class="form-control" name="ciclo" id="ciclo" th:field=${materiaCursada.ciclo}>
+            <option th:text="01"></option>
+            <option th:text="02"></option>
+            <option th:text="03"></option>
+        </select>
+        <br>  
+        
+        <label for="materia" class="col-form-label">Materia:</label>
+		<select class="form-control" name="materia" id="materia" th:field=${materiaCursada.materia.id_materia}>
+            <option th:each="materia, row: ${materias}" th:value="${materia.id_materia}" th:text="${materia.materia}"></option>
+        </select>
+        <br>      
+        
+        <label>Nota: </label>
+        <input type="number" step="0.1" min="0.0" max="10.0" th:field="${materiaCursada.nota}">
+        <br>
+        <span th:errors="*{nota}" style="color: red;"></span>
+        <br>
+        
+        <input type="submit" value="Actualizar">
+        
+	</form>	
+</body>
+</html>

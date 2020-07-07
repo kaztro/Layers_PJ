@@ -40,8 +40,8 @@
 					<th:block th:each="expediente, row: ${expedientes}">
 						<tr>
 							<th>
-								<form method="post">
-									<input th:name="id_materiacursada" th:value="${expediente.id_materiacursada}" class="vis">
+								<form th:action="@{/editar/materiaCursada}" method="post">
+									<input th:name="id_materiaCursada" th:value="${expediente.id_materiacursada}" class="vis">
 									<button type="submit" class="btn btn-primary bEdit"><i class="fa fa-edit"></i></button>
 								</form>
 								<p th:text="${expediente.id_materiacursada}" class="vis"></p>

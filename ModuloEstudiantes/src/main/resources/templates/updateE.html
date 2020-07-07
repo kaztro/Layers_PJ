@@ -59,13 +59,6 @@
         <span th:errors="*{nombrePadre}" style="color: red;"></span>
         <br>
         
-        <!--
-        <label for="centroEscolar" class="col-form-label">Centro Escolar:</label>
-		<select class="form-control" name="centroEscolar" id="centroEscolar" th:field=${estudiante.centroEscolar}>
-            <option th:each="centroEscolar, row: ${listcentroEscolar}" th:value="${centroEscolar.id_centro}" th:text="${centroEscolar.nombre}"></option>
-        </select>
-        <br>
-        -->
         <label for="centroEscolar" class="col-form-label">Centro Escolar:</label>
 		<select class="form-control" name="centroEscolar" id="centroEscolar" th:field=${estudiante.centroEscolar.id_centro}>
             <option th:each="centroEscolar, row: ${cEscolares}" th:value="${centroEscolar.id_centro}" th:text="${centroEscolar.nombre}"></option>

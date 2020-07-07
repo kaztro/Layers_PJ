@@ -17,11 +17,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.uca.capas.domain.CentroEscolar;
 import com.uca.capas.domain.Estudiante;
+import com.uca.capas.domain.Materia;
+import com.uca.capas.domain.MateriaCursada;
 import com.uca.capas.dto.ExpedienteDTO;
 import com.uca.capas.dto.MateriaCursadaDTO;
 import com.uca.capas.service.CentroEscolarService;
 import com.uca.capas.service.EstudianteService;
 import com.uca.capas.service.MateriaCursadaService;
+import com.uca.capas.service.MateriaService;
 
 @Controller
 public class CoordinadorController {
@@ -34,6 +37,9 @@ public class CoordinadorController {
 	
 	@Autowired
 	private CentroEscolarService cEscolar;
+	
+	@Autowired
+	private MateriaService materiaService;
 	
 	//Mostrar todos los expedientes
 	@RequestMapping(value="/expedientes")
@@ -158,7 +164,62 @@ public class CoordinadorController {
 		return mav;
 	}
 	
-	//ACTUALIZAR MATERIAS CURSADAS
+	
+	//Actualizar materias cursadas por id
+	
+	@RequestMapping("/editar/materiaCursada")
+	public ModelAndView updateMatCurs(@RequestParam(value= "id_materiaCursada") String id) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		List<Materia> materias = null;
+		MateriaCursada materiaCursada = materiaCursadaService.findOne(Integer.parseInt(id));
+		try {
+			materias = materiaService.findAll();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		mav.addObject("materias", materias);
+		mav.addObject("materiaCursada", materiaCursada);
+		
+		mav.setViewName("updateMateriaCursada");
+		return mav;
+		
+	}
+	
+	
+	@GetMapping("/actualizar/materiaCursada/{materiaCursada}")
+	public ModelAndView validarUpdateMatCurs(@Valid @ModelAttribute MateriaCursada materiaCursada, BindingResult result, Model model) {
+		ModelAndView mav = new ModelAndView();
+		
+		if(result.hasErrors()) {	
+			List<Materia> materias = null;
+			try {
+				materias = materiaService.findAll();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			mav.addObject("materias", materias);
+			mav.addObject("materiaCursada", materiaCursada);
+			
+			mav.setViewName("updateMateriaCursada");
+		}else {
+			try {
+				materiaCursadaService.save(materiaCursada);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			String mensaje ="Materia cursada actualizada";
+			mav.addObject("mensaje", mensaje);
+			mav.setViewName("main");
+		}
+		return mav;
+	}
+	
+	
+	
+	//VER MATERIAS CURSADAS
 	@RequestMapping("/materiasCursadas")
 	public ModelAndView updateEstMat(@RequestParam(value= "id_estudianteM") String id) {
 		
@@ -174,7 +235,6 @@ public class CoordinadorController {
 		mav.setViewName("MatCursadas");
 		return mav;
 	}
-	
 	
 	//Mostrar por nombre
 	@RequestMapping(value="/busqueda", params="action=buscarnombre")
