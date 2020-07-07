@@ -42,7 +42,7 @@ public class AdminController {
 	
 	
 	
-	@RequestMapping("/listMaterias")
+	@RequestMapping("/admin/listMaterias")
 	public ModelAndView listMaterias() {
 		ModelAndView mav = new ModelAndView();
 
@@ -60,7 +60,7 @@ public class AdminController {
 		return mav;
 	}
 
-	@RequestMapping("/listCEscolares")
+	@RequestMapping("/admin/listCEscolares")
 	public ModelAndView listCEscolares() {
 		ModelAndView mav = new ModelAndView();
 
@@ -78,7 +78,7 @@ public class AdminController {
 		return mav;
 	}
 
-	@RequestMapping("/listUsuarios")
+	@RequestMapping("/admin/listUsuarios")
 	public ModelAndView listUsuarios() {
 		ModelAndView mav = new ModelAndView();
 

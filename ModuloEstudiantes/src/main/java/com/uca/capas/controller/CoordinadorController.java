@@ -35,7 +35,7 @@ public class CoordinadorController {
 	private CentroEscolarService cEscolar;
 	
 	//Mostrar todos los expedientes
-	@RequestMapping(value="/expedientes")
+	@RequestMapping(value="/coordinador/expedientes")
 	public ModelAndView expedientes() {
 		ModelAndView mav = new ModelAndView();
 		List<MateriaCursadaDTO> expedientes = null;
@@ -52,7 +52,7 @@ public class CoordinadorController {
 	
 	//Agregar nuevo expediente
 	
-	@RequestMapping(value="/principal")
+	@RequestMapping(value="/coordinador/principal")
 	public ModelAndView coordinadorMain() {
 		ModelAndView mav = new ModelAndView();
 		
@@ -62,7 +62,7 @@ public class CoordinadorController {
 		return mav;
 	}
 	
-	@RequestMapping("/ingresarEst")
+	@RequestMapping("/coordinador/ingresarEst")
 	public ModelAndView ingresarEst() {
 		ModelAndView mav = new ModelAndView();
 		Estudiante estudiante = new Estudiante();

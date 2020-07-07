@@ -18,14 +18,14 @@
 	</div>
 	
 	<div sec:authorize="hasRole('ADMIN')">
-		<a href="/listUsuarios">Ver lista de usuarios</a>
-		<a href="/listMaterias">Ver lista de materias</a>	
+		<a href="/admin/listUsuarios">Ver lista de usuarios</a>
+		<a href="/admin/listMaterias">Ver lista de materias</a>	
 	</div>
 	
 	<div sec:authorize="hasRole('USER')">
-		<a href="/expedientes">Ver expedientes</a>
-		<a href="/principal">Ver principal</a>
-		<a href="/ingresarEst">Ingresar Estudiante</a>
+		<a href="/coordinador/expedientes">Ver expedientes</a>
+		<a href="/coordinador/principal">Ver principal</a>
+		<a href="/coordinador/ingresarEst">Ingresar Estudiante</a>
 	</div>
 	
 	<div sec:authorize="isAnonymous()">
