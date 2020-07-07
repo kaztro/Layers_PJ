@@ -34,11 +34,6 @@ public class CoordinadorController {
 	@Autowired
 	private CentroEscolarService cEscolar;
 	
-	@GetMapping("/admin")
-	public String error403() {
-		return "admin";
-	}
-	
 	//Mostrar todos los expedientes
 	@RequestMapping(value="/expedientes")
 	public ModelAndView expedientes() {

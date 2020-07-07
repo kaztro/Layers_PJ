@@ -5,7 +5,7 @@
 <title>Agregar nuevo estudiante </title>
 </head>
 <body>
-	<form action="#"  th:action="@{/validarEst}" th:object="${estudiante}" method="POST">
+	<form action="#"  th:action="@{/ingresarUsuari}" th:object="${estudiante}" method="POST">
 		
 		<label for="nombres">Nombres: </label>
         <input type="text" th:field="${estudiante.nombres}">

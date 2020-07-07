@@ -5,7 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="#" th:action="@{/save}" th:object="${usuario}" method="post">
+	<form action="#" th:action="@{/ingresarUsuario}" th:object="${usuario}" method="post">
 
         <label for="nombre">Nombre: </label>
         <input type="text" th:field="${usuario.nombre}">
@@ -55,9 +55,12 @@
         <br>
         <span th:errors="*{telMovil}" style="color: red;"></span>
         <br>
-        <input type="hidden" th:field="${usuario.roles.id_rol}" th:value="${usuario.roles.id_rol}">
         
         
+        
+        <select id="roles"  th:field="${usuario.roles.id_rol}">
+        	<option th:each="roles, row: ${roles}" th:value=${roles.id_rol} th:text="${roles.id_rol}"></option> 
+        </select>
         
         <!-- FALTAN LOS MUNICIPIOS Y FALTA TAMBIEN CAMBIAR QUE TIPO DE USUARIO ES -->
         
@@ -65,7 +68,7 @@
         <select class="form-control" name="enabled_u" id="estado" th:field=${usuario.enabled_u}>
            <option th:value="${false}">Inactivo</option>
         </select>
-        <input type="submit" value="Actualizar">
+        <input type="submit" value="Guardar">
     </form>
 </body>
 </html>

@@ -25,6 +25,7 @@ import com.uca.capas.service.DepartamentoService;
 import com.uca.capas.service.EstudianteService;
 import com.uca.capas.service.MateriaService;
 import com.uca.capas.service.MunicipioService;
+import com.uca.capas.service.RolesService;
 import com.uca.capas.service.UsuarioService;
 
 @Controller
@@ -48,23 +49,29 @@ public class MainController {
 	private MunicipioService municipio;
 	
 	@Autowired
-	private UsuarioService usuario;
+	private UsuarioService usuarioService;
 	
 	@Autowired
-	private 
+	private RolesService rolesService;
 	
 	
 	/*-------------GUARDAR USUARIOS NUEVOS-----------*/
+	
+	
+	
 	@RequestMapping("/crearUsuario")
 	public ModelAndView crearUsuario() {
 		ModelAndView mav = new ModelAndView();
 		Usuario usuario = new Usuario();
 		
 		List<Roles> roles = null;
-		try { 
-			
-		}
+		List<Municipio> municipios = null;
+		try {roles = rolesService.findAll();
+			 municipios = municipio.findAll();}
+		catch(Exception e) {e.printStackTrace();}
 		
+		mav.addObject("municipios", municipios);
+		mav.addObject("roles",roles);
 		mav.addObject("usuario", usuario);
 		mav.setViewName("createUsuario");
 		
@@ -72,20 +79,29 @@ public class MainController {
 		return mav;
 	}
 	
-	@PostMapping("/save")
-	public ModelAndView guardar(@Valid @ModelAttribute Usuario usuarios, BindingResult result) {
+	@PostMapping("/ingresarUsuario")
+	public ModelAndView guardar(@Valid @ModelAttribute Usuario usuario, BindingResult result) {
 		ModelAndView mav = new ModelAndView();
-		
-		
 		
 		if(result.hasErrors()) {
 			mav.setViewName("createUsuario");
-		}else {
+			List<Roles> roles = null;
+			try {roles = rolesService.findAll();}
+			catch(Exception e) {e.printStackTrace();}
 			
-			usuario.save(usuarios);
+			mav.addObject("roles", roles);
+			mav.addObject("usuario", usuario);
+			mav.setViewName("createUsuario");
+		}else {
+			try {
+				usuarioService.save(usuario);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			
+			mav.setViewName("redirect:/");
 		}
-		
-		mav.setViewName("/");
 		
 		return mav;
 		
