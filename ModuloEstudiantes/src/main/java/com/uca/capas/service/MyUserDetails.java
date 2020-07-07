@@ -25,6 +25,9 @@ public class MyUserDetails implements UserDetails {
 		this.authorities = Arrays.stream(user.getRoles().getRol().split(","))
 								.map(SimpleGrantedAuthority::new)
 								.collect(Collectors.toList());
+		
+		System.out.println(user.getRoles().getRol());
+		System.out.println(user.getUsername());
 	}
 
 	@Override
@@ -68,6 +71,7 @@ public class MyUserDetails implements UserDetails {
 		// TODO Auto-generated method stub
 		return enabled_u;
 	}
+	
 	
 	
 	

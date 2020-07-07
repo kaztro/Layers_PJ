@@ -75,15 +75,14 @@ public class MainController {
 		return mav;
 	}
 	
-	
-	
-	@GetMapping("/coordinador")
-	public String coordinaro() {
-		return ("<h1>Bienvenido Coordinador </h1>");
+	@RequestMapping("/admin")
+	public ModelAndView admin() {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("admin");
+		return mav;
+		
 	}
-	
-	@GetMapping("/admin")
-	public String admin() {return ("<h1>Bienvenido Admin </h1>");}
 	
 	
 	public ModelAndView ingresarUser() {
