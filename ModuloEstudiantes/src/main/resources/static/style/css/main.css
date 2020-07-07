@@ -25,3 +25,7 @@ a{
 .vis {
   display: none;
 }
+
+.lineal form{
+  display: inline;
+}

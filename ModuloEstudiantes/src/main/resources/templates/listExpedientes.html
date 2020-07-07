@@ -42,14 +42,16 @@
 					<th:block th:each="expediente, row: ${expedientes}">
 						<tr>
 							<th>
-								<form th:action="@{/editar/expediente}" method="post">
-									<input th:name="id_estudiante" th:value="${expediente.id_estudiante}" class="vis">
-									<button type="submit" class="btn btn-primary bEdit"><i class="fa fa-edit"></i></button>
-								</form>
-								<form th:action="@{/materiasCursadas}" method="post">
-									<input th:name="id_estudianteM" th:value="${expediente.id_estudiante}" class="vis">
-									<button type="submit" class="btn btn-primary bEdit"><i class="fa fa-edit"></i></button>
-								</form>
+								<div class="lineal">
+									<form th:action="@{/editar/expediente}" method="post">
+										<input th:name="id_estudiante" th:value="${expediente.id_estudiante}" class="vis">
+										<button type="submit" class="btn btn-primary bEdit"><i class="fa fa-search"></i></button>
+									</form>
+									<form th:action="@{/materiasCursadas}" method="post">
+										<input th:name="id_estudianteM" th:value="${expediente.id_estudiante}" class="vis">
+										<button type="submit" class="btn btn-primary bEdit"><i class="fa fa-edit"></i></button>
+									</form>
+								</div>
 								<p th:text="${expediente.id_estudiante}" class="vis"></p>
 							<th>
 								<p th:text="${expediente.nombre}"></p>

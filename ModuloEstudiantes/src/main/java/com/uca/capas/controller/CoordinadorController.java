@@ -143,36 +143,33 @@ public class CoordinadorController {
 		return mav;
 	}
 	
-	@GetMapping("/actualizar/expediente/{id_estudiante}")
-	public ModelAndView validarUpdateEst(@Valid @ModelAttribute Estudiante estudiante, BindingResult result, Model model) {
+	@RequestMapping("/actualizar/expediente/")
+	public ModelAndView validarUpdateEst(@Valid @ModelAttribute Estudiante estudiante, @RequestParam(value= "id_estudiante") String id, BindingResult result) {
 		ModelAndView mav = new ModelAndView();
+		
 		if(result.hasErrors()) {
-			
 			List<CentroEscolar> cEscolares = null;
-			try { cEscolares = cEscolar.findAll(); }
-			catch(Exception e) { e.printStackTrace(); }
+			List<Departamento> departamentos = null;
+			List<Municipio> municipios = null;
+			cEscolares = cEscolar.findAll();
+			departamentos = departamentoService.findAll();
+			municipios = municipioService.findAll();
+			estudiante = estudianteService.findOne(Integer.parseInt(id));
 			
+			mav.addObject("departamentos", departamentos);
+			mav.addObject("municipios", municipios);
 			mav.addObject("cEscolares", cEscolares);
 			mav.addObject("estudiante", estudiante);
+			
 			mav.setViewName("updateE");
 		}else {
-			try {
-				estudianteService.save(estudiante);
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-			
-			List<ExpedienteDTO> expedientes = null;
-			try {
-				expedientes = materiaCursadaService.regitroDto();
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-			mav.addObject("expedientes", expedientes);
-			mav.setViewName("listExpedientes");
+			estudianteService.save(estudiante);
+			mav.addObject("mensaje", "Estudiantes actualizado con exito");
+			mav.setViewName("main");
 		}
 		return mav;
 	}
+	
 	
 	//ACTUALIZAR MATERIAS CURSADAS
 	@RequestMapping("/materiasCursadas")

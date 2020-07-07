@@ -14,8 +14,7 @@
 </head>
 
 <body>
-    <form action="#" th:action="@{/actualizar/expediente/{id_estudiante}(id_estudiante=${estudiante.id_estudiante})}"
-        th:object="${estudiante}">
+    <form th:action="@{/actualizar/expediente/}" th:object="${estudiante}" method="post">
 
         <input type="hidden" th:field="${estudiante.id_estudiante}">
 
@@ -91,7 +90,7 @@
         </select>
 
         <label for="centroEscolar" class="col-form-label">Centro Escolar:</label>
-        <select class="form-control" id="centroEscolar">
+        <select class="form-control" id="centroEscolar" th:field="${estudiante.id_centro}">
             <option value="col2" selected>Selecciona una opci&oacute;n</option>
             <option th:each="centroEscolar, row: ${cEscolares}" th:value="${centroEscolar.id_centro}" th:id="${centroEscolar.municipio.id_municipio}" th:text="${centroEscolar.nombre}"></option>
         </select>
