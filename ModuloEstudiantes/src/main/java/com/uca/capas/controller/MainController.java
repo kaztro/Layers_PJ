@@ -47,6 +47,21 @@ public class MainController {
 	@Autowired
 	private UsuarioService usuario;
 	
+	
+	/*-------------GUARDAR USUARIOS NUEVOS-----------*/
+	@RequestMapping("/crearUsuario")
+	public ModelAndView crearUsuario() {
+		ModelAndView mav = new ModelAndView();
+		Usuario user = new Usuario();
+		
+		mav.addObject("user", user);
+		mav.setViewName("createUsuario");
+		
+		
+		return mav;
+	}
+	
+	
 	/*--------LISTAS QUE SE MOSTRARAN-----------*/
 	@RequestMapping("/listEstud")
 	public ModelAndView listEstud() {
@@ -105,5 +120,7 @@ public class MainController {
 		return mav;
 	}
 	/*----------------------------------------------*/
+	
+	
 	
 }
