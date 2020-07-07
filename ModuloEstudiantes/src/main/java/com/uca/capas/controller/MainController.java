@@ -86,9 +86,13 @@ public class MainController {
 		if(result.hasErrors()) {
 			mav.setViewName("createUsuario");
 			List<Roles> roles = null;
-			try {roles = rolesService.findAll();}
+			List<Municipio> municipios = null;
+			try {roles = rolesService.findAll();
+				 municipios = municipio.findAll();
+				}
 			catch(Exception e) {e.printStackTrace();}
 			
+			mav.addObject("municipios", municipios);
 			mav.addObject("roles", roles);
 			mav.addObject("usuario", usuario);
 			mav.setViewName("createUsuario");
