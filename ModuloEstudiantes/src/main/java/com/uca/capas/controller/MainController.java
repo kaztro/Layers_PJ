@@ -52,9 +52,9 @@ public class MainController {
 	@RequestMapping("/crearUsuario")
 	public ModelAndView crearUsuario() {
 		ModelAndView mav = new ModelAndView();
-		Usuario user = new Usuario();
+		Usuario usuario = new Usuario();
 		
-		mav.addObject("user", user);
+		mav.addObject("usuario", usuario);
 		mav.setViewName("createUsuario");
 		
 		
