@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,6 +74,16 @@ public class MainController {
 		mav.setViewName("ingresarMat");
 		return mav;
 	}
+	
+	
+	
+	@GetMapping("/coordinador")
+	public String coordinaro() {
+		return ("<h1>Bienvenido Coordinador </h1>");
+	}
+	
+	@GetMapping("/admin")
+	public String admin() {return ("<h1>Bienvenido Admin </h1>");}
 	
 	
 	public ModelAndView ingresarUser() {
