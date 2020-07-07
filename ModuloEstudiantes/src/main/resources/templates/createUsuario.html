@@ -5,7 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="#" th:action="@{/save}" th:object="${usuario}" method="GET">
+	<form action="#" th:action="@{/save}" th:object="${usuario}" method="post">
 
         <label for="nombre">Nombre: </label>
         <input type="text" th:field="${usuario.nombre}">
@@ -55,8 +55,9 @@
         <br>
         <span th:errors="*{telMovil}" style="color: red;"></span>
         <br>
-        <input type="hidden" th:field="${usuario.roles.id_rol}">
-        <input type="hidden" th:field="${usuario.municipio.id_municipio}">
+        <input type="hidden" th:field="${usuario.roles.id_rol}" th:value="${usuario.roles.id_rol}">
+        
+        
         
         <!-- FALTAN LOS MUNICIPIOS Y FALTA TAMBIEN CAMBIAR QUE TIPO DE USUARIO ES -->
         

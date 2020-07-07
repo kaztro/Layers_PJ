@@ -18,6 +18,7 @@ import com.uca.capas.domain.Departamento;
 import com.uca.capas.domain.Estudiante;
 import com.uca.capas.domain.Materia;
 import com.uca.capas.domain.Municipio;
+import com.uca.capas.domain.Roles;
 import com.uca.capas.domain.Usuario;
 import com.uca.capas.service.CentroEscolarService;
 import com.uca.capas.service.DepartamentoService;
@@ -28,6 +29,8 @@ import com.uca.capas.service.UsuarioService;
 
 @Controller
 public class MainController {
+	
+	
 	
 	@Autowired
 	private EstudianteService estudianteService;
@@ -47,6 +50,9 @@ public class MainController {
 	@Autowired
 	private UsuarioService usuario;
 	
+	@Autowired
+	private 
+	
 	
 	/*-------------GUARDAR USUARIOS NUEVOS-----------*/
 	@RequestMapping("/crearUsuario")
@@ -54,11 +60,35 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		Usuario usuario = new Usuario();
 		
+		List<Roles> roles = null;
+		try { 
+			
+		}
+		
 		mav.addObject("usuario", usuario);
 		mav.setViewName("createUsuario");
 		
 		
 		return mav;
+	}
+	
+	@PostMapping("/save")
+	public ModelAndView guardar(@Valid @ModelAttribute Usuario usuarios, BindingResult result) {
+		ModelAndView mav = new ModelAndView();
+		
+		
+		
+		if(result.hasErrors()) {
+			mav.setViewName("createUsuario");
+		}else {
+			
+			usuario.save(usuarios);
+		}
+		
+		mav.setViewName("/");
+		
+		return mav;
+		
 	}
 	
 	
