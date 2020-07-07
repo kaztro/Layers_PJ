@@ -1,56 +1,50 @@
 package com.uca.capas.dto;
 
 public class MateriaCursadaDTO {
-	
-	private String id_estudiante;
-	private String nombre;
-	private String apellido;
-	private String aprobadas;
-	private String reprobadas;
-	private String promedio;
-	
-	public String getId_estudiante() {
-		return id_estudiante;
-	}
-	public void setId_estudiante(String id_estudiante) {
-		this.id_estudiante = id_estudiante;
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	public String getAprobadas() {
-		return aprobadas;
-	}
-	public void setAprobadas(String aprobadas) {
-		this.aprobadas = aprobadas;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public String getApellido() {
-		return apellido;
-	}
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
-	public String getAprovadas() {
-		return aprobadas;
-	}
-	public void setAprovadas(String aprobadas) {
-		this.aprobadas = aprobadas;
-	}
-	public String getReprobadas() {
-		return reprobadas;
-	}
-	public void setReprobadas(String reprobadas) {
-		this.reprobadas = reprobadas;
-	}
-	public String getPromedio() {
-		return promedio;
-	}
-	public void setPromedio(String promedio) {
-		this.promedio = promedio;
-	}
-	
 
+	private String id_materiacursada;
+	private String materia;
+	private String anho;
+	private String ciclo;
+	private String nota;
+	private String respuesta;
+	
+	public String getId_materiacursada() {
+		return id_materiacursada;
+	}
+	public void setId_materiacursada(String id_materiacursada) {
+		this.id_materiacursada = id_materiacursada;
+	}
+	public String getMateria() {
+		return materia;
+	}
+	public void setMateria(String materia) {
+		this.materia = materia;
+	}
+	public String getAnho() {
+		return anho;
+	}
+	public void setAnho(String anho) {
+		this.anho = anho;
+	}
+	public String getCiclo() {
+		return ciclo;
+	}
+	public void setCiclo(String ciclo) {
+		this.ciclo = ciclo;
+	}
+	public String getNota() {
+		return nota;
+	}
+	public void setNota(String nota) {
+		this.nota = nota;
+	}
+	public String getRespuesta() {
+		return respuesta;
+	}
+	public void setRespuesta(String respuesta) {
+		this.respuesta = respuesta;
+	}
+	
+	
 }
