@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.uca.capas.domain.CentroEscolar;
 import com.uca.capas.domain.Estudiante;
+import com.uca.capas.dto.ExpedienteDTO;
 import com.uca.capas.dto.MateriaCursadaDTO;
 import com.uca.capas.service.CentroEscolarService;
 import com.uca.capas.service.EstudianteService;
@@ -38,7 +39,7 @@ public class CoordinadorController {
 	@RequestMapping(value="/expedientes")
 	public ModelAndView expedientes() {
 		ModelAndView mav = new ModelAndView();
-		List<MateriaCursadaDTO> expedientes = null;
+		List<ExpedienteDTO> expedientes = null;
 		try {
 			expedientes = materiaCursadaService.regitroDto();
 		}catch(Exception e) {
@@ -108,19 +109,20 @@ public class CoordinadorController {
 	//Actualizar Expediente - POR ID
 	
 	@RequestMapping("/editar/expediente")
-	public ModelAndView updateEst(@RequestParam(value= "estudiante_id") String id) {
+	public ModelAndView updateEst(@RequestParam(value= "id_estudiante") String id) {
+		
 		ModelAndView mav = new ModelAndView();
-		Estudiante estudiante = null;
+		
 		List<CentroEscolar> cEscolares = null;
-		Integer my_id = Integer.parseInt(id);
+		Estudiante estudiante = estudianteService.findOne(Integer.parseInt(id));
 		try {
 			cEscolares = cEscolar.findAll();
-			estudiante = estudianteService.findOne(my_id);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		mav.addObject("cEscolares", cEscolares);
 		mav.addObject("estudiante", estudiante);
+		
 		mav.setViewName("updateE");
 		return mav;
 	}
@@ -144,7 +146,7 @@ public class CoordinadorController {
 				e.printStackTrace();
 			}
 			
-			List<MateriaCursadaDTO> expedientes = null;
+			List<ExpedienteDTO> expedientes = null;
 			try {
 				expedientes = materiaCursadaService.regitroDto();
 			}catch(Exception e) {
@@ -156,11 +158,29 @@ public class CoordinadorController {
 		return mav;
 	}
 	
+	//ACTUALIZAR MATERIAS CURSADAS
+	@RequestMapping("/materiasCursadas")
+	public ModelAndView updateEstMat(@RequestParam(value= "id_estudianteM") String id) {
+		
+		ModelAndView mav = new ModelAndView();
+		List<MateriaCursadaDTO> expedientes = null;
+		
+		try {
+			expedientes = materiaCursadaService.mostrarMaterias(Integer.parseInt(id));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		mav.addObject("expedientes", expedientes);
+		mav.setViewName("MatCursadas");
+		return mav;
+	}
+	
+	
 	//Mostrar por nombre
 	@RequestMapping(value="/busqueda", params="action=buscarnombre")
 	public ModelAndView BuscarNom(@RequestParam(value="valNombre") String nombres) {
 		ModelAndView mav = new ModelAndView();
-		List<MateriaCursadaDTO> expedientes = null;
+		List<ExpedienteDTO> expedientes = null;
 		try {
 			expedientes = materiaCursadaService.buscarNombres(nombres);
 		}catch(Exception e) {
@@ -174,7 +194,7 @@ public class CoordinadorController {
 	@RequestMapping(value="/busqueda", params="action=buscarapellido")
 	public ModelAndView BuscarApe(@RequestParam(value="valApellido") String apellidos) {
 		ModelAndView mav = new ModelAndView();
-		List<MateriaCursadaDTO> expedientes = null;
+		List<ExpedienteDTO> expedientes = null;
 		try {
 			expedientes = materiaCursadaService.buscarApellidos(apellidos);
 		}catch(Exception e) {
