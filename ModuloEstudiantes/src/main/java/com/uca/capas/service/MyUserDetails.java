@@ -26,7 +26,7 @@ public class MyUserDetails implements UserDetails {
 								.map(SimpleGrantedAuthority::new)
 								.collect(Collectors.toList());
 		
-		System.out.println(user.getRoles().getRol());
+		System.out.println(this.authorities);
 		System.out.println(user.getUsername());
 	}
 

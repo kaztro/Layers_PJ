@@ -5,11 +5,40 @@
 <title>Pagina de inicio</title>
 </head>
 <body>
+
+	<div sec:authorize="isAuthenticated()">
+    	Welcome <b><span sec:authentication="name">Username</span></b>
+    	&nbsp;
+    	<i><span sec:authentication="principal.authorities">Roles</span></i>
+    	<form th:action="@{/logout}" method="post">
+    		<input type="submit" value="Logout" />
+		</form>
+		
+			
+	</div>
+	
+	<div sec:authorize="hasRole('ADMIN')">
+		<a href="/listUsuarios">Ver lista de usuarios</a>
+		<a href="/listMaterias">Ver lista de materias</a>	
+	</div>
+	
+	<div sec:authorize="hasRole('USER')">
+		<a href="/expedientes">Ver expedientes</a>
+		<a href="/principal">Ver principal</a>
+		<a href="/ingresarEst">Ingresar Estudiante</a>
+	</div>
+	
+	<div sec:authorize="isAnonymous()">
+		<a  href="/login">login</a>
+		<a href="/crearUsuario">Crear Usuario</a>
+	</div>
+	<div >
 	
 	
-	<a href="/admin"> Admin</a>	
-	<a href="/coordinador">Coordinador</a>	
-	<a href="/crearUsuario">Crear Usuario</a>
+	</div>
+	
+		
+	
 	
 
 

@@ -59,7 +59,7 @@
         
         <label>Role: </label>
         <select id="roles"  th:field="${usuario.roles.id_rol}">
-        	<option th:each="roles, row: ${roles}" th:value=${roles.id_rol} th:text="${roles.id_rol}"></option> 
+        	<option th:each="roles, row: ${roles}" th:value=${roles.id_rol} th:text="${roles.rol}"></option> 
         </select>
         <br>
         
