@@ -57,6 +57,13 @@ public class MainController {
 	
 	/*-------------GUARDAR USUARIOS NUEVOS-----------*/
 	
+	@RequestMapping("/login")
+	public ModelAndView login() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("login");
+		return mav;
+	}
+	
 	
 	
 	@RequestMapping("/crearUsuario")

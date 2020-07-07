@@ -14,6 +14,10 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
+	 String[] resources = new String[]{
+	            "/include/**","/css/**","/icons/**","/img/**","/js/**","/layer/**"
+	    };
+	
 	@Autowired
 	UserDetailsService userDetailsService;
 	
@@ -24,7 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
+		/*http.authorizeRequests()
 			.antMatchers("/admin/**").hasRole("ADMIN")
 			.antMatchers("/coordinador/**").hasRole("USER")
 			.antMatchers("/").permitAll()
@@ -33,7 +37,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.and()
 			.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 			.logoutSuccessUrl("/");
-			
+		*/
+		
+		http.authorizeRequests()
+			.antMatchers(resources).permitAll()
+			.antMatchers("/admin/**").hasAnyRole("ADMIN")
+			.antMatchers("/coordinador/**").hasRole("USER")
+			.antMatchers("/").permitAll()
+			.and()
+			.formLogin()
+			.loginPage("/login")
+			.permitAll()
+			.defaultSuccessUrl("/")
+			.usernameParameter("username")
+			.passwordParameter("password")
+			.and()
+			.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+			.logoutSuccessUrl("/");
 	}
 	
 	@Bean
