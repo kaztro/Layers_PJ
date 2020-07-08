@@ -877,8 +877,8 @@ INSERT INTO MATERIA (materia, descripcion, enabled_m) VALUES ('INFORMÁTICA','Ti
 
 
 --ROLES
-INSERT INTO ROLES (rol) VALUES ('Administrador');
-INSERT INTO ROLES (rol) VALUES ('Coordinador');
+INSERT INTO ROLES (rol) VALUES ('ROLE_ADMIN');
+INSERT INTO ROLES (rol) VALUES ('ROLE_USER');
 
 --USUARIOS
 insert into USUARIO (id_rol, username, password, enabled_u, nombre, apellido, fnac, direccion, telfijo, telmovil, id_municipio) values (1, 'mmackriell0', 'AXqFY0Yxzs', true, 'Michal', 'Mackriell', '1971-06-11 19:59:29', '77164 Utah Point', '24288434', '71902708', 205);
