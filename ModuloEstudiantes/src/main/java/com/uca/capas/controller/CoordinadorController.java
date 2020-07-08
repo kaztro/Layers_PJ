@@ -132,6 +132,41 @@ public class CoordinadorController {
 	}
 	
 	
+	//Ingresar nueva materia cursada a Estudiante
+	@RequestMapping("/add/materiaCursada")
+	public ModelAndView addMatCurs(@RequestParam(value= "id_guardado") String id) {
+		ModelAndView mav = new ModelAndView();
+		
+		Estudiante estudiante = new Estudiante();
+		List<Materia> materias = null;
+		MateriaCursada materiaCursada = new MateriaCursada();
+		try {
+			materias = materiaService.findAll();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		Integer id_est = Integer.parseInt(id);
+		materiaCursada.setId_estudiante(id_est);
+		
+		try {
+			estudiante = estudianteService.findOne(id_est);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		materiaCursada.setEstudiente(estudiante);
+		
+		//mav.addObject("id_estudiante", id);
+		mav.addObject("materias", materias);
+		mav.addObject("materiaCursada", materiaCursada);
+		
+		mav.setViewName("addMateria");
+		return mav;
+		
+	}
+	
+	
 	//Actualizar Expediente - POR ID
 	
 	@RequestMapping("/editar/expediente")
@@ -208,24 +243,6 @@ public class CoordinadorController {
 		return mav;
 		
 	}
-	
-	@RequestMapping("/add/materiaCursada")
-	public ModelAndView addMatCurs(@RequestParam(value= "id_guardado") String id) {
-		
-		ModelAndView mav = new ModelAndView();
-		
-		List<Materia> materias = null;
-		MateriaCursada materiaCursada = new MateriaCursada();
-		
-		Integer id_est = Integer.parseInt(id);
-		mav.addObject("id_est", id_est);
-		mav.addObject("materiaCursada", materiaCursada);
-		mav.addObject("materias", materias);
-		mav.setViewName("addMateria");
-		return mav;
-		
-	}
-	
 	
 	@GetMapping("/actualizar/materiaCursada/{materiaCursada}")
 	public ModelAndView validarUpdateMatCurs(@Valid @ModelAttribute MateriaCursada materiaCursada, BindingResult result) {

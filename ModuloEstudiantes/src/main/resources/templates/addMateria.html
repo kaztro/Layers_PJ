@@ -8,7 +8,10 @@
 
 	<form th:object="${materiaCursada}">
 		
-		<input type="text" th:field="${materiaCursada.estudiente.id_estudiante}" th:value="${id_est}">
+		<input type="hidden" th:field="${materiaCursada.id_materiaCursada}">
+        <p><label>Estudiante: </label><span th:text="${materiaCursada.estudiente.nombres}"></span></p>
+        <br>
+		<input type="hidden" th:field="${materiaCursada.estudiente.id_estudiante}">
 		
 		
         <label>A&ntilde;o: </label>
