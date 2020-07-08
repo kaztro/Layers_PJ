@@ -254,7 +254,7 @@ public class CoordinadorController {
 			mav.setViewName("updateE");
 		}else {
 			estudianteService.save(estudiante);
-			mav.addObject("mensaje", "Estudiantes actualizado con exito");
+			mav.addObject("mensaje", "Estudiante actualizado con exito");
 			mav.setViewName("main");
 		}
 		return mav;

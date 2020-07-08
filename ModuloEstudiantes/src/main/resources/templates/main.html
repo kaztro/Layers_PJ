@@ -24,7 +24,7 @@
 <body>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand mb-0 h1" href="#">Mod&uacute;lo de Administracion</a>
+		<a class="navbar-brand mb-0 h1" href="/">Mod&uacute;lo de Administracion</a>
 		<div class="text-white" sec:authorize="isAnonymous()">
 			<a class="text-white" href="/login">Iniciar Sesion</a>
 			<a class="text-white" href="/crearUsuario">Crear Usuario</a>
@@ -74,11 +74,11 @@
 		</div>
 	</nav>
 	<div class="container">
-		<div class="card">
+		<div class="card" id="formsCont">
 			<div class="card-block">
-				<p><span th:text="${mensaje}"></span></p>
+				<h3><span th:text="${mensaje}" class="exito"></span></h3>
 				<label>Buscar alumno por: </label>
-				<select id="selection">
+				<select id="selection" class="form-control">
 					<option value="0" selected>Selecciones criterio [Nombres, Apellidos]</option>
 					<option value="1">Buscar por nombre</option>
 					<option value="2">Buscar por apellido</option>
@@ -87,18 +87,20 @@
 				<!--Nombre-->
 				<form th:action="@{/busqueda}" method="post" class="vis" id="nombresid">
 					<label>Valor de b&uacute;squeda: </label>
-					<input type="text" placeholder="Nombre" th:name="valNombre">
-					<button type="submit" id="btnNombre" name="action" value="buscarnombre"><i
-							class="fa fa-search"></i>Buscar</button>
+					<input type="text" placeholder="Nombre" th:name="valNombre" class="form-control" required>
+					<br>
+					<button type="submit" id="btnNombre" name="action" value="buscarnombre"
+						class="btn btn-primary bEdit2"><i class="fa fa-search"></i>Buscar</button>
 				</form>
 				<!--Apellido-->
 				<form th:action="@{/busqueda}" method="post" class="vis" id="apellidosid">
 					<label>Valor de b&uacute;squeda: </label>
-					<input type="text" placeholder="Apellido" th:name="valApellido">
-					<button type="submit" id="btnApellido" name="action" value="buscarapellido"><i
-							class="fa fa-search"></i>Buscar</button>
+					<input type="text" placeholder="Apellido" th:name="valApellido" class="form-control" required>
+					<br>
+					<button type="submit" id="btnApellido" name="action" class="btn btn-primary bEdit2"
+						value="buscarapellido"><i class="fa fa-search"></i>Buscar</button>
 				</form>
-
+				<br>
 				<a th:href="@{/coordinador/ingresarEst}" type="submit" class="btn btn-primary bEdit2"><i
 						class="fa fa-plus"></i>Agregar Nuevo
 					Expediente</a>

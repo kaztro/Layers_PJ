@@ -39,3 +39,11 @@ a{
 	margin-top: 2em;
 	margin-bottom: 2em;
 }
+
+#formsCont {
+  padding: 2em;
+}
+
+.exito {
+  color: #20e719;
+}
