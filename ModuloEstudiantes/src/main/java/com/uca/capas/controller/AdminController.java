@@ -211,12 +211,12 @@ public class AdminController {
 	@RequestMapping("/admin/ingresarCE")
 	public ModelAndView ingresarCE(@Valid CentroEscolar centroEscolar, BindingResult result, Model model) {
 		ModelAndView mav = new ModelAndView();
-		//CentroEscolar centroEscolar = new CentroEscolar();
 		if(result.hasErrors()) {
 			mav.setViewName("addCE");
 		} else {	
 			centroEscolarService.save(centroEscolar);
 			
+			List<Departamento> departamentos = null;
 			List<Municipio> municipios = null;
 			try { 
 				municipios = municipioService.findAll();
@@ -224,7 +224,9 @@ public class AdminController {
 				e.printStackTrace();
 			}
 			
+			mav.addObject("departamentos", departamentos);
 			mav.addObject("municipios", municipios);
+			mav.addObject("centroEscolar", centroEscolar);
 			mav.setViewName("addCE");
 		}
 		return mav;
