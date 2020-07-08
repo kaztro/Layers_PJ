@@ -80,7 +80,7 @@ public class CoordinadorController {
 		return mav;
 	}
 	//INGRESAR ESTUDIANTE NUEVO
-	@RequestMapping("/ingresarEst")
+	@RequestMapping("/coordinador/ingresarEst")
 	public ModelAndView ingresarEst() {
 		ModelAndView mav = new ModelAndView();
 		Estudiante estudiante = new Estudiante();

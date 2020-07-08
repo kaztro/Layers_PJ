@@ -63,9 +63,7 @@ public class MainController {
 		mav.setViewName("login");
 		return mav;
 	}
-	
-	
-	
+
 	@RequestMapping("/crearUsuario")
 	public ModelAndView crearUsuario() {
 		ModelAndView mav = new ModelAndView();
@@ -118,35 +116,6 @@ public class MainController {
 		
 	}
 	
-	
-	/*--------LISTAS QUE SE MOSTRARAN-----------*/
-	@RequestMapping("/listEstud")
-	public ModelAndView listEstud() {
-		ModelAndView mav = new ModelAndView();
-		
-		List<Estudiante> estudiantes = null;
-		try { estudiantes = estudianteService.findAll(); }
-		catch (Exception e) { e.printStackTrace(); }
-		
-		mav.addObject("estudiantes", estudiantes);
-		mav.setViewName("listEstud");
-		
-		return mav;
-	}
-	/*----------------------------------------------*/
-	
-	/*--------INGRESAR CAMPOS A TABLAS-----------*/
-	//Probablemente en AdminController
-	
-	@RequestMapping("/ingresarMat")
-	public ModelAndView ingresarMat() {
-		ModelAndView mav = new ModelAndView();
-		Materia materia = new Materia();
-		mav.addObject("materia", materia);
-		mav.setViewName("ingresarMat");
-		return mav;
-	}
-	
 	@RequestMapping("/admin")
 	public ModelAndView admin() {
 		ModelAndView mav = new ModelAndView();
@@ -155,8 +124,7 @@ public class MainController {
 		return mav;
 		
 	}
-	
-	
+
 	public ModelAndView ingresarUser() {
 		ModelAndView mav = new ModelAndView();
 		Usuario usuario = new Usuario();
@@ -176,8 +144,4 @@ public class MainController {
 		mav.setViewName("ingresarUser");
 		return mav;
 	}
-	/*----------------------------------------------*/
-	
-	
-	
 }
