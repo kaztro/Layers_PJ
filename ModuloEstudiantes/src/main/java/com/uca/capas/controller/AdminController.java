@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.uca.capas.domain.CentroEscolar;
+import com.uca.capas.domain.Departamento;
 import com.uca.capas.domain.Materia;
 import com.uca.capas.domain.Municipio;
 import com.uca.capas.domain.Usuario;
 import com.uca.capas.service.CentroEscolarService;
+import com.uca.capas.service.DepartamentoService;
 import com.uca.capas.service.MateriaService;
 import com.uca.capas.service.MunicipioService;
 import com.uca.capas.service.UsuarioService;
@@ -36,6 +38,9 @@ public class AdminController {
 
 	@Autowired
 	private MunicipioService municipioService;
+	
+	@Autowired
+	private DepartamentoService departamentoService;
 
 	/*--------LISTAS QUE SE MOSTRARAN-----------*/
 
@@ -201,6 +206,32 @@ public class AdminController {
 			mav.addObject("usuario", new Usuario());
 			mav.addObject("usuariosL", usuariosL);
 			mav.setViewName("listUsers");
+		}
+		return mav;
+	}
+	
+	// Add - CE
+	@RequestMapping("/admin/ingresarCE")
+	public ModelAndView ingresarCE(@Valid CentroEscolar centroEscolar, BindingResult result, Model model) {
+		ModelAndView mav = new ModelAndView();
+		if(result.hasErrors()) {
+			mav.setViewName("addCE");
+		} else {	
+			centroEscolarService.save(centroEscolar);
+			
+			List<Departamento> departamentos = null;
+			List<Municipio> municipios = null;
+			try { 
+				departamentos = departamentoService.findAll();
+				municipios = municipioService.findAll();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			mav.addObject("departamentos", departamentos);
+			mav.addObject("municipios", municipios);
+			mav.addObject("centroEscolar", centroEscolar);
+			mav.setViewName("addCE");
 		}
 		return mav;
 	}
