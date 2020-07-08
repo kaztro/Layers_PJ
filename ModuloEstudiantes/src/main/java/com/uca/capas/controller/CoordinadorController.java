@@ -215,16 +215,13 @@ public class CoordinadorController {
 		ModelAndView mav = new ModelAndView();
 		
 		List<Materia> materias = null;
-		MateriaCursada materiaCursada = materiaCursadaService.findOne(Integer.parseInt(id));
-		try {
-			materias = materiaService.findAll();
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		mav.addObject("materias", materias);
-		mav.addObject("materiaCursada", materiaCursada);
+		MateriaCursada materiaCursada = new MateriaCursada();
 		
-		mav.setViewName("updateMateriaCursada");
+		Integer id_est = Integer.parseInt(id);
+		mav.addObject("id_est", id_est);
+		mav.addObject("materiaCursada", materiaCursada);
+		mav.addObject("materias", materias);
+		mav.setViewName("addMateria");
 		return mav;
 		
 	}
