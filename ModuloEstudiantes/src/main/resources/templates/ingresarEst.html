@@ -3,6 +3,13 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Agregar nuevo estudiante </title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/style/css/main.css" th:href="@{/style/css/main.css}" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </head>
 <body>
 	<form action="#"  th:action="@{/validarEst}" th:object="${estudiante}" method="POST">
@@ -19,7 +26,7 @@
         <span th:errors="*{apellidos}" style="color: red;"></span>
         <br>
 		
-		<label for="cMinoridad">Carné de minoridad: </label>
+		<label for="cMinoridad">Carn&eacute; de minoridad: </label>
         <input type="text" th:field="${estudiante.cMinoridad}">
         <br>
         <span th:errors="*{cMinoridad}" style="color: red;"></span>
@@ -57,9 +64,24 @@
         <span th:errors="*{nombrePadre}" style="color: red;"></span>
         <br>
         
+        <label for="centroEscolar" class="col-form-label">Departamento:</label>
+        <select class="form-control" id="deptoSelect">
+        	<option value="col">Selecciona una opci&oacute;n</option>
+            <option th:each="departamento, row: ${departamentos}" th:value="${departamento.id_departamento}"
+                th:id="${departamento.id_departamento}" th:text="${departamento.departamento}">
+            </option>
+        </select>
+		<br>
+        <label for="centroEscolar" class="col-form-label">Municipio:</label>
+        <select class="form-control" id="municipioSelect">
+            <option value="col1">Selecciona una opci&oacute;n</option>
+            <option th:each="municipio, row: ${municipios}" th:id="${municipio.departamento.id_departamento}" th:value="${municipio.id_municipio}" th:text="${municipio.municipio}"></option>
+        </select>
+		<br>
         <label for="centroEscolar" class="col-form-label">Centro Escolar:</label>
-		<select class="form-control" name="centroEscolar" id="centroEscolar" th:field=${estudiante.centroEscolar.id_centro}>
-            <option th:each="centroEscolar, row: ${cEscolares}" th:value="${centroEscolar.id_centro}" th:text="${centroEscolar.nombre}"></option>
+        <select class="form-control" id="centroEscolar" th:field="${estudiante.centroEscolar.id_centro}">
+            
+            <option th:each="centroEscolar, row: ${cEscolares}" th:value="${centroEscolar.id_centro}" th:id="${centroEscolar.municipio.id_municipio}" th:text="${centroEscolar.nombre}"></option>
         </select>
         <br>
         
@@ -67,6 +89,22 @@
         <input type="submit" value="Ingresar">
 		
 	</form>
-
+	<script>
+	        $(document).ready(function () {
+	            $("#municipioSelect").children('option:gt(0)').hide();
+	            $("#deptoSelect").change(function () {
+	                $("#municipioSelect").children('option').hide();
+	                $("#municipioSelect").children("option[id=" + $("#deptoSelect").val() + "]").show()
+	            })
+	        });
+	
+	        $(document).ready(function () {
+	            $("#centroEscolar").children('option:gt(0)').hide();
+	            $("#municipioSelect").change(function () {
+	                $("#centroEscolar").children('option').hide();
+	                $("#centroEscolar").children("option[id=" + $("#municipioSelect").val() + "]").show()
+	            })
+	        });
+	 </script>
 </body>
 </html>
