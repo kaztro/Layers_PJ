@@ -27,13 +27,13 @@ public class MateriaCursadaServiceImpl implements MateriaCursadaService {
 	@Override
 	public MateriaCursada findOne(Integer code) throws DataAccessException {
 		// TODO Auto-generated method stub
-		return null;
+		return materiaCursadaRepo.getOne(code);
 	}
 
 	@Override
 	public void save(MateriaCursada mC) throws DataAccessException {
 		// TODO Auto-generated method stub
-		
+		materiaCursadaRepo.save(mC);
 	}
 	
 	//DTO - mapear respuesta en forma de JSON

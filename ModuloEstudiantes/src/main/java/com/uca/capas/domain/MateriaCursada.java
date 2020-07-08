@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(schema="public", name="MATERIA_CURSADA")
@@ -19,13 +20,16 @@ public class MateriaCursada {
 	@Column(name="id_materiaCursada")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id_materiaCursada;
-
+	
+	@NotEmpty(message="El campo no puede estar vacio")
 	@Column(name="anho")
 	private String anho;
 	
+	@NotEmpty(message="El campo no puede estar vacio")
 	@Column(name="ciclo")
 	private String ciclo;
 	
+	//@NotEmpty(message="El campo no puede estar vacio")
 	@Column(name="nota")
 	private Float nota;
 	
