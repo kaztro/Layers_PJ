@@ -3,18 +3,29 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Pagina de inicio</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
 </head>
 <body>
 
-	<div sec:authorize="isAuthenticated()">
-    	Welcome <b><span sec:authentication="name">Username</span></b>
-    	&nbsp;
-    	<i><span sec:authentication="principal.authorities">Roles</span></i>
+	<nav class="navbar navbar-dark bg-dark">
+  		<a class="navbar-brand" href="#">Proyecto Ncapas</a>
+  		<div sec:authorize="isAnonymous()">
+			<a  class="text-white" href="/login">login</a>
+			<a  class="text-white" href="/crearUsuario">Crear Usuario</a>
+		</div>
+		<div  class="text-white" sec:authorize="isAuthenticated()">
+    		Welcome <b><span  class="text-white" sec:authentication="name">Username</span></b>
+    		&nbsp;
+    		<i><span  class="text-white" sec:authentication="principal.authorities">Roles</span></i>
     	<form th:action="@{/logout}" method="post">
     		<input type="submit" value="Logout" />
 		</form>
+	</nav>
 		
-			
+		
+		
+	
 	</div>
 	
 	<div sec:authorize="hasRole('ADMIN')">
@@ -28,10 +39,7 @@
 		<a href="/coordinador/principal">Ver principal</a>
 	</div>
 	
-	<div sec:authorize="isAnonymous()">
-		<a  href="/login">login</a>
-		<a href="/crearUsuario">Crear Usuario</a>
-	</div>
+	
 	<div >
 	
 	
