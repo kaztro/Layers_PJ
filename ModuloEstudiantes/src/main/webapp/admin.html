@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	
+	<div sec:authorize="isAuthenticated()">
+    	Welcome <b><span sec:authentication="name">Username</span></b>
+    	&nbsp;
+    	<i><span sec:authentication="principal.authorities">Roles</span></i>
+    	<form th:action="@{/logout}" method="post">
+    		<input type="submit" value="Logout" />
+		</form>
+	</div>
+
+</body>
+</html>

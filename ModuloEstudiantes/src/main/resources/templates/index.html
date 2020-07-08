@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Pagina de inicio</title>
+</head>
+<body>
+
+	<div sec:authorize="isAuthenticated()">
+    	Welcome <b><span sec:authentication="name">Username</span></b>
+    	&nbsp;
+    	<i><span sec:authentication="principal.authorities">Roles</span></i>
+    	<form th:action="@{/logout}" method="post">
+    		<input type="submit" value="Logout" />
+		</form>
+		
+			
+	</div>
+	
+	<div sec:authorize="hasRole('ADMIN')">
+		<a href="/admin/listUsuarios">Ver lista de usuarios</a>
+		<a href="/admin/listMaterias">Ver lista de materias</a>	
+	</div>
+	
+	<div sec:authorize="hasRole('USER')">
+		<a href="/coordinador/expedientes">Ver expedientes</a>
+		<a href="/coordinador/principal">Ver principal</a>
+		<a href="/coordinador/ingresarEst">Ingresar Estudiante</a>
+	</div>
+	
+	<div sec:authorize="isAnonymous()">
+		<a  href="/login">login</a>
+		<a href="/crearUsuario">Crear Usuario</a>
+	</div>
+	<div >
+	
+	
+	</div>
+	
+		
+	
+	
+
+
+</body>
+</html>

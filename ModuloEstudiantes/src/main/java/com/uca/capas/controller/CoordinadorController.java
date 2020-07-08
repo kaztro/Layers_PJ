@@ -53,7 +53,7 @@ public class CoordinadorController {
 	private MateriaService materiaService;
 	
 	//Mostrar todos los expedientes
-	@RequestMapping(value="/expedientes")
+	@RequestMapping(value="/coordinador/expedientes")
 	public ModelAndView expedientes() {
 		ModelAndView mav = new ModelAndView();
 		List<ExpedienteDTO> expedientes = null;
@@ -70,7 +70,7 @@ public class CoordinadorController {
 	
 	//Agregar nuevo expediente
 	
-	@RequestMapping(value="/principal")
+	@RequestMapping(value="/coordinador/principal")
 	public ModelAndView coordinadorMain() {
 		ModelAndView mav = new ModelAndView();
 		
