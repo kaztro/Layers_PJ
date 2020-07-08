@@ -189,7 +189,7 @@ public class CoordinadorController {
 	
 	
 	@GetMapping("/actualizar/materiaCursada/{materiaCursada}")
-	public ModelAndView validarUpdateMatCurs(@Valid @ModelAttribute MateriaCursada materiaCursada, BindingResult result, Model model) {
+	public ModelAndView validarUpdateMatCurs(@Valid @ModelAttribute MateriaCursada materiaCursada, BindingResult result) {
 		ModelAndView mav = new ModelAndView();
 		
 		if(result.hasErrors()) {	
@@ -204,12 +204,9 @@ public class CoordinadorController {
 			
 			mav.setViewName("updateMateriaCursada");
 		}else {
-			try {
-				materiaCursadaService.save(materiaCursada);
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
 			
+			materiaCursadaService.save(materiaCursada);
+						
 			String mensaje ="Materia cursada actualizada";
 			mav.addObject("mensaje", mensaje);
 			mav.setViewName("main");

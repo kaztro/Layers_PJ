@@ -29,7 +29,7 @@ public class MateriaCursada {
 	@Column(name="ciclo")
 	private String ciclo;
 	
-	@NotEmpty(message="El campo no puede estar vacio")
+	//@NotEmpty(message="El campo no puede estar vacio")
 	@Column(name="nota")
 	private Float nota;
 	

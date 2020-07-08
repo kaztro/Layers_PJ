@@ -10,21 +10,20 @@
 		
 		<input type="hidden" th:field="${materiaCursada.id_materiaCursada}">
 		
-		<label>Estudiante: </label>
-        <input type="text" th:field="${materiaCursada.estudiente.nombres}" readonly="readonly">
+        <p><label>Estudiante: </label><span th:text="${materiaCursada.estudiente.nombres}"></span></p>
         <br>
         
         <label>Año: </label>
-        <input type="number" step="1" min="2005" max="2020" th:field="${materiaCursada.anho}">
+        <input type="number" step="1" min="2005" max="2020" th:field="${materiaCursada.ano}">
         <br>
-        <span th:errors="*{anho}" style="color: red;"></span>
+        <span th:errors="*{ano}" style="color: red;"></span>
         <br>
         
         <label for="ciclo" class="col-form-label">Ciclo:</label>
 		<select class="form-control" name="ciclo" id="ciclo" th:field=${materiaCursada.ciclo}>
-            <option th:text="01"></option>
-            <option th:text="02"></option>
-            <option th:text="03"></option>
+            <option th:value="01" th:text="01"></option>
+            <option th:value="02" th:text="02"></option>
+            <option th:value="03" th:text="03"></option>
         </select>
         <br>  
         
