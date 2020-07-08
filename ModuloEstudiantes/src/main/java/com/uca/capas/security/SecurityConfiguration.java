@@ -28,16 +28,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		/*http.authorizeRequests()
-			.antMatchers("/admin/**").hasRole("ADMIN")
-			.antMatchers("/coordinador/**").hasRole("USER")
-			.antMatchers("/").permitAll()
-			.and()
-			.formLogin()
-			.and()
-			.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-			.logoutSuccessUrl("/");
-		*/
 		
 		http.authorizeRequests()
 			.antMatchers(resources).permitAll()
@@ -53,7 +43,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.passwordParameter("password")
 			.and()
 			.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-			.logoutSuccessUrl("/");
+			.logoutSuccessUrl("/")
+			.and()
+			.exceptionHandling().accessDeniedPage("/403");
 	}
 	
 	@Bean

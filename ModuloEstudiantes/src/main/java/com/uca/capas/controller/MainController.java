@@ -124,6 +124,15 @@ public class MainController {
 		return mav;
 		
 	}
+	
+	@RequestMapping("/403")
+	public ModelAndView error() {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("403");
+		return mav;
+		
+	}
 
 	public ModelAndView ingresarUser() {
 		ModelAndView mav = new ModelAndView();
