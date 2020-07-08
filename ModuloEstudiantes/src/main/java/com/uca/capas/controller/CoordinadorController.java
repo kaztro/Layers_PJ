@@ -111,10 +111,19 @@ public class CoordinadorController {
 		if(result.hasErrors()) {
 			estudiante.setfNac(new java.util.Date());
 			
+			List<Departamento> departamentos = null;
+			List<Municipio> municipios = null;
 			List<CentroEscolar> cEscolares = null;
-			try { cEscolares = cEscolar.findAll(); }
-			catch(Exception e) { e.printStackTrace(); }
+			try { 
+				cEscolares = cEscolar.findAll();
+				departamentos = departamentoService.findAll();
+				municipios = municipioService.findAll();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 			
+			mav.addObject("departamentos", departamentos);
+			mav.addObject("municipios", municipios);
 			mav.addObject("cEscolares", cEscolares);
 			mav.addObject("estudiante", estudiante);
 			mav.setViewName("ingresarEst");
@@ -166,7 +175,37 @@ public class CoordinadorController {
 		
 	}
 	
-	
+	@PostMapping("/validarMateriaCursada")
+	public ModelAndView validaraddMatCurs(@Valid @ModelAttribute MateriaCursada materiaCursada, BindingResult result) {
+		ModelAndView mav = new ModelAndView();
+		if(result.hasErrors()) {
+			Estudiante estudiante = new Estudiante();
+			List<Materia> materias = null;
+			try {
+				materias = materiaService.findAll();
+				estudiante = estudianteService.findOne(materiaCursada.getId_estudiante());
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			materiaCursada.setEstudiente(estudiante);
+			
+			mav.addObject("materias", materias);
+			mav.addObject("materiaCursada", materiaCursada);
+			
+			mav.setViewName("addMateria");
+		}else {
+			try {
+				materiaCursadaService.save(materiaCursada);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			String mensaje ="Materia cursada agregada con éxito";
+			mav.addObject("mensaje", mensaje);
+			mav.setViewName("main");
+			
+		}
+		return mav;
+	}
 	//Actualizar Expediente - POR ID
 	
 	@RequestMapping("/editar/expediente")

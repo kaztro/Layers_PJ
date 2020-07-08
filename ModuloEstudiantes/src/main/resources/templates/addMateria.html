@@ -6,7 +6,7 @@
 </head>
 <body>
 
-	<form th:object="${materiaCursada}">
+	<form th:action="@{/validarMateriaCursada}" th:object="${materiaCursada}" method="POST">
 		
 		<input type="hidden" th:field="${materiaCursada.id_materiaCursada}">
         <p><label>Estudiante: </label><span th:text="${materiaCursada.estudiente.nombres}"></span></p>
