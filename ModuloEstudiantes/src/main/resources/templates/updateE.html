@@ -99,7 +99,9 @@
         <input type="submit" value="Actualizar">
 
     </form>
-
+	
+	<a th:href="@{/coordinador/principal}" type="submit">Volver a la pantalla principal</a>
+	
     <script>
         $(document).ready(function () {
             $("#municipioSelect").children('option:gt(0)').hide();
