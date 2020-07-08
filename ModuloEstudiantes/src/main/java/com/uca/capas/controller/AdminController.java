@@ -20,6 +20,7 @@ import com.uca.capas.domain.Materia;
 import com.uca.capas.domain.Municipio;
 import com.uca.capas.domain.Usuario;
 import com.uca.capas.service.CentroEscolarService;
+import com.uca.capas.service.DepartamentoService;
 import com.uca.capas.service.MateriaService;
 import com.uca.capas.service.MunicipioService;
 import com.uca.capas.service.UsuarioService;
@@ -38,6 +39,9 @@ public class AdminController {
 
 	@Autowired
 	private MunicipioService municipioService;
+	
+	@Autowired
+	private DepartamentoService departamentoService;
 
 	/*--------LISTAS QUE SE MOSTRARAN-----------*/
 
@@ -220,6 +224,7 @@ public class AdminController {
 			List<Municipio> municipios = null;
 			try { 
 				municipios = municipioService.findAll();
+				departamentos = departamentoService.findAll();
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
