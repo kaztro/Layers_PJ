@@ -9,10 +9,11 @@
 	<form th:action="@{/actualizar/materiaCursada/{id_materiaCursada}(id_materiaCursada=${materiaCursada.id_materiaCursada})}" th:object="${materiaCursada}">
 		
 		<input type="hidden" th:field="${materiaCursada.id_materiaCursada}">
-		
         <p><label>Estudiante: </label><span th:text="${materiaCursada.estudiente.nombres}"></span></p>
         <br>
-        
+		<input type="hidden" th:field="${materiaCursada.estudiente.id_estudiante}">
+		
+		
         <label>Año: </label>
         <input type="number" step="1" min="2005" max="2020" th:field="${materiaCursada.ano}">
         <br>
