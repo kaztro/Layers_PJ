@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.uca.capas.domain.CentroEscolar;
+import com.uca.capas.domain.Departamento;
+import com.uca.capas.domain.Estudiante;
 import com.uca.capas.domain.Materia;
 import com.uca.capas.domain.Municipio;
 import com.uca.capas.domain.Usuario;
@@ -201,6 +203,29 @@ public class AdminController {
 			mav.addObject("usuario", new Usuario());
 			mav.addObject("usuariosL", usuariosL);
 			mav.setViewName("listUsers");
+		}
+		return mav;
+	}
+	
+	// Add - CE
+	@RequestMapping("/admin/ingresarCE")
+	public ModelAndView ingresarCE(@Valid CentroEscolar centroEscolar, BindingResult result, Model model) {
+		ModelAndView mav = new ModelAndView();
+		//CentroEscolar centroEscolar = new CentroEscolar();
+		if(result.hasErrors()) {
+			mav.setViewName("addCE");
+		} else {	
+			centroEscolarService.save(centroEscolar);
+			
+			List<Municipio> municipios = null;
+			try { 
+				municipios = municipioService.findAll();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			mav.addObject("municipios", municipios);
+			mav.setViewName("addCE");
 		}
 		return mav;
 	}
