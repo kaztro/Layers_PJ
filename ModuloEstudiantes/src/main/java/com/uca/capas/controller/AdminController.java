@@ -15,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.uca.capas.domain.CentroEscolar;
 import com.uca.capas.domain.Departamento;
-import com.uca.capas.domain.Estudiante;
 import com.uca.capas.domain.Materia;
 import com.uca.capas.domain.Municipio;
 import com.uca.capas.domain.Usuario;
@@ -223,8 +222,8 @@ public class AdminController {
 			List<Departamento> departamentos = null;
 			List<Municipio> municipios = null;
 			try { 
-				municipios = municipioService.findAll();
 				departamentos = departamentoService.findAll();
+				municipios = municipioService.findAll();
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
