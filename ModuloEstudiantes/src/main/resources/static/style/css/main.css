@@ -34,3 +34,8 @@ a{
   display: flex;
   align-items: center;
 }
+
+.container {
+	margin-top: 2em;
+	margin-bottom: 2em;
+}

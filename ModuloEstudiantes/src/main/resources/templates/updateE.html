@@ -8,117 +8,183 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/style/css/main.css" th:href="@{/style/css/main.css}" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <form th:action="@{/actualizar/expediente/}" th:object="${estudiante}" method="post">
 
-        <input type="hidden" th:field="${estudiante.id_estudiante}">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand mb-0 h1" href="#">Mod&uacute;lo de Administracion</a>
+        <div class="text-white" sec:authorize="isAnonymous()">
+            <a class="text-white" href="/login">Iniciar Sesion</a>
+            <a class="text-white" href="/crearUsuario">Crear Usuario</a>
+        </div>
 
-        <label for="nombres">Nombres: </label>
-        <input type="text" th:field="${estudiante.nombres}">
-        <br>
-        <span th:errors="*{nombres}" style="color: red;"></span>
-        <br>
+        <div class="collapse navbar-collapse">
+            <!--ADMIN-->
+            <div sec:authorize="hasRole('ADMIN')">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/listUsuarios">Ver lista de usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/listMaterias">Ver lista de materias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/listCEscolares">Ver lista de centros escolares</a>
+                    </li>
+                </ul>
+            </div>
+            <!--COORDINADOR-->
+            <div sec:authorize="hasRole('USER')">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Inicio</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/coordinador/principal">Ver expedientes<span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
-        <label for="apellidos">Apellidos: </label>
-        <input type="text" th:field="${estudiante.apellidos}">
-        <br>
-        <span th:errors="*{apellidos}" style="color: red;"></span>
-        <br>
+        <div>
+            <div class="text-white userOptions" sec:authorize="isAuthenticated()">
+                <i>Bienvenido</i> <b><span class="text-white" sec:authentication="name">Username</span></b>
+                &nbsp;
+                <i><span class="text-white" sec:authentication="principal.authorities">Roles</span></i>
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" value="Logout" />
+                </form>
+            </div>
+        </div>
+    </nav>
 
-        <label for="cMinoridad">Carn&eacute; de minoridad: </label>
-        <input type="text" th:field="${estudiante.cMinoridad}">
-        <br>
-        <span th:errors="*{cMinoridad}" style="color: red;"></span>
-        <br>
+    <div class="container">
+        <div class="card">
+            <div class="card-block">
+                <form th:action="@{/actualizar/expediente/}" th:object="${estudiante}" method="post">
 
-        <label for="fNac">Fecha de Nacimiento: </label>
-        <input type="text" th:field="${estudiante.fNac}">
-        <br>
+                    <input type="hidden" th:field="${estudiante.id_estudiante}">
 
-        <label for="direccion">Direccion: </label>
-        <input type="text" th:field="${estudiante.direccion}">
-        <br>
-        <span th:errors="*{direccion}" style="color: red;"></span>
-        <br>
+                    <label for="nombres">Nombres: </label>
+                    <input type="text" th:field="${estudiante.nombres}">
+                    <br>
+                    <span th:errors="*{nombres}" style="color: red;"></span>
+                    <br>
 
-        <label for="telFijo">Tel. Fijo: </label>
-        <input type="text" th:field="${estudiante.telFijo}">
-        <br>
-        <span th:errors="*{telFijo}" style="color: red;"></span>
-        <br>
+                    <label for="apellidos">Apellidos: </label>
+                    <input type="text" th:field="${estudiante.apellidos}">
+                    <br>
+                    <span th:errors="*{apellidos}" style="color: red;"></span>
+                    <br>
 
-        <label for="telMovil">Tel. Movil: </label>
-        <input type="text" th:field="${estudiante.telMovil}">
-        <br>
+                    <label for="cMinoridad">Carn&eacute; de minoridad: </label>
+                    <input type="text" th:field="${estudiante.cMinoridad}">
+                    <br>
+                    <span th:errors="*{cMinoridad}" style="color: red;"></span>
+                    <br>
 
-        <label for="nombreMadre">Nombre de la madre: </label>
-        <input type="text" th:field="${estudiante.nombreMadre}">
-        <br>
-        <span th:errors="*{nombreMadre}" style="color: red;"></span>
-        <br>
+                    <label for="fNac">Fecha de Nacimiento: </label>
+                    <input type="text" th:field="${estudiante.fNac}">
+                    <br>
 
-        <label for="nombrePadre">Nombre del padre: </label>
-        <input type="text" th:field="${estudiante.nombrePadre}">
-        <br>
-        <span th:errors="*{nombrePadre}" style="color: red;"></span>
-        <br>
+                    <label for="direccion">Direccion: </label>
+                    <input type="text" th:field="${estudiante.direccion}">
+                    <br>
+                    <span th:errors="*{direccion}" style="color: red;"></span>
+                    <br>
 
-        <!--
+                    <label for="telFijo">Tel. Fijo: </label>
+                    <input type="text" th:field="${estudiante.telFijo}">
+                    <br>
+                    <span th:errors="*{telFijo}" style="color: red;"></span>
+                    <br>
+
+                    <label for="telMovil">Tel. Movil: </label>
+                    <input type="text" th:field="${estudiante.telMovil}">
+                    <br>
+
+                    <label for="nombreMadre">Nombre de la madre: </label>
+                    <input type="text" th:field="${estudiante.nombreMadre}">
+                    <br>
+                    <span th:errors="*{nombreMadre}" style="color: red;"></span>
+                    <br>
+
+                    <label for="nombrePadre">Nombre del padre: </label>
+                    <input type="text" th:field="${estudiante.nombrePadre}">
+                    <br>
+                    <span th:errors="*{nombrePadre}" style="color: red;"></span>
+                    <br>
+
+                    <!--
         <label for="centroEscolar" class="col-form-label">Centro Escolar:</label>
 		<select class="form-control" name="centroEscolar" id="centroEscolar" th:field=${estudiante.centroEscolar}>
             <option th:each="centroEscolar, row: ${listcentroEscolar}" th:value="${centroEscolar.id_centro}" th:text="${centroEscolar.nombre}"></option>
         </select>
         <br>
         -->
-        <label for="centroEscolar" class="col-form-label">Departamento:</label>
-        <select class="form-control" id="deptoSelect">
-        	<option value="col">Selecciona una opci&oacute;n</option>
-            <option th:each="departamento, row: ${departamentos}" th:value="${departamento.id_departamento}"
-                th:id="${departamento.id_departamento}" th:text="${departamento.departamento}">
-            </option>
-        </select>
+                    <label for="centroEscolar" class="col-form-label">Departamento:</label>
+                    <select class="form-control" id="deptoSelect">
+                        <option value="col">Selecciona una opci&oacute;n</option>
+                        <option th:each="departamento, row: ${departamentos}" th:value="${departamento.id_departamento}"
+                            th:id="${departamento.id_departamento}" th:text="${departamento.departamento}">
+                        </option>
+                    </select>
 
-        <label for="centroEscolar" class="col-form-label">Municipio:</label>
-        <select class="form-control" id="municipioSelect">
-            <option value="col1">Selecciona una opci&oacute;n</option>
-            <option th:each="municipio, row: ${municipios}" th:id="${municipio.departamento.id_departamento}" th:value="${municipio.id_municipio}" th:text="${municipio.municipio}"></option>
-        </select>
+                    <label for="centroEscolar" class="col-form-label">Municipio:</label>
+                    <select class="form-control" id="municipioSelect">
+                        <option value="col1">Selecciona una opci&oacute;n</option>
+                        <option th:each="municipio, row: ${municipios}"
+                            th:id="${municipio.departamento.id_departamento}" th:value="${municipio.id_municipio}"
+                            th:text="${municipio.municipio}"></option>
+                    </select>
 
-        <label for="centroEscolar" class="col-form-label">Centro Escolar:</label>
-        <select class="form-control" id="centroEscolar" th:field="${estudiante.centroEscolar.id_centro}">
-            
-            <option th:each="centroEscolar, row: ${cEscolares}" th:value="${centroEscolar.id_centro}" th:id="${centroEscolar.municipio.id_municipio}" th:text="${centroEscolar.nombre}"></option>
-        </select>
-        <br>
+                    <label for="centroEscolar" class="col-form-label">Centro Escolar:</label>
+                    <select class="form-control" id="centroEscolar" th:field="${estudiante.centroEscolar.id_centro}">
 
-        <input type="submit" value="Actualizar">
+                        <option th:each="centroEscolar, row: ${cEscolares}" th:value="${centroEscolar.id_centro}"
+                            th:id="${centroEscolar.municipio.id_municipio}" th:text="${centroEscolar.nombre}"></option>
+                    </select>
+                    <br>
 
-    </form>
-	
-	<a th:href="@{/coordinador/principal}" type="submit">Volver a la pantalla principal</a>
-	
-    <script>
-        $(document).ready(function () {
-            $("#municipioSelect").children('option:gt(0)').hide();
-            $("#deptoSelect").change(function () {
-                $("#municipioSelect").children('option').hide();
-                $("#municipioSelect").children("option[id=" + $("#deptoSelect").val() + "]").show()
-            })
-        });
+                    <input type="submit" value="Actualizar">
 
-        $(document).ready(function () {
-            $("#centroEscolar").children('option:gt(0)').hide();
-            $("#municipioSelect").change(function () {
-                $("#centroEscolar").children('option').hide();
-                $("#centroEscolar").children("option[id=" + $("#municipioSelect").val() + "]").show()
-            })
-        });
-    </script>
+                </form>
+
+                <a th:href="@{/coordinador/principal}" type="submit">Volver a la pantalla principal</a>
+            </div>
+        </div>
+    </div>
+                <script>
+                    $(document).ready(function () {
+                        $("#municipioSelect").children('option:gt(0)').hide();
+                        $("#deptoSelect").change(function () {
+                            $("#municipioSelect").children('option').hide();
+                            $("#municipioSelect").children("option[id=" + $("#deptoSelect").val() + "]").show()
+                        })
+                    });
+
+                    $(document).ready(function () {
+                        $("#centroEscolar").children('option:gt(0)').hide();
+                        $("#municipioSelect").change(function () {
+                            $("#centroEscolar").children('option').hide();
+                            $("#centroEscolar").children("option[id=" + $("#municipioSelect").val() + "]").show()
+                        })
+                    });
+                </script>
 </body>
 
 </html>

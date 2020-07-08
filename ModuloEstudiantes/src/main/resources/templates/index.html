@@ -54,7 +54,7 @@
 						<a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/coordinador/principal">Ver principal</a>
+						<a class="nav-link" href="/coordinador/principal">Ver expedientes</a>
 					</li>
 				</ul>
 			</div>
@@ -62,7 +62,7 @@
 
 		<div>
 			<div class="text-white userOptions" sec:authorize="isAuthenticated()">
-				Welcome <b><span class="text-white" sec:authentication="name">Username</span></b>
+				<i>Bienvenido</i> <b><span class="text-white" sec:authentication="name">Username</span></b>
 				&nbsp;
 				<i><span class="text-white" sec:authentication="principal.authorities">Roles</span></i>
 				<form th:action="@{/logout}" method="post">

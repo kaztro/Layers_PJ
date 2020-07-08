@@ -25,6 +25,58 @@
 	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 	crossorigin="anonymous"></script>
 <body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand mb-0 h1" href="#">Mod&uacute;lo de Administracion</a>
+		<div class="text-white" sec:authorize="isAnonymous()">
+			<a class="text-white" href="/login">Iniciar Sesion</a>
+			<a class="text-white" href="/crearUsuario">Crear Usuario</a>
+		</div>
+
+		<div class="collapse navbar-collapse">
+			<!--ADMIN-->
+			<div sec:authorize="hasRole('ADMIN')">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/admin/listUsuarios">Ver lista de usuarios</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/admin/listMaterias">Ver lista de materias</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/admin/listCEscolares">Ver lista de centros escolares</a>
+					</li>
+				</ul>
+			</div>
+			<!--COORDINADOR-->
+			<div sec:authorize="hasRole('USER')">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="/">Inicio</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="/coordinador/principal">Ver expedientes<span
+								class="sr-only">(current)</span></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div>
+			<div class="text-white userOptions" sec:authorize="isAuthenticated()">
+				<i>Bienvenido</i> <b><span class="text-white" sec:authentication="name">Username</span></b>
+				&nbsp;
+				<i><span class="text-white" sec:authentication="principal.authorities">Roles</span></i>
+				<form th:action="@{/logout}" method="post">
+					<input type="submit" value="Logout" />
+				</form>
+			</div>
+		</div>
+	</nav>
+	
     <div class="container">
 		<div class="card">
 			<div class="card-block">
