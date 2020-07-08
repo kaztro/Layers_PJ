@@ -29,3 +29,8 @@ a{
 .lineal form{
   display: inline;
 }
+
+.userOptions{
+  display: flex;
+  align-items: center;
+}
