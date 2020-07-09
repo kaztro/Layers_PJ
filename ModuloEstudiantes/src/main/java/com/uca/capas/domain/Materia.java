@@ -26,7 +26,7 @@ public class Materia {
 	@NotEmpty(message="El campo no puede estar vacio")
 	private String descripcion;
 	
-	@NotNull
+	
 	@Column(name="enabled_m", nullable=false)
 	private Boolean enabled_m;
 	

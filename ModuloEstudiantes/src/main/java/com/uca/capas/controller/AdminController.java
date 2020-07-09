@@ -101,6 +101,30 @@ public class AdminController {
 
 		return mav;
 	}
+	
+	
+	@RequestMapping("/admin/ingresarMateria")
+	public ModelAndView ingresarMateria() {
+		ModelAndView mav = new ModelAndView();
+		Materia materia =  new Materia();
+		mav.addObject("materia", materia);
+		mav.setViewName("ingresarMateriaNueva");
+		return mav;
+	}
+	
+	@RequestMapping("/admin/ingresarMateriaNueva")
+	public ModelAndView ingresarMateriaNueva(@Valid @ModelAttribute Materia materia, BindingResult  result) {
+		ModelAndView mav = new ModelAndView();
+		if(result.hasErrors()) {
+			mav.setViewName("ingresarMateriaNueva");
+		}else {
+			materia.setEnabled_m(true);
+			materiaService.save(materia);
+			mav.setViewName("redirect:/admin/listMaterias");
+		}
+		
+		return mav;
+	}
 
 	// UPDATE - Materia
 
