@@ -73,20 +73,19 @@
     </nav>
 
     <div class="container">
-        <div class="card">
+        <div class="card" id="formsCont">
             <div class="card-block">
                 <form th:action="@{/validarMateriaCursada}" th:object="${materiaCursada}" method="POST">
 
                     <input type="hidden" th:field="${materiaCursada.id_materiaCursada}">
-                    <p><label>Estudiante: </label><span th:text="${materiaCursada.estudiente.nombres}"></span></p>
+                    <h2><label>Estudiante: </label><span th:text="${materiaCursada.estudiente.nombres}"></span></h2>
                     <br>
                     <input type="hidden" th:field="${materiaCursada.estudiente.id_estudiante}">
 
 
                     <label>A&ntilde;o: </label>
-                    <input type="number" step="1" min="2005" max="2020" th:field="${materiaCursada.ano}">
-                    <br>
-                    <span th:errors="*{ano}" style="color: red;"></span>
+                    <input type="number" step="1" min="2005" max="2020" th:field="${materiaCursada.anho}" class="form-control">
+                    <span th:errors="*{anho}" style="color: red;"></span>
                     <br>
 
                     <label for="ciclo" class="col-form-label">Ciclo:</label>
@@ -106,12 +105,10 @@
                     <br>
 
                     <label>Nota: </label>
-                    <input type="number" step="0.1" min="0.0" max="10.0" th:field="${materiaCursada.nota}">
-                    <br>
+                    <input type="number" step="0.1" min="0.0" max="10.0" th:field="${materiaCursada.nota}" class="form-control">
                     <span th:errors="*{nota}" style="color: red;"></span>
-                    <br>
-
-                    <input type="submit" value="Agregar">
+					<br>
+                    <input type="submit" value="Agregar" class="btn btn-primary bEdit">
 
                 </form>
             </div>
