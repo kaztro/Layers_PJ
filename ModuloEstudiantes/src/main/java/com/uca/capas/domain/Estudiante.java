@@ -1,5 +1,6 @@
 package com.uca.capas.domain;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -13,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -40,6 +42,7 @@ public class Estudiante {
 	@Column(name="cMinoridad")
 	private String cMinoridad;
 	
+	@NotNull(message = "El campo Fecha no puede quedar vacio y el formato debe de ser dd/MM/yyyy")
 	@Column(name="fNac")
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Date fNac;
@@ -172,5 +175,4 @@ public class Estudiante {
 		this.id_centro = id_centro;
 	}
 	
-
 }
