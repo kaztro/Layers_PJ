@@ -99,6 +99,20 @@
             <option th:each="municipio, row: ${municipios}" th:value="${municipio.id_municipio}" th:text="${municipio.municipio}"></option>
         </select>
         -->
+        			<label for="centroEscolar" class="col-form-label">Departamento:</label>
+					<select class="form-control" id="deptoSelect">
+						<option value="col">Selecciona una opci&oacute;n</option>
+						<option th:each="departamento, row: ${departamentos}" th:value="${departamento.id_departamento}"
+							th:id="${departamento.id_departamento}" th:text="${departamento.departamento}"></option>
+					</select>
+
+					<label for="centroEscolar" class="col-form-label">Municipio:</label>
+					<select class="form-control" id="municipioSelect" th:field="${centroEscolar.municipio.id_municipio}">
+						<option th:each="municipio, row: ${municipios}"
+							th:id="${municipio.departamento.id_departamento}" th:value="${municipio.id_municipio}" 
+							th:text="${municipio.municipio}"></option>
+					</select>
+					<br>
 					<input type="submit" value="Actualizar" class="btn btn-primary bEdit">
 				</form>
 
@@ -107,6 +121,16 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		$(document).ready(function () {
+			$("#municipioSelect").children('option:gt(0)').hide();
+			$("#deptoSelect").change(function () {
+				$("#municipioSelect").children('option').hide();
+				$("#municipioSelect").children("option[id=" + $("#deptoSelect").val() + "]").show()
+			})
+		});
+
+	</script>
 
 </body>
 

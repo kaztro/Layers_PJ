@@ -167,25 +167,33 @@ public class AdminController {
 
 		ModelAndView mav = new ModelAndView();
 		CentroEscolar centroEscolar = this.centroEscolarService.findOne(id);
+		
+		List<Departamento> departamentos = null;
+		departamentos = departamentoService.findAll();
 
 		List<Municipio> municipios = municipioService.findAll();
 
 		model.addAttribute("centroEscolar", centroEscolar);
+		mav.addObject("departamentos", departamentos);
 		mav.addObject("municipios", municipios);
 		mav.setViewName("updateCE");
 		return mav;
 	}
 
 	@GetMapping("actualizar/centro/{id_centro}")
-	public ModelAndView updateCE(@Valid @ModelAttribute CentroEscolar centroEscolar, BindingResult result, Model model) {
+	public ModelAndView updateCE(@Valid @ModelAttribute CentroEscolar centroEscolar, BindingResult result) {
 		ModelAndView mav = new ModelAndView();
 
 		if (result.hasErrors()) {
+			List<Departamento> departamentos = null;
+			departamentos = departamentoService.findAll();
+
+			List<Municipio> municipios = municipioService.findAll();
+			mav.addObject("departamentos", departamentos);
+			mav.addObject("municipios", municipios);
 			mav.setViewName("updateCE");
 		} else {
 			centroEscolarService.save(centroEscolar);
-
-			model.addAttribute("centrosEscolares", this.centroEscolarService.findAll());
 
 			List<CentroEscolar> cEscolares = null;
 			try {
