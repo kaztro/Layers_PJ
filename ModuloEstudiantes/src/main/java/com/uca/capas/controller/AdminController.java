@@ -164,16 +164,15 @@ public class AdminController {
 
 	@GetMapping("editar/centro/{id_centro}")
 	public ModelAndView formularioActualizacionCE(@PathVariable("id_centro") int id, Model model) {
-
 		ModelAndView mav = new ModelAndView();
 		CentroEscolar centroEscolar = this.centroEscolarService.findOne(id);
-		
 		List<Departamento> departamentos = null;
 		departamentos = departamentoService.findAll();
-
-		List<Municipio> municipios = municipioService.findAll();
-
+		List<Municipio> municipios = null;
+		municipios = municipioService.findAll();
 		model.addAttribute("centroEscolar", centroEscolar);
+		
+		mav.addObject("centroEscolar", centroEscolar);
 		mav.addObject("departamentos", departamentos);
 		mav.addObject("municipios", municipios);
 		mav.setViewName("updateCE");
@@ -181,14 +180,16 @@ public class AdminController {
 	}
 
 	@GetMapping("actualizar/centro/{id_centro}")
-	public ModelAndView updateCE(@Valid @ModelAttribute CentroEscolar centroEscolar, BindingResult result) {
+	public ModelAndView updateCE(@Valid @ModelAttribute CentroEscolar centroEscolar, BindingResult result, Model model) {
 		ModelAndView mav = new ModelAndView();
 
 		if (result.hasErrors()) {
 			List<Departamento> departamentos = null;
 			departamentos = departamentoService.findAll();
-
-			List<Municipio> municipios = municipioService.findAll();
+			
+			List<Municipio> municipios = null;
+			municipios = municipioService.findAll();
+			mav.addObject("centroEscolar", centroEscolar);
 			mav.addObject("departamentos", departamentos);
 			mav.addObject("municipios", municipios);
 			mav.setViewName("updateCE");
