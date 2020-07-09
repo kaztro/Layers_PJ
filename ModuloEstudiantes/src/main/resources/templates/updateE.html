@@ -105,11 +105,12 @@
 
                     <label for="telFijo">Tel. Fijo: </label>
                     <input type="text" th:field="${estudiante.telFijo}" class="form-control">
-                    <span th:errors="*{telFijo}" style="color: red;"></span>
+                    <span th:errors="${estudiante.telFijo}" style="color: red;"></span>
                     <br>
 
                     <label for="telMovil">Tel. Movil: </label>
                     <input type="text" th:field="${estudiante.telMovil}" class="form-control">
+                    <span th:errors="${estudiante.telMovil}" style="color: red;"></span>
                     <br>
 
                     <label for="nombreMadre">Nombre de la madre: </label>

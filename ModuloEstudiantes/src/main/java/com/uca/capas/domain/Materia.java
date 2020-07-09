@@ -19,7 +19,7 @@ public class Materia {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id_materia;
 	
-	@Size(message="El campo sobrepasa la cantidad de 10 caracteres", max=30)
+	@Size(message="El campo sobrepasa la cantidad de 20 caracteres", max=20)
 	@NotEmpty(message="El campo no puede estar vacio")
 	private String materia;
 	

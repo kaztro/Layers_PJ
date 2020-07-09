@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
@@ -30,7 +32,9 @@ public class MateriaCursada {
 	private String ciclo;
 	
 	//@NotEmpty(message="El campo no puede estar vacio")
-	@Column(name="nota")
+	//@Min(0)
+	//@Max(10)
+	//@Column(name="nota")
 	private Float nota;
 	
 	//Foreign - Materia

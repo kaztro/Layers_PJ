@@ -268,8 +268,8 @@ public class AdminController {
 		} else {	
 			List<CentroEscolar> cEscolares = null;
 			try {
-				cEscolares = centroEscolarService.findAll();
 				centroEscolarService.save(centroEscolar);
+				cEscolares = centroEscolarService.findAll();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
