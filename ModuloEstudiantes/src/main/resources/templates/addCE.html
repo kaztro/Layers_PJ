@@ -101,7 +101,7 @@
 					<label for="centroEscolar" class="col-form-label">Municipio:</label>
 					<select class="form-control" id="municipioSelect"
 						th:field="${centroEscolar.municipio.id_municipio}">
-						<option value="0">Selecciona una opci&oacute;n</option>
+						<option value="1">Selecciona una opci&oacute;n</option>
 						<option th:each="municipio, row: ${municipios}"
 							th:id="${municipio.departamento.id_departamento}" th:value="${municipio.id_municipio}"
 							th:text="${municipio.municipio}"></option>
