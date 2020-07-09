@@ -118,7 +118,7 @@ public class AdminController {
 		if(result.hasErrors()) {
 			mav.setViewName("ingresarMateriaNueva");
 		}else {
-			materia.setEnabled_m(true);
+			
 			materiaService.save(materia);
 			mav.setViewName("redirect:/admin/listMaterias");
 		}
