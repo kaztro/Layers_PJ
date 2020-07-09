@@ -276,6 +276,7 @@ public class CoordinadorController {
 			e.printStackTrace();
 		}
 		mav.addObject("materias", materias);
+		mav.addObject("id_guardado", id);
 		mav.addObject("materiaCursada", materiaCursada);
 		
 		mav.setViewName("updateMateriaCursada");
@@ -287,16 +288,10 @@ public class CoordinadorController {
 	public ModelAndView validarUpdateMatCurs(@Valid @ModelAttribute MateriaCursada materiaCursada, BindingResult result) {
 		ModelAndView mav = new ModelAndView();
 		
-		if(result.hasErrors()) {	
-			List<Materia> materias = null;
-			try {
-				materias = materiaService.findAll();
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
+		if(result.hasErrors()) {
+			List<Materia> materias = materiaService.findAll();
 			mav.addObject("materias", materias);
 			mav.addObject("materiaCursada", materiaCursada);
-			
 			mav.setViewName("updateMateriaCursada");
 		}else {
 			
