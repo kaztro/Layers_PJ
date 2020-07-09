@@ -54,6 +54,16 @@ public class MateriaCursada {
 	@Transient
 	private Integer id_estudiante;
 
+	
+	
+	public String getAnho() {
+		return anho;
+	}
+
+	public void setAnho(String anho) {
+		this.anho = anho;
+	}
+
 	public Integer getId_materiaCursada() {
 		return id_materiaCursada;
 	}
