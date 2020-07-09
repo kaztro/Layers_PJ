@@ -81,7 +81,7 @@
 
                     <label for="nombres">Nombres: </label>
                     <input type="text" th:field="${estudiante.nombres}" class="form-control">
-                    <span th:errors="*{nombres}" style="color: red;"></span>
+                    <span th:errors="${estudiante.nombres}" style="color: red;"></span>
                     <br>
 
                     <label for="apellidos">Apellidos: </label>
