@@ -7,6 +7,7 @@
     <title>Centros Escolares - Listado</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../static/style/css/main.css" th:href="@{/style/css/main.css}" type="text/css">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -72,6 +73,7 @@
 	</nav>
 
     <div class="container">
+    	<a th:href="@{/admin/ingresarCE}" type="submit" class="btn btn-primary bEdit padbtn">Ingresar Nuevo Centro Escolar</a>
         <div class="card">
             <div class="card-block">
                 <table class="table table-hover">
@@ -87,7 +89,7 @@
                         <tr>
                             <th>
                                 <a th:href="@{/editar/centro/{id_centro}(id_centro=${cEscolares.id_centro})}"
-                                    class="btn btn-primary bEdit"><i class="fas fa-edit">Editar</i></a>
+                                    class="btn btn-primary bEdit"><i class="fa fa-edit"></i></a>
                             </th>
                             <th>
                                 <p th:text="${cEscolares.id_centro}"></p>

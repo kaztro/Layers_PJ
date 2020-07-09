@@ -1,95 +1,144 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="ISO-8859-1" />
-    <title>Insert title here</title>
-  </head>
-  <body>
-    <form
-      action="#"
-      th:action="@{/ingresarUsuario}"
-      th:object="${usuario}"
-      method="post"
-    >
-      <label for="nombre">Nombre: </label>
-      <input type="text" th:field="${usuario.nombre}" />
-      <br />
-      <span th:errors="*{nombre}" style="color: red;"></span>
-      <br />
 
-      <label for="apellido">Apellido: </label>
-      <input type="text" th:field="${usuario.apellido}" />
-      <br />
-      <span th:errors="*{apellido}" style="color: red;"></span>
-      <br />
+<head>
+  <meta charset="ISO-8859-1" />
+  <title>Crear Usuario</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/style/css/main.css" th:href="@{/style/css/main.css}" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+</head>
 
-      <label for="fNac">Fecha de Nacimiento: </label>
-      <td><input type="text" th:field="${usuario.fNac}" /></td>
-      <br />
-      <!-- <span th:errors="*{usuario}" style="color: red;"></span>-->
-      <br />
+<body>
 
-      <label for="username">Nombre de usuario: </label>
-      <input type="text" th:field="${usuario.username}" />
-      <br />
-      <span th:errors="*{username}" style="color: red;"></span>
-      <br />
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand mb-0 h1" href="#">Mod&uacute;lo de Administracion</a>
+    <div class="text-white" sec:authorize="isAnonymous()">
+      <a class="text-white" href="/login">Iniciar Sesion</a>
+      <a class="text-white" href="/crearUsuario">Crear Usuario</a>
+    </div>
 
-      <label for="password">Password: </label>
-      <input type="text" th:field="${usuario.password}" />
-      <br />
-      <span th:errors="*{password}" style="color: red;"></span>
-      <br />
+    <div class="collapse navbar-collapse">
+      <!--ADMIN-->
+      <div sec:authorize="hasRole('ADMIN')">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Inicio</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/admin/listUsuarios">Ver lista de usuarios<span
+                class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/listMaterias">Ver lista de materias</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/listCEscolares">Ver lista de centros escolares</a>
+          </li>
+        </ul>
+      </div>
+      <!--COORDINADOR-->
+      <div sec:authorize="hasRole('USER')">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/coordinador/principal">Ver principal</a>
+          </li>
+        </ul>
+      </div>
+    </div>
 
-      <label for="direccion">Direccion: </label>
-      <input type="text" th:field="${usuario.direccion}" />
-      <br />
-      <span th:errors="*{direccion}" style="color: red;"></span>
-      <br />
+    <div>
+      <div class="text-white userOptions" sec:authorize="isAuthenticated()">
+        <i>Bienvenido</i> <b><span class="text-white" sec:authentication="name">Username</span></b>
+        &nbsp;
+        <i><span class="text-white" sec:authentication="principal.authorities">Roles</span></i>
+        <form th:action="@{/logout}" method="post">
+          <input type="submit" value="Logout" />
+        </form>
+      </div>
+    </div>
+  </nav>
 
-      <label for="telFijo">Tel. Fijo: </label>
-      <input type="text" th:field="${usuario.telFijo}" />
-      <br />
-      <span th:errors="*{telFijo}" style="color: red;"></span>
-      <br />
+  <div class="container">
+    <div class="card" id="formsCont">
+      <div class="card-block">
+        <form action="#" th:action="@{/ingresarUsuario}" th:object="${usuario}" method="post">
+          <label for="nombre">Nombre: </label>
+          <input type="text" th:field="${usuario.nombre}" class="form-control" />
+          <span th:errors="*{nombre}" style="color: red;"></span>
+          <br />
 
-      <label for="telMovil">Tel. Movil: </label>
-      <input type="text" th:field="${usuario.telMovil}" />
-      <br />
-      <span th:errors="*{telMovil}" style="color: red;"></span>
-      <br />
+          <label for="apellido">Apellido: </label>
+          <input type="text" th:field="${usuario.apellido}" class="form-control"/>
+          <span th:errors="*{apellido}" style="color: red;"></span>
+          <br />
 
-      <label>Role: </label>
-      <select id="roles" th:field="${usuario.roles.id_rol}">
-        <option
-          th:each="roles, row: ${roles}"
-          th:value="${roles.id_rol}"
-          th:text="${roles.rol}"
-        ></option>
-      </select>
-      <br />
+          <label for="fNac">Fecha de Nacimiento: </label>
+          <td><input type="text" th:field="${usuario.fNac}" class="form-control" /></td>
+          <!-- <span th:errors="*{usuario}" style="color: red;"></span>-->
+          <br />
 
-      <label>Municipio: </label>
-      <select id="roles" th:field="${usuario.municipio.id_municipio}">
-        <option
-          th:each="municipio, row: ${municipios}"
-          th:value="${municipio.id_municipio}"
-          th:text="${municipio.municipio}"
-        ></option>
-      </select>
-      <!-- FALTAN LOS MUNICIPIOS Y FALTA TAMBIEN CAMBIAR QUE TIPO DE USUARIO ES -->
+          <label for="username">Nombre de usuario: </label>
+          <input type="text" th:field="${usuario.username}" class="form-control"/>
+          <span th:errors="*{username}" style="color: red;"></span>
+          <br />
 
-      <label for="enabled_u" class="col-form-label">Estado:</label>
-      <select
-        
-        class="form-control"
-        name="enabled_u"
-        id="estado"
-        th:field="${usuario.enabled_u}"
-      >
-        <option th:value="${false}" >Inactivo</option>
-      </select>
-      <input type="submit" value="Guardar" />
-    </form>
-  </body>
+          <label for="password">Password: </label>
+          <input type="text" th:field="${usuario.password}" class="form-control"/>
+          <span th:errors="*{password}" style="color: red;"></span>
+          <br />
+
+          <label for="direccion">Direccion: </label>
+          <input type="text" th:field="${usuario.direccion}" class="form-control" />
+          <span th:errors="*{direccion}" style="color: red;"></span>
+          <br />
+
+          <label for="telFijo">Tel. Fijo: </label>
+          <input type="text" th:field="${usuario.telFijo}" class="form-control" />
+          <span th:errors="*{telFijo}" style="color: red;"></span>
+          <br />
+
+          <label for="telMovil">Tel. Movil: </label>
+          <input type="text" th:field="${usuario.telMovil}" class="form-control" />
+          <span th:errors="*{telMovil}" style="color: red;"></span>
+          <br />
+
+          <label>Role: </label>
+          <select id="roles" th:field="${usuario.roles.id_rol}" class="form-control">
+            <option th:each="roles, row: ${roles}" th:value="${roles.id_rol}" th:text="${roles.rol}"></option>
+          </select>
+          <br />
+
+          <label>Municipio: </label>
+          <select id="roles" th:field="${usuario.municipio.id_municipio}" class="form-control">
+            <option th:each="municipio, row: ${municipios}" th:value="${municipio.id_municipio}"
+              th:text="${municipio.municipio}"></option>
+          </select>
+          <!-- FALTAN LOS MUNICIPIOS Y FALTA TAMBIEN CAMBIAR QUE TIPO DE USUARIO ES -->
+
+          <label for="enabled_u" class="col-form-label">Estado:</label>
+          <select class="form-control" name="enabled_u" id="estado" th:field="${usuario.enabled_u}">
+            <option th:value="${false}">Inactivo</option>
+          </select>
+          <br>
+          <input type="submit" value="Guardar" class="btn btn-primary bEdit" />
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>
