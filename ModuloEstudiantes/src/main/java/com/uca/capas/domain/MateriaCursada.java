@@ -13,6 +13,7 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(schema="public", name="MATERIA_CURSADA")
@@ -31,7 +32,7 @@ public class MateriaCursada {
 	@Column(name="ciclo")
 	private String ciclo;
 	
-	//@NotEmpty(message="El campo no puede estar vacio")
+	@NotNull(message="El campo no puede estar vacio")
 	//@Min(0)
 	//@Max(10)
 	//@Column(name="nota")
