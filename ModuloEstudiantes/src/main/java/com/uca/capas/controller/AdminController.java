@@ -213,7 +213,7 @@ public class AdminController {
 	
 	// Add - CE
 	@RequestMapping("/admin/ingresarCE")
-	public ModelAndView ingresarCE(@Valid CentroEscolar centroEscolar, BindingResult result) {
+	public ModelAndView ingresarCE() {
 		ModelAndView mav = new ModelAndView();
 			List<Departamento> departamentos = null;
 			List<Municipio> municipios = null;
@@ -222,7 +222,7 @@ public class AdminController {
 			
 			mav.addObject("departamentos", departamentos);
 			mav.addObject("municipios", municipios);
-			mav.addObject("centroEscolar", centroEscolar);
+			mav.addObject("centroEscolar", new CentroEscolar());
 			mav.setViewName("addCE");
 		
 		return mav;
@@ -245,6 +245,7 @@ public class AdminController {
 			List<CentroEscolar> cEscolares = null;
 			try {
 				cEscolares = centroEscolarService.findAll();
+				centroEscolarService.save(centroEscolar);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
