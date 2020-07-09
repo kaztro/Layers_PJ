@@ -233,8 +233,8 @@ public class CoordinadorController {
 		return mav;
 	}
 	
-	@RequestMapping("/actualizar/expediente/")
-	public ModelAndView validarUpdateEst(@Valid @ModelAttribute Estudiante estudiante, @RequestParam(value= "id_estudiante") String id, BindingResult result) {
+	@PostMapping("/actualizar/expediente/")
+	public ModelAndView validarUpdateEst(@Valid @ModelAttribute Estudiante estudiante, BindingResult result) {
 		ModelAndView mav = new ModelAndView();
 		
 		if(result.hasErrors()) {
@@ -244,7 +244,6 @@ public class CoordinadorController {
 			cEscolares = cEscolar.findAll();
 			departamentos = departamentoService.findAll();
 			municipios = municipioService.findAll();
-			estudiante = estudianteService.findOne(Integer.parseInt(id));
 			
 			mav.addObject("departamentos", departamentos);
 			mav.addObject("municipios", municipios);
