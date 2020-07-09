@@ -82,11 +82,11 @@
           <input type="text" th:field="${materia.descripcion}" class="form-control"/>
           <span th:errors="*{descripcion}" style="color: red;"></span>
           <br />
-          <label for="activo">Activo</label>
-          <input name="activo" type="radio" th:field="${materia.enabled_m}" th:value= "${true}" /> 
-          <label for="activo">No activo</label>
-          <input name="activo" type="radio" th:field="${materia.enabled_m}" th:value= "${false}" /> 
-        
+          <label>Estado</label>
+          <select class="form-control" name="enabled_u" id="estado" th:field="${materia.enabled_m}">
+            	<option th:value="${true}">Activa</option>
+            	<option th:value="${false}">Inactiva</option>
+          </select>       
           
           <br />
 		 <input type="submit" value="Guardar" class="btn btn-primary bEdit" />
