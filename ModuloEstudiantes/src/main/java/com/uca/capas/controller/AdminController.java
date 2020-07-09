@@ -137,7 +137,7 @@ public class AdminController {
 	}
 
 	@GetMapping("actualizar/materia/{id_materia}")
-	public ModelAndView updateMat(@Valid Materia materia, BindingResult result, Model model) {
+	public ModelAndView updateMat(@Valid @ModelAttribute Materia materia, BindingResult result, Model model) {
 		ModelAndView mav = new ModelAndView();
 		if (result.hasErrors()) {
 			mav.setViewName("updateMat");
@@ -177,7 +177,7 @@ public class AdminController {
 	}
 
 	@GetMapping("actualizar/centro/{id_centro}")
-	public ModelAndView updateCE(@Valid CentroEscolar centroEscolar, BindingResult result, Model model) {
+	public ModelAndView updateCE(@Valid @ModelAttribute CentroEscolar centroEscolar, BindingResult result, Model model) {
 		ModelAndView mav = new ModelAndView();
 
 		if (result.hasErrors()) {
@@ -212,7 +212,7 @@ public class AdminController {
 	}
 
 	@GetMapping("actualizar/usuario/{id_usuario}")
-	public ModelAndView updateU(@Valid Usuario usuario, BindingResult result, Model model) {
+	public ModelAndView updateU(@Valid @ModelAttribute Usuario usuario, BindingResult result, Model model) {
 		ModelAndView mav = new ModelAndView();
 		if (result.hasErrors()) {
 			mav.setViewName("updateU");
@@ -253,7 +253,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/admin/validar/ingresarCE")
-	public ModelAndView validarrCE(@Valid CentroEscolar centroEscolar, BindingResult result) {
+	public ModelAndView validarrCE(@Valid @ModelAttribute CentroEscolar centroEscolar, BindingResult result) {
 		ModelAndView mav = new ModelAndView();
 		if(result.hasErrors()) {
 			List<Departamento> departamentos = null;
