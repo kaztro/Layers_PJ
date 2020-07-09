@@ -1,6 +1,5 @@
 package com.uca.capas.domain;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -13,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -25,31 +27,48 @@ public class Usuario {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id_usuario;
 	
+	@NotEmpty(message="Este campo no puede estar vacio")
+	@Size(message="El campo sobrepasa la cantidad de 50 caracteres", max=50)
 	@Column(name="username")
 	private String username;
 	
+	@NotEmpty(message="Este campo no puede estar vacio")
+	@Size(message="El campo sobrepasa la cantidad de 50 caracteres", max=50)
 	@Column(name="password")
 	private String password;
 	
+	@NotNull
 	@Column(name="enabled_u")
 	private Boolean enabled_u;
 	
+	@NotEmpty(message="Este campo no puede estar vacio")
+	@Size(message="El campo sobrepasa la cantidad de 50 caracteres", max=50)
 	@Column(name="nombre")
 	private String nombre;
 	
+	@NotEmpty(message="Este campo no puede estar vacio")
+	@Size(message="El campo sobrepasa la cantidad de 50 caracteres", max=50)
 	@Column(name="apellido")
 	private String apellido;
 	
+	
+	@NotNull
 	@Column(name="fNac")
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Date fNac;
 	
+	@NotEmpty(message="Este campo no puede estar vacio")
+	@NotNull
 	@Column(name="direccion")
 	private String direccion;
 	
+	@NotEmpty(message="Este campo no puede estar vacio")
+	@Size(message="El campo sobrepasa la cantidad de 8 caracteres", max=8)
 	@Column(name="telFijo")
 	private String telFijo;
 	
+	@NotEmpty(message="Este campo no puede estar vacio")
+	@Size(message="El campo sobrepasa la cantidad de 8 caracteres", max=8)
 	@Column(name="telMovil")
 	private String telMovil;
 	

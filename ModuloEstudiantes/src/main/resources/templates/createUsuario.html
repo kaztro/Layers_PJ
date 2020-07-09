@@ -129,10 +129,12 @@
           </select>
           <!-- FALTAN LOS MUNICIPIOS Y FALTA TAMBIEN CAMBIAR QUE TIPO DE USUARIO ES -->
 
-          <label for="enabled_u" class="col-form-label">Estado:</label>
-          <select class="form-control" name="enabled_u" id="estado" th:field="${usuario.enabled_u}">
-            <option th:value="${false}">Inactivo</option>
-          </select>
+          <div class="vis">
+          	<label for="enabled_u" class="col-form-label">Estado:</label>
+          	<select class="form-control" name="enabled_u" id="estado" th:field="${usuario.enabled_u}">
+            	<option th:value="${false}">Inactivo</option>
+          	</select>
+          </div>
           <br>
           <input type="submit" value="Guardar" class="btn btn-primary bEdit" />
         </form>
