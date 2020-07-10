@@ -123,7 +123,7 @@ public class MainController {
 	public ModelAndView admin() {
 		ModelAndView mav = new ModelAndView();
 		
-		mav.setViewName("admin");
+		mav.setViewName("redirect:/");
 		return mav;
 		
 	}
