@@ -1,0 +1,1803 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.3
+-- Dumped by pg_dump version 12.3
+
+-- Started on 2020-07-10 00:58:13
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 211 (class 1259 OID 33491)
+-- Name: centros_escolares; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.centros_escolares (
+    id_centro integer NOT NULL,
+    nombre character varying(80) NOT NULL,
+    descripcion text NOT NULL,
+    enabled_ce boolean NOT NULL,
+    id_municipio integer NOT NULL
+);
+
+
+ALTER TABLE public.centros_escolares OWNER TO postgres;
+
+--
+-- TOC entry 210 (class 1259 OID 33489)
+-- Name: centros_escolares_id_centro_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.centros_escolares_id_centro_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.centros_escolares_id_centro_seq OWNER TO postgres;
+
+--
+-- TOC entry 2916 (class 0 OID 0)
+-- Dependencies: 210
+-- Name: centros_escolares_id_centro_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.centros_escolares_id_centro_seq OWNED BY public.centros_escolares.id_centro;
+
+
+--
+-- TOC entry 203 (class 1259 OID 33437)
+-- Name: departamento; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.departamento (
+    id_departamento integer NOT NULL,
+    departamento character varying(30) NOT NULL
+);
+
+
+ALTER TABLE public.departamento OWNER TO postgres;
+
+--
+-- TOC entry 202 (class 1259 OID 33435)
+-- Name: departamento_id_departamento_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.departamento_id_departamento_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.departamento_id_departamento_seq OWNER TO postgres;
+
+--
+-- TOC entry 2917 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: departamento_id_departamento_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.departamento_id_departamento_seq OWNED BY public.departamento.id_departamento;
+
+
+--
+-- TOC entry 213 (class 1259 OID 33507)
+-- Name: estudiante; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.estudiante (
+    id_estudiante integer NOT NULL,
+    nombres character varying(80) NOT NULL,
+    apellidos character varying(80) NOT NULL,
+    cminoridad text NOT NULL,
+    fnac date NOT NULL,
+    direccion text NOT NULL,
+    telfijo character varying(8) NOT NULL,
+    telmovil character varying(8) NOT NULL,
+    nombremadre character varying(50) NOT NULL,
+    nombrepadre character varying(50) NOT NULL,
+    id_centro integer NOT NULL
+);
+
+
+ALTER TABLE public.estudiante OWNER TO postgres;
+
+--
+-- TOC entry 212 (class 1259 OID 33505)
+-- Name: estudiante_id_estudiante_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.estudiante_id_estudiante_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.estudiante_id_estudiante_seq OWNER TO postgres;
+
+--
+-- TOC entry 2918 (class 0 OID 0)
+-- Dependencies: 212
+-- Name: estudiante_id_estudiante_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.estudiante_id_estudiante_seq OWNED BY public.estudiante.id_estudiante;
+
+
+--
+-- TOC entry 215 (class 1259 OID 33523)
+-- Name: materia; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.materia (
+    id_materia integer NOT NULL,
+    materia character varying(20) NOT NULL,
+    descripcion text NOT NULL,
+    enabled_m boolean NOT NULL
+);
+
+
+ALTER TABLE public.materia OWNER TO postgres;
+
+--
+-- TOC entry 217 (class 1259 OID 33534)
+-- Name: materia_cursada; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.materia_cursada (
+    id_materiacursada integer NOT NULL,
+    id_materia integer NOT NULL,
+    id_estudiante integer NOT NULL,
+    anho character varying(4) NOT NULL,
+    ciclo character varying(2) NOT NULL,
+    nota numeric NOT NULL
+);
+
+
+ALTER TABLE public.materia_cursada OWNER TO postgres;
+
+--
+-- TOC entry 216 (class 1259 OID 33532)
+-- Name: materia_cursada_id_materiacursada_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.materia_cursada_id_materiacursada_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.materia_cursada_id_materiacursada_seq OWNER TO postgres;
+
+--
+-- TOC entry 2919 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: materia_cursada_id_materiacursada_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.materia_cursada_id_materiacursada_seq OWNED BY public.materia_cursada.id_materiacursada;
+
+
+--
+-- TOC entry 214 (class 1259 OID 33521)
+-- Name: materia_id_materia_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.materia_id_materia_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.materia_id_materia_seq OWNER TO postgres;
+
+--
+-- TOC entry 2920 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: materia_id_materia_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.materia_id_materia_seq OWNED BY public.materia.id_materia;
+
+
+--
+-- TOC entry 205 (class 1259 OID 33447)
+-- Name: municipio; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.municipio (
+    id_municipio integer NOT NULL,
+    municipio character varying(30) NOT NULL,
+    id_depart integer
+);
+
+
+ALTER TABLE public.municipio OWNER TO postgres;
+
+--
+-- TOC entry 204 (class 1259 OID 33445)
+-- Name: municipio_id_municipio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.municipio_id_municipio_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.municipio_id_municipio_seq OWNER TO postgres;
+
+--
+-- TOC entry 2921 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: municipio_id_municipio_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.municipio_id_municipio_seq OWNED BY public.municipio.id_municipio;
+
+
+--
+-- TOC entry 207 (class 1259 OID 33462)
+-- Name: roles; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.roles (
+    id_rol integer NOT NULL,
+    rol character varying(13) NOT NULL
+);
+
+
+ALTER TABLE public.roles OWNER TO postgres;
+
+--
+-- TOC entry 206 (class 1259 OID 33460)
+-- Name: roles_id_rol_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.roles_id_rol_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.roles_id_rol_seq OWNER TO postgres;
+
+--
+-- TOC entry 2922 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: roles_id_rol_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.roles_id_rol_seq OWNED BY public.roles.id_rol;
+
+
+--
+-- TOC entry 209 (class 1259 OID 33470)
+-- Name: usuario; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.usuario (
+    id_usuario integer NOT NULL,
+    id_rol integer NOT NULL,
+    username character varying(50) NOT NULL,
+    password character varying(50) NOT NULL,
+    enabled_u boolean NOT NULL,
+    nombre character varying(50) NOT NULL,
+    apellido character varying(50) NOT NULL,
+    fnac date NOT NULL,
+    direccion text NOT NULL,
+    telfijo character varying(8) NOT NULL,
+    telmovil character varying(8) NOT NULL,
+    id_municipio integer NOT NULL
+);
+
+
+ALTER TABLE public.usuario OWNER TO postgres;
+
+--
+-- TOC entry 208 (class 1259 OID 33468)
+-- Name: usuario_id_usuario_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.usuario_id_usuario_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.usuario_id_usuario_seq OWNER TO postgres;
+
+--
+-- TOC entry 2923 (class 0 OID 0)
+-- Dependencies: 208
+-- Name: usuario_id_usuario_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.usuario_id_usuario_seq OWNED BY public.usuario.id_usuario;
+
+
+--
+-- TOC entry 2738 (class 2604 OID 33494)
+-- Name: centros_escolares id_centro; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.centros_escolares ALTER COLUMN id_centro SET DEFAULT nextval('public.centros_escolares_id_centro_seq'::regclass);
+
+
+--
+-- TOC entry 2734 (class 2604 OID 33440)
+-- Name: departamento id_departamento; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.departamento ALTER COLUMN id_departamento SET DEFAULT nextval('public.departamento_id_departamento_seq'::regclass);
+
+
+--
+-- TOC entry 2739 (class 2604 OID 33510)
+-- Name: estudiante id_estudiante; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.estudiante ALTER COLUMN id_estudiante SET DEFAULT nextval('public.estudiante_id_estudiante_seq'::regclass);
+
+
+--
+-- TOC entry 2740 (class 2604 OID 33526)
+-- Name: materia id_materia; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.materia ALTER COLUMN id_materia SET DEFAULT nextval('public.materia_id_materia_seq'::regclass);
+
+
+--
+-- TOC entry 2741 (class 2604 OID 33537)
+-- Name: materia_cursada id_materiacursada; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.materia_cursada ALTER COLUMN id_materiacursada SET DEFAULT nextval('public.materia_cursada_id_materiacursada_seq'::regclass);
+
+
+--
+-- TOC entry 2735 (class 2604 OID 33450)
+-- Name: municipio id_municipio; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.municipio ALTER COLUMN id_municipio SET DEFAULT nextval('public.municipio_id_municipio_seq'::regclass);
+
+
+--
+-- TOC entry 2736 (class 2604 OID 33465)
+-- Name: roles id_rol; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.roles ALTER COLUMN id_rol SET DEFAULT nextval('public.roles_id_rol_seq'::regclass);
+
+
+--
+-- TOC entry 2737 (class 2604 OID 33473)
+-- Name: usuario id_usuario; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuario ALTER COLUMN id_usuario SET DEFAULT nextval('public.usuario_id_usuario_seq'::regclass);
+
+
+--
+-- TOC entry 2904 (class 0 OID 33491)
+-- Dependencies: 211
+-- Data for Name: centros_escolares; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.centros_escolares VALUES (1, 'CENTRO ESCOLAR ISIDRO MENENDEZ', 'Público', false, 195);
+INSERT INTO public.centros_escolares VALUES (2, 'CENTRO ESCOLAR ALFREDO ESPINO', 'Público', false, 247);
+INSERT INTO public.centros_escolares VALUES (3, 'CENTRO ESCOLAR ALEJANDRO DE HUMBOLDT', 'Público', true, 101);
+INSERT INTO public.centros_escolares VALUES (4, 'CENTRO ESCOLAR 1º DE JULIO DE 1823', 'Público', true, 129);
+INSERT INTO public.centros_escolares VALUES (5, 'INSTITUTO NACIONAL SANTA RITA', 'Público', false, 211);
+INSERT INTO public.centros_escolares VALUES (6, 'CENTRO ESCOLAR RICARDO TRIGUEROS DE LEON', 'Público', false, 68);
+INSERT INTO public.centros_escolares VALUES (7, 'CENTRO ESCOLAR CARLOTA LEON VIUDA DE TRIGUEROS', 'Público', true, 64);
+INSERT INTO public.centros_escolares VALUES (8, 'ESCUELA DE EDUCACION PARVULARIA MARIA SALAZAR VIUDA DE MAGAÑA', 'Público', false, 183);
+INSERT INTO public.centros_escolares VALUES (9, 'CENTRO ESCOLAR CASERIO PUERTAS NEGRAS', 'Público', true, 132);
+INSERT INTO public.centros_escolares VALUES (10, 'CENTRO ESCOLAR CANTON LOS HUATALES', 'Público', true, 36);
+INSERT INTO public.centros_escolares VALUES (11, 'CENTRO ESCOLAR BERNARDINO E. ZAMORA', 'Público', false, 131);
+INSERT INTO public.centros_escolares VALUES (12, 'COMPLEJO EDUCATIVO GENERAL FABIO MORAN', 'Público', true, 159);
+INSERT INTO public.centros_escolares VALUES (13, 'CENTRO ESCOLAR ISABEL CARRILLO DE BOLAÑOS', 'Público', false, 132);
+INSERT INTO public.centros_escolares VALUES (14, 'CENTRO ESCOLAR PROFESOR RICARDO ARGUETA LINARES', 'Público', false, 105);
+INSERT INTO public.centros_escolares VALUES (15, 'CENTRO ESCOLAR CANTON EL ROBLE', 'Público', true, 68);
+INSERT INTO public.centros_escolares VALUES (16, 'CENTRO ESCOLAR CANTON EL JUNQUILLO', 'Público', true, 160);
+INSERT INTO public.centros_escolares VALUES (17, 'CENTRO ESCOLAR COLONIA LA PISTA', 'Público', false, 173);
+INSERT INTO public.centros_escolares VALUES (18, 'CENTRO ESCOLAR CANTON ASHAPUCO', 'Público', true, 191);
+INSERT INTO public.centros_escolares VALUES (19, 'CENTRO ESCOLAR CANTON LA COYOTERA', 'Público', true, 248);
+INSERT INTO public.centros_escolares VALUES (20, 'CENTRO ESCOLAR CANTON SUNTECUMAT', 'Público', false, 191);
+INSERT INTO public.centros_escolares VALUES (21, 'CENTRO ESCOLAR CANTON LOS MAGUEYES', 'Público', false, 44);
+INSERT INTO public.centros_escolares VALUES (22, 'CENTRO ESCOLAR DOCTOR RENE VIRGILIO CORNEJO GRANADOS', 'Público', false, 41);
+INSERT INTO public.centros_escolares VALUES (23, 'CENTRO ESCOLAR CANTON PALO PIQUE', 'Público', false, 51);
+INSERT INTO public.centros_escolares VALUES (24, 'CENTRO ESCOLAR CANTON RIO FRIO', 'Público', false, 119);
+INSERT INTO public.centros_escolares VALUES (25, 'CENTRO ESCOLAR ABELINA ARRIAZA', 'Público', true, 46);
+INSERT INTO public.centros_escolares VALUES (26, 'COMPLEJO EDUCATIVO DOCTOR RAFAEL MEZA DELGADO', 'Público', true, 125);
+INSERT INTO public.centros_escolares VALUES (27, 'CENTRO ESCOLAR CASERIO EL BOTADERO, CANTON EL ROBLE', 'Público', true, 90);
+INSERT INTO public.centros_escolares VALUES (28, 'COMPLEJO EDUCATIVO DOCTOR ARTURO ROMERO', 'Público', true, 168);
+INSERT INTO public.centros_escolares VALUES (29, 'CENTRO ESCOLAR CANTON SANTA ROSA DE ACACALCO', 'Público', false, 237);
+INSERT INTO public.centros_escolares VALUES (30, 'COMPLEJO EDUCATIVO HACIENDA LA LABOR', 'Público', false, 101);
+INSERT INTO public.centros_escolares VALUES (31, 'CENTRO ESCOLAR HERMANO FRANCISCO RIVAT', 'Público', false, 108);
+INSERT INTO public.centros_escolares VALUES (32, 'CENTRO ESCOLAR CASERIO LAS CHINITAS', 'Público', true, 231);
+INSERT INTO public.centros_escolares VALUES (33, 'CENTRO ESCOLAR COLONIA SANTA MARIA', 'Público', true, 223);
+INSERT INTO public.centros_escolares VALUES (34, 'CENTRO ESCOLAR CANTON LA DANTA', 'Público', false, 218);
+INSERT INTO public.centros_escolares VALUES (35, 'CENTRO ESCOLAR COLONIA SAN GENARO', 'Público', false, 20);
+INSERT INTO public.centros_escolares VALUES (36, 'CENTRO ESCOLAR CANTON SAN LAZARO', 'Público', true, 169);
+INSERT INTO public.centros_escolares VALUES (37, 'CENTRO ESCOLAR CASERIO RANCHO GRANDE CANTON EL JUNQUILLO', 'Público', true, 251);
+INSERT INTO public.centros_escolares VALUES (38, 'CENTRO ESCOLAR HACIENDA ZACAMIL', 'Público', false, 52);
+INSERT INTO public.centros_escolares VALUES (39, 'CENTRO ESCOLAR COLONIA LAS VICTORIAS', 'Público', false, 107);
+INSERT INTO public.centros_escolares VALUES (40, 'INSTITUTO NACIONAL SAN MIGUEL DE MERCEDES', 'Público', false, 184);
+INSERT INTO public.centros_escolares VALUES (41, 'CENTRO ESCOLAR NUEVO LOURDES', 'Público', true, 135);
+INSERT INTO public.centros_escolares VALUES (42, 'CENTRO ESCOLAR RESIDENCIAL LA PRADERA II', 'Público', false, 232);
+INSERT INTO public.centros_escolares VALUES (43, 'INSTITUTO NACIONAL ALEJANDRO DE HUMBOLDT', 'Público', false, 174);
+INSERT INTO public.centros_escolares VALUES (44, 'INSTITUTO NACIONAL LUIS REYNALDO TOBAR', 'Público', true, 233);
+INSERT INTO public.centros_escolares VALUES (45, 'ESCUELA DE EDUCACION PARVULARIA DE APANECA', 'Público', true, 198);
+INSERT INTO public.centros_escolares VALUES (46, 'CENTRO ESCOLAR CIUDAD CREDISA', 'Público', true, 224);
+INSERT INTO public.centros_escolares VALUES (47, 'INSTITUTO NACIONAL DE SACACOYO', 'Público', true, 173);
+INSERT INTO public.centros_escolares VALUES (48, 'INSTITUTO NACIONAL CANTON CARA SUCIA', 'Público', true, 34);
+INSERT INTO public.centros_escolares VALUES (49, 'INSTITUTO NACIONAL LICENCIADO JOSE DANIEL CARIAS', 'Público', false, 107);
+INSERT INTO public.centros_escolares VALUES (50, 'CENTRO ESCOLAR GENERAL FRANCISCO MENENDEZ', 'Público', true, 105);
+INSERT INTO public.centros_escolares VALUES (51, 'COMPLEJO EDUCATIVO CANTON IZCAQUILIO', 'Público', true, 153);
+INSERT INTO public.centros_escolares VALUES (52, 'CENTRO ESCOLAR CANTON EL SALITRERO', 'Público', false, 204);
+INSERT INTO public.centros_escolares VALUES (53, 'CENTRO ESCOLAR CANTON LOMAS DE ALARCON', 'Público', true, 131);
+INSERT INTO public.centros_escolares VALUES (54, 'INSTITUTO NACIONAL COLONIA VALLE DEL SOL', 'Público', false, 196);
+INSERT INTO public.centros_escolares VALUES (55, 'CENTRO ESCOLAR CANTON RINCON GRANDE', 'Público', false, 96);
+INSERT INTO public.centros_escolares VALUES (56, 'CENTRO ESCOLAR CANTON SAN JUAN EL ESPINO', 'Público', false, 173);
+INSERT INTO public.centros_escolares VALUES (57, 'CENTRO ESCOLAR VISTA AL LAGO', 'Público', true, 119);
+INSERT INTO public.centros_escolares VALUES (58, 'CENTRO ESCOLAR FRAY MARTIN DE PORRES', 'Público', true, 79);
+INSERT INTO public.centros_escolares VALUES (59, 'CENTRO ESCOLAR CASERIO EL JICARO', 'Público', false, 169);
+INSERT INTO public.centros_escolares VALUES (60, 'CENTRO ESCOLAR CANTON EL TORTUGUERO', 'Público', false, 249);
+INSERT INTO public.centros_escolares VALUES (61, 'INSTITUTO NACIONAL CORNELIO AZENON SIERRA', 'Público', true, 82);
+INSERT INTO public.centros_escolares VALUES (62, 'CENTRO ESCOLAR COLONIA LAS VIÑAS, CANTON EL JUNQUILLO', 'Público', true, 81);
+INSERT INTO public.centros_escolares VALUES (63, 'CENTRO ESCOLAR CANTON JOYA DEL ZAPOTE', 'Público', true, 84);
+INSERT INTO public.centros_escolares VALUES (64, 'CENTRO ESCOLAR GENERAL FRANCISCO MENENDEZ', 'Público', true, 40);
+INSERT INTO public.centros_escolares VALUES (65, 'CENTRO ESCOLAR MERCEDES MONTERROSA DE CARCAMO', 'Público', false, 124);
+INSERT INTO public.centros_escolares VALUES (66, 'CENTRO ESCOLAR MANUEL ALVAREZ MAGAÑA', 'Público', true, 231);
+INSERT INTO public.centros_escolares VALUES (67, 'CENTRO ESCOLAR ANTONIO JOSE DE SUCRE', 'Público', false, 73);
+INSERT INTO public.centros_escolares VALUES (68, 'CENTRO ESCOLAR EXALTACION POMPILIO SALGADO RIVERA', 'Público', true, 30);
+INSERT INTO public.centros_escolares VALUES (69, 'ESCUELA DE EDUCACION PARVULARIA PROFESORA CORDELIA AVALOS DE LABOR', 'Público', false, 257);
+INSERT INTO public.centros_escolares VALUES (70, 'CENTRO ESCOLAR CANTON LA ESPERANZA', 'Público', true, 138);
+INSERT INTO public.centros_escolares VALUES (71, 'CENTRO ESCOLAR CANTON JOYA DEL PLATANAR', 'Público', false, 260);
+INSERT INTO public.centros_escolares VALUES (72, 'CENTRO ESCOLAR URBANIZACION MONTELIMAR', 'Público', false, 175);
+INSERT INTO public.centros_escolares VALUES (73, 'CENTRO ESCOLAR CANTON SHUCUTITAN', 'Público', false, 252);
+INSERT INTO public.centros_escolares VALUES (74, 'CENTRO ESCOLAR LA CAMPANERA', 'Público', false, 187);
+INSERT INTO public.centros_escolares VALUES (75, 'CENTRO ESCOLAR CANTON LOS TABLONES', 'Público', true, 78);
+INSERT INTO public.centros_escolares VALUES (76, 'INSTITUTO NACIONAL CANTON LAS PILAS', 'Público', false, 148);
+INSERT INTO public.centros_escolares VALUES (77, 'INSTITUTO NACIONAL DE COATEPEQUE', 'Público', true, 222);
+INSERT INTO public.centros_escolares VALUES (78, 'CENTRO ESCOLAR CANTON JOYA DE LOS APANTES', 'Público', true, 144);
+INSERT INTO public.centros_escolares VALUES (79, 'ESCUELA DE EDUCACION PARVULARIA DE CONCEPCION DE ATACO', 'Público', false, 48);
+INSERT INTO public.centros_escolares VALUES (80, 'CENTRO ESCOLAR EL SAUCE', 'Público', true, 76);
+INSERT INTO public.centros_escolares VALUES (81, 'INSTITUTO NACIONAL DE SONZACATE', 'Público', true, 183);
+INSERT INTO public.centros_escolares VALUES (82, 'CENTRO ESCOLAR CANTON LA CEIBA ABAJO', 'Público', false, 135);
+INSERT INTO public.centros_escolares VALUES (83, 'COMPLEJO EDUCATIVO ANTONIO J. ALFARO', 'Público', true, 76);
+INSERT INTO public.centros_escolares VALUES (84, 'CENTRO ESCOLAR SAN ANTONIO', 'Público', true, 227);
+INSERT INTO public.centros_escolares VALUES (85, 'CENTRO ESCOLAR FRANCISCO GAVIDIA', 'Público', false, 124);
+INSERT INTO public.centros_escolares VALUES (86, 'CENTRO ESCOLAR COLONIA EL ANGEL', 'Público', false, 184);
+INSERT INTO public.centros_escolares VALUES (87, 'CENTRO ESCOLAR DE GUAYMANGO', 'Público', false, 123);
+INSERT INTO public.centros_escolares VALUES (88, 'CENTRO ESCOLAR CANTON PLATANARES', 'Público', true, 246);
+INSERT INTO public.centros_escolares VALUES (89, 'INSTITUTO NACIONAL DE ARCATAO', 'Público', true, 213);
+INSERT INTO public.centros_escolares VALUES (90, 'INSTITUTO NACIONAL DE YAMABAL', 'Público', true, 30);
+INSERT INTO public.centros_escolares VALUES (91, 'CENTRO ESCOLAR COLONIA SANTA CRISTINA', 'Público', false, 227);
+INSERT INTO public.centros_escolares VALUES (92, 'CENTRO ESCOLAR HACIENDA SAN MARTIN Y LARIN', 'Público', false, 17);
+INSERT INTO public.centros_escolares VALUES (93, 'CENTRO ESCOLAR FUNDACION CESSA', 'Público', true, 20);
+INSERT INTO public.centros_escolares VALUES (94, 'CENTRO ESCOLAR LA GAVIOTA #2', 'Público', false, 126);
+INSERT INTO public.centros_escolares VALUES (95, 'CENTRO ESCOLAR CANTON GUAYAPA ABAJO', 'Público', true, 129);
+INSERT INTO public.centros_escolares VALUES (96, 'CENTRO ESCOLAR FINCA EL SALTO', 'Público', false, 137);
+INSERT INTO public.centros_escolares VALUES (97, 'COMPLEJO EDUCATIVO COLONIA NUEVA', 'Público', false, 242);
+INSERT INTO public.centros_escolares VALUES (98, 'CENTRO ESCOLAR HACIENDA HOJA DE SAL CANTON GUAYAPA ARRIBA', 'Público', false, 72);
+INSERT INTO public.centros_escolares VALUES (99, 'CENTRO ESCOLAR CASERIO LOS CALDERON', 'Público', false, 24);
+INSERT INTO public.centros_escolares VALUES (100, 'CENTRO ESCOLAR CASERIO CUILAPA, CANTON GUAYAPA ARRIBA', 'Público', false, 157);
+INSERT INTO public.centros_escolares VALUES (101, 'CENTRO ESCOLAR CASERIO EL CARMEN, CANTON FALLA', 'Público', true, 235);
+INSERT INTO public.centros_escolares VALUES (102, 'CENTRO ESCOLAR CANTON ZAPUA', 'Público', false, 215);
+INSERT INTO public.centros_escolares VALUES (103, 'INSTITUTO NACIONAL DE JUTIAPA', 'Público', false, 152);
+INSERT INTO public.centros_escolares VALUES (104, 'INSTITUTO NACIONAL DE EL REFUGIO', 'Público', false, 217);
+INSERT INTO public.centros_escolares VALUES (105, 'CENTRO ESCOLAR CASERIO EL MANGO', 'Público', true, 106);
+INSERT INTO public.centros_escolares VALUES (106, 'CENTRO ESCOLAR HACIENDA LAS DELICIAS CANTON SAN ANTONIO ', 'Público', true, 170);
+INSERT INTO public.centros_escolares VALUES (107, 'CENTRO ESCOLAR DOCTOR SIXTO ALBERTO PADILLA', 'Público', true, 55);
+INSERT INTO public.centros_escolares VALUES (108, 'CENTRO ESCOLAR LEOPOLDO MAYEN TORRES', 'Público', true, 145);
+INSERT INTO public.centros_escolares VALUES (109, 'CENTRO ESCOLAR CANTON SAN ANTONIO', 'Público', true, 116);
+INSERT INTO public.centros_escolares VALUES (110, 'CENTRO ESCOLAR URBANIZACIÓN SANTA TERESA DE LAS FLORES', 'Público', false, 239);
+INSERT INTO public.centros_escolares VALUES (111, 'CENTRO ESCOLAR PROFESOR JORGE ALFREDO MENDOZA', 'Público', false, 44);
+INSERT INTO public.centros_escolares VALUES (112, 'COMPLEJO EDUCATIVO CANTON EL ZAPOTE', 'Público', false, 262);
+INSERT INTO public.centros_escolares VALUES (113, 'CENTRO ESCOLAR PARA SORDOS DE COJUTEPEQUE', 'Público', false, 230);
+INSERT INTO public.centros_escolares VALUES (114, 'CENTRO ESCOLAR HACIENDA NUEVA YORK', 'Público', true, 24);
+INSERT INTO public.centros_escolares VALUES (115, 'ESCUELA DE EDUCACION PARVULARIA PRUDENCIA AYALA', 'Público', true, 72);
+INSERT INTO public.centros_escolares VALUES (116, 'CENTRO ESCOLAR CASERIO SANTA ELENA', 'Público', true, 43);
+INSERT INTO public.centros_escolares VALUES (117, 'CENTRO ESCOLAR HACIENDA CHANMICO', 'Público', false, 234);
+INSERT INTO public.centros_escolares VALUES (118, 'COMPLEJO EDUCATIVO CASERÍO EL CASTAÑO', 'Público', true, 160);
+INSERT INTO public.centros_escolares VALUES (119, 'CENTRO ESCOLAR COLONIA NUEVA ESPERANZA, CANTON CARA SUCIA', 'Público', true, 241);
+INSERT INTO public.centros_escolares VALUES (120, 'CENTRO ESCOLAR ANA CORALIA RAUDA DE CARDENAS', 'Público', false, 166);
+INSERT INTO public.centros_escolares VALUES (121, 'COMPLEJO EDUCATIVO CANTÓN LA HACHADURA', 'Público', false, 64);
+INSERT INTO public.centros_escolares VALUES (122, 'CENTRO ESCOLAR HACIENDA EL AMATAL', 'Público', true, 14);
+INSERT INTO public.centros_escolares VALUES (123, 'INSTITUTO NACIONAL DE SAN MIGUEL TEPEZONTES', 'Público', false, 81);
+INSERT INTO public.centros_escolares VALUES (124, 'CENTRO ESCOLAR CANTON CARA SUCIA', 'Público', false, 93);
+INSERT INTO public.centros_escolares VALUES (125, 'COMPLEJO EDUCATIVO GARITA PALMERA', 'Público', true, 135);
+INSERT INTO public.centros_escolares VALUES (126, 'ESCUELA DE EDUCACION PARVULARIA ASOCIACION DE SEÑORAS DE MEDICOS', 'Público', true, 120);
+INSERT INTO public.centros_escolares VALUES (127, 'CENTRO ESCOLAR CASERIO PUENTE ARCE, CANTON EL JOCOTILLO', 'Público', true, 16);
+INSERT INTO public.centros_escolares VALUES (128, 'CENTRO ESCOLAR HACIENDA BOLA DE MONTE', 'Público', false, 3);
+INSERT INTO public.centros_escolares VALUES (129, 'CENTRO ESCOLAR CASERIO MENDEZ, CANTON LA CEIBA', 'Público', false, 176);
+INSERT INTO public.centros_escolares VALUES (130, 'CENTRO ESCOLAR DIVINO NIÑO', 'Público', false, 193);
+INSERT INTO public.centros_escolares VALUES (131, 'CENTRO ESCOLAR CASERIO TALPETATE', 'Público', false, 75);
+INSERT INTO public.centros_escolares VALUES (132, 'CENTRO ESCOLAR CASERIO LOS CONACASTES', 'Público', true, 101);
+INSERT INTO public.centros_escolares VALUES (133, 'CENTRO ESCOLAR CANTON EL COROZO', 'Público', true, 10);
+INSERT INTO public.centros_escolares VALUES (134, 'CENTRO ESCOLAR GENERAL FRANCISCO MENENDEZ', 'Público', true, 167);
+INSERT INTO public.centros_escolares VALUES (135, 'CENTRO ESCOLAR CANTON EL PORTILLO', 'Público', true, 61);
+INSERT INTO public.centros_escolares VALUES (136, 'ESCUELA DE EDUCACION PARVULARIA DE SAN LORENZO', 'Público', true, 189);
+INSERT INTO public.centros_escolares VALUES (137, 'CENTRO ESCOLAR GILBERTO AUGUSTO CARCAMO', 'Público', false, 85);
+INSERT INTO public.centros_escolares VALUES (138, 'CENTRO ESCOLAR ABEL WILFREDO VELASCO CARCAMO', 'Público', true, 156);
+INSERT INTO public.centros_escolares VALUES (139, 'CENTRO ESCOLAR HERMOGENES ALBANES LEONOR', 'Público', false, 250);
+INSERT INTO public.centros_escolares VALUES (140, 'CENTRO ESCOLAR CANTON GUASCOTA', 'Público', true, 204);
+INSERT INTO public.centros_escolares VALUES (141, 'COMPLEJO EDUCATIVO CANTON LAS POZAS', 'Público', false, 235);
+INSERT INTO public.centros_escolares VALUES (142, 'COMPLEJO EDUCATIVO PROFESOR PABLO SORIANO URQUILLA', 'Público', false, 40);
+INSERT INTO public.centros_escolares VALUES (143, 'CENTRO ESCOLAR CANTON EL CORTEZ', 'Público', false, 252);
+INSERT INTO public.centros_escolares VALUES (144, 'CENTRO ESCOLAR CANTON LA CONCEPCION', 'Público', true, 21);
+INSERT INTO public.centros_escolares VALUES (145, 'COMPLEJO EDUCATIVO RESIDENCIAL ALTA VISTA', 'Público', false, 178);
+INSERT INTO public.centros_escolares VALUES (146, 'CENTRO ESCOLAR COLONIA GUADALUPE', 'Público', true, 219);
+INSERT INTO public.centros_escolares VALUES (147, 'ESCUELA DE EDUCACION PARVULARIA SAN JACINTO', 'Público', false, 97);
+INSERT INTO public.centros_escolares VALUES (148, 'CENTRO ESCOLAR CANTON MONTE HERMOSO', 'Público', true, 169);
+INSERT INTO public.centros_escolares VALUES (149, 'INSTITUTO NACIONAL DE CINQUERA', 'Público', false, 59);
+INSERT INTO public.centros_escolares VALUES (150, 'ESCUELA DE EDUCACION PARVULARIA PROFESOR ISIDRO ALFONSO MAGAÑA', 'Público', false, 197);
+INSERT INTO public.centros_escolares VALUES (151, 'INSTITUTO NACIONAL LICENCIADO RENE PORFIRIO OSORIO', 'Público', false, 53);
+INSERT INTO public.centros_escolares VALUES (152, 'CENTRO ESCOLAR CANTON LOMA LARGA', 'Público', true, 222);
+INSERT INTO public.centros_escolares VALUES (153, 'COMPLEJO EDUCATIVO JOSE MARTI', 'Público', true, 194);
+INSERT INTO public.centros_escolares VALUES (154, 'COMPLEJO EDUCATIVO ADELA CALDERON DE HERRERA', 'Público', false, 118);
+INSERT INTO public.centros_escolares VALUES (155, 'CENTRO ESCOLAR CANTON LA PANDEADURA', 'Público', true, 177);
+INSERT INTO public.centros_escolares VALUES (156, 'INSTITUTO NACIONAL DE EL ROSARIO', 'Público', false, 140);
+INSERT INTO public.centros_escolares VALUES (157, 'COMPLEJO EDUCATIVO JUAN DE DIOS DEL CID', 'Público', true, 78);
+INSERT INTO public.centros_escolares VALUES (158, 'CENTRO ESCOLAR PROFESOR RODRIGO FLORES', 'Público', true, 90);
+INSERT INTO public.centros_escolares VALUES (159, 'CENTRO ESCOLAR CANTON EL JOBO', 'Público', false, 34);
+INSERT INTO public.centros_escolares VALUES (160, 'ESCUELA DE EDUCACION PARVULARIA REPUBLICA DE ALEMANIA', 'Público', false, 238);
+INSERT INTO public.centros_escolares VALUES (161, 'INSTITUTO NACIONAL CANDELARIA DE LA FRONTERA', 'Público', true, 175);
+INSERT INTO public.centros_escolares VALUES (162, 'CENTRO ESCOLAR BARTOLOME BOLAÑOS', 'Público', true, 12);
+INSERT INTO public.centros_escolares VALUES (163, 'CENTRO ESCOLAR CANTON LA CRIBA', 'Público', false, 38);
+INSERT INTO public.centros_escolares VALUES (164, 'CENTRO ESCOLAR GENERAL FRANCISCO MORAZAN', 'Público', true, 102);
+INSERT INTO public.centros_escolares VALUES (165, 'CENTRO ESCOLAR CANTON EL JUTE', 'Público', false, 170);
+INSERT INTO public.centros_escolares VALUES (166, 'CENTRO ESCOLAR CANTON MONTE VERDE', 'Público', true, 45);
+INSERT INTO public.centros_escolares VALUES (167, 'CENTRO ESCOLAR CANTON SAN CRISTOBAL DE LA FRONTERA', 'Público', false, 146);
+INSERT INTO public.centros_escolares VALUES (168, 'CENTRO ESCOLAR CASERIO LOS TABLONCITOS', 'Público', false, 218);
+INSERT INTO public.centros_escolares VALUES (169, 'CENTRO ESCOLAR CANTON CASAS DE TEJAS', 'Público', true, 40);
+INSERT INTO public.centros_escolares VALUES (170, 'CENTRO ESCOLAR COLONIA SAN JOSE HACIENDA SANTA ADELA', 'Público', true, 12);
+INSERT INTO public.centros_escolares VALUES (171, 'CENTRO ESCOLAR CASERIO LAS CRISTALINAS', 'Público', false, 156);
+INSERT INTO public.centros_escolares VALUES (172, 'CENTRO ESCOLAR COOPERATIVA SAN MIGUEL', 'Público', true, 221);
+INSERT INTO public.centros_escolares VALUES (173, 'CENTRO ESCOLAR CANTON TIERRA BLANCA', 'Público', false, 12);
+INSERT INTO public.centros_escolares VALUES (174, 'CENTRO ESCOLAR CANTON PIEDRAS AZULES', 'Público', false, 125);
+INSERT INTO public.centros_escolares VALUES (175, 'ESCUELA DE EDUCACION PARVULARIA PRESBITERO MATIAS ROMERO', 'Público', false, 148);
+INSERT INTO public.centros_escolares VALUES (176, 'CENTRO ESCOLAR SALOMON CAÑAS', 'Público', false, 61);
+INSERT INTO public.centros_escolares VALUES (177, 'CENTRO ESCOLAR SOLEDAD MORENO DE BENAVIDES', 'Público', false, 46);
+INSERT INTO public.centros_escolares VALUES (178, 'CENTRO ESCOLAR CANTON PLANTA VIEJA', 'Público', true, 224);
+INSERT INTO public.centros_escolares VALUES (179, 'CENTRO ESCOLAR COOPERATIVA TIERRA FERTIL', 'Público', false, 187);
+INSERT INTO public.centros_escolares VALUES (180, 'CENTRO ESCOLAR COLONIA LAS LUPITAS', 'Público', false, 177);
+INSERT INTO public.centros_escolares VALUES (181, 'CENTRO ESCOLAR CASERIO EL PROGRESO CANTON LA JOYA', 'Público', true, 149);
+INSERT INTO public.centros_escolares VALUES (182, 'ESCUELA DE EDUCACION PARVULARIA JARDINES DE COLON', 'Público', false, 191);
+INSERT INTO public.centros_escolares VALUES (183, 'CENTRO ESCOLAR COATEPEQUE', 'Público', true, 6);
+INSERT INTO public.centros_escolares VALUES (184, 'INSTITUTO NACIONAL DE SAN FERNANDO', 'Público', true, 239);
+INSERT INTO public.centros_escolares VALUES (185, 'COMPLEJO EDUCATIVO CANTON EL TINTERAL', 'Público', true, 182);
+INSERT INTO public.centros_escolares VALUES (186, 'CENTRO ESCOLAR CANTON EL ZACATAL', 'Público', true, 174);
+INSERT INTO public.centros_escolares VALUES (187, 'CENTRO ESCOLAR JOSE RUBEN RIVERA RIVERA', 'Público', false, 192);
+INSERT INTO public.centros_escolares VALUES (188, 'CENTRO ESCOLAR MARGARITA PANILLA DE BARILLAS', 'Público', false, 46);
+INSERT INTO public.centros_escolares VALUES (189, 'CENTRO ESCOLAR CANTON CAÑA BRAVA', 'Público', false, 25);
+INSERT INTO public.centros_escolares VALUES (190, 'CENTRO ESCOLAR CASERIO LAS LOMAS CANTON SAN JACINTO', 'Público', true, 108);
+INSERT INTO public.centros_escolares VALUES (191, 'CENTRO ESCOLAR CANTON PLANES DE LA LAGUNA', 'Público', false, 201);
+INSERT INTO public.centros_escolares VALUES (192, 'CENTRO ESCOLAR FINCA EL POTOSI', 'Público', false, 9);
+INSERT INTO public.centros_escolares VALUES (193, 'COMPLEJO EDUCATIVO CASERIO SAN LUIS LA PLANTA, CANTON NANCINTEPEQUE', 'Público', false, 110);
+INSERT INTO public.centros_escolares VALUES (194, 'CENTRO ESCOLAR MICHELE GRANIELLO RUSSO', 'Público', false, 75);
+INSERT INTO public.centros_escolares VALUES (195, 'CENTRO ESCOLAR PARA CIEGOS EUGENIA VIUDA DE DUEÑAS', 'Público', true, 202);
+INSERT INTO public.centros_escolares VALUES (196, 'COMPLEJO EDUCATIVO CAPITAN GENERAL GERARDO BARRIOS', 'Público', false, 222);
+INSERT INTO public.centros_escolares VALUES (197, 'COMPLEJO EDUCATIVO ANSELMA SANCHEZ DE MANCIA', 'Público', false, 38);
+INSERT INTO public.centros_escolares VALUES (198, 'ESCUELA DE EDUCACION PARVULARIA COATEPEQUE', 'Público', false, 233);
+INSERT INTO public.centros_escolares VALUES (199, 'ESCUELA DE EDUCACION PARVULARIA COMUNIDAD 7 DE SEPTIEMBRE', 'Público', true, 81);
+INSERT INTO public.centros_escolares VALUES (200, 'CENTRO ESCOLAR CANTON LA CONCEPCION', 'Público', true, 45);
+INSERT INTO public.centros_escolares VALUES (201, 'COMPLEJO EDUCATIVO CANTON EL RESBALADERO', 'Público', false, 166);
+INSERT INTO public.centros_escolares VALUES (202, 'CENTRO ESCOLAR CANTON EL CONACASTE', 'Público', true, 226);
+INSERT INTO public.centros_escolares VALUES (203, 'CENTRO ESCOLAR CANTON EL JOCOTON', 'Público', false, 61);
+INSERT INTO public.centros_escolares VALUES (204, 'CENTRO ESCOLAR CASERIO LA GALLINA', 'Público', false, 178);
+INSERT INTO public.centros_escolares VALUES (205, 'CENTRO ESCOLAR DOCTOR SALVADOR MENDIETA', 'Público', true, 87);
+INSERT INTO public.centros_escolares VALUES (206, 'COMPLEJO EDUCATIVO ELISA MEDINA VIUDA DE GARDINER', 'Público', true, 186);
+INSERT INTO public.centros_escolares VALUES (207, 'CENTRO ESCOLAR MARCELINA VDA DE GRANILLO', 'Público', false, 137);
+INSERT INTO public.centros_escolares VALUES (208, 'CENTRO ESCOLAR COLONIA LA MIELERA', 'Público', false, 166);
+INSERT INTO public.centros_escolares VALUES (209, 'CENTRO ESCOLAR CASERIO LOMAS DEL COCO', 'Público', false, 74);
+INSERT INTO public.centros_escolares VALUES (210, 'INSTITUTO NACIONAL DE NUEVO CUSCATLAN', 'Público', true, 65);
+INSERT INTO public.centros_escolares VALUES (211, 'CENTRO ESCOLAR COLONIA TAZUMAL', 'Público', true, 63);
+INSERT INTO public.centros_escolares VALUES (212, 'CENTRO ESCOLAR COLONIA SANTA ELENITA', 'Público', false, 82);
+INSERT INTO public.centros_escolares VALUES (213, 'INSTITUTO NACIONAL JORGE ELISEO AZUCENA ORTEGA', 'Público', false, 50);
+INSERT INTO public.centros_escolares VALUES (214, 'CENTRO ESCOLAR COOPERATIVA EL MANGUITO CANTON LA MAGDALENA', 'Público', true, 55);
+INSERT INTO public.centros_escolares VALUES (215, 'CENTRO ESCOLAR CANTON BUENOS AIRES', 'Público', false, 113);
+INSERT INTO public.centros_escolares VALUES (216, 'CENTRO ESCOLAR DOCTOR JOSE MARIA VIDES', 'Público', false, 114);
+INSERT INTO public.centros_escolares VALUES (217, 'CENTRO ESCOLAR CANTON SAN JOSE', 'Público', true, 250);
+INSERT INTO public.centros_escolares VALUES (218, 'CENTRO ESCOLAR CANTON SAN SEBASTIAN', 'Público', true, 109);
+INSERT INTO public.centros_escolares VALUES (219, 'CENTRO ESCOLAR COMUNIDAD NUEVA JERUSALEN', 'Público', false, 202);
+INSERT INTO public.centros_escolares VALUES (220, 'CENTRO ESCOLAR CANTON LA LIBERTAD', 'Público', true, 59);
+INSERT INTO public.centros_escolares VALUES (221, 'CENTRO ESCOLAR COLONIA SANTA CRUZ', 'Público', false, 70);
+INSERT INTO public.centros_escolares VALUES (222, 'COMPLEJO EDUCATIVO CASERIO SAN NICOLAS, CANTON LA MAGDALENA', 'Público', false, 150);
+INSERT INTO public.centros_escolares VALUES (223, 'CENTRO ESCOLAR CASERIO SAN JORGE', 'Público', false, 47);
+INSERT INTO public.centros_escolares VALUES (224, 'CENTRO ESCOLAR CASERIO SAN CRISTOBAL, CANTON LA MAGDALENA', 'Público', true, 195);
+INSERT INTO public.centros_escolares VALUES (225, 'CENTRO ESCOLAR CASERIO SAN LUIS, CANTON LA MAGDALENA', 'Público', true, 48);
+INSERT INTO public.centros_escolares VALUES (226, 'CENTRO ESCOLAR CANTON EL TANQUE', 'Público', false, 189);
+INSERT INTO public.centros_escolares VALUES (227, 'CENTRO ESCOLAR HACIENDA EL COCO, CANTON EL COCO', 'Público', true, 182);
+INSERT INTO public.centros_escolares VALUES (228, 'COMPLEJO EDUCATIVO CANTON EL COCO', 'Público', true, 262);
+INSERT INTO public.centros_escolares VALUES (229, 'CENTRO ESCOLAR CANTON GALEANO', 'Público', false, 14);
+INSERT INTO public.centros_escolares VALUES (230, 'CENTRO ESCOLAR HACIENDA EL NAZARENO, CANTON LA MAGDALENA', 'Público', true, 26);
+INSERT INTO public.centros_escolares VALUES (231, 'COMPLEJO EDUCATIVO CANTON LA MAGDALENA', 'Público', false, 33);
+INSERT INTO public.centros_escolares VALUES (232, 'CENTRO ESCOLAR PROFESOR SERGIO OVIDIO GARCIA', 'Público', false, 174);
+INSERT INTO public.centros_escolares VALUES (233, 'CENTRO ESCOLAR ALICIA ORTIZ VIUDA DE FLORES', 'Público', false, 206);
+INSERT INTO public.centros_escolares VALUES (234, 'CENTRO ESCOLAR ALFREDO ESPINO, CANTON LAS FLORES', 'Público', true, 207);
+INSERT INTO public.centros_escolares VALUES (235, 'CENTRO ESCOLAR CANTON EL ARADO', 'Público', true, 39);
+INSERT INTO public.centros_escolares VALUES (236, 'CENTRO ESCOLAR FRANCISCO IGNACIO CORDERO', 'Público', false, 161);
+INSERT INTO public.centros_escolares VALUES (237, 'CENTRO ESCOLAR GUADALUPE RETANA HERRERA', 'Público', false, 41);
+INSERT INTO public.centros_escolares VALUES (238, 'CENTRO ESCOLAR SIMON BOLIVAR', 'Público', true, 187);
+INSERT INTO public.centros_escolares VALUES (239, 'COMPLEJO EDUCATIVO BENITO JUAREZ', 'Público', true, 43);
+INSERT INTO public.centros_escolares VALUES (240, 'CENTRO ESCOLAR GENERAL SALVADOR CASTANEDA CASTRO', 'Público', false, 111);
+INSERT INTO public.centros_escolares VALUES (241, 'CENTRO ESCOLAR DOCTOR RANULFO CASTRO', 'Público', true, 39);
+INSERT INTO public.centros_escolares VALUES (242, 'ESCUELA DE EDUCACION PARVULARIA GABRIELA MISTRAL', 'Público', true, 8);
+INSERT INTO public.centros_escolares VALUES (243, 'CENTRO ESCOLAR CANTON LA LAGUNA', 'Público', true, 127);
+INSERT INTO public.centros_escolares VALUES (244, 'CENTRO ESCOLAR CANTON EL GUINEO', 'Público', false, 108);
+INSERT INTO public.centros_escolares VALUES (245, 'CENTRO ESCOLAR PARA SORDOS DE SANTA ANA', 'Público', true, 14);
+INSERT INTO public.centros_escolares VALUES (246, 'COMPLEJO EDUCATIVO CANTON LA PRESA', 'Público', false, 182);
+INSERT INTO public.centros_escolares VALUES (247, 'CENTRO ESCOLAR CANTON EL RODEO', 'Público', false, 242);
+INSERT INTO public.centros_escolares VALUES (248, 'CENTRO ESCOLAR HACIENDA EL PORVENIR CANTON LOS PINOS', 'Público', false, 76);
+INSERT INTO public.centros_escolares VALUES (249, 'CENTRO ESCOLAR CANTON EL PEZOTE', 'Público', false, 243);
+INSERT INTO public.centros_escolares VALUES (250, 'CENTRO ESCOLAR CASERIO EL PALOMAR CANTON LA PRESA', 'Público', true, 32);
+INSERT INTO public.centros_escolares VALUES (251, 'INSTITUTO NACIONAL DE EL CONGO', 'Público', false, 65);
+INSERT INTO public.centros_escolares VALUES (252, 'CENTRO ESCOLAR EL CONGO', 'Público', false, 196);
+INSERT INTO public.centros_escolares VALUES (253, 'CENTRO ESCOLAR UNION CENTROAMERICANA', 'Público', true, 13);
+INSERT INTO public.centros_escolares VALUES (254, 'ESCUELA DE EDUCACION PARVULARIA DE EL CONGO', 'Público', true, 118);
+INSERT INTO public.centros_escolares VALUES (255, 'CENTRO ESCOLAR CANTON MONTEBELLO', 'Público', true, 22);
+INSERT INTO public.centros_escolares VALUES (256, 'CENTRO ESCOLAR ALFREDO ESPINO, CANTON SAN JOSE LAS FLORES', 'Público', true, 145);
+INSERT INTO public.centros_escolares VALUES (257, 'CENTRO ESCOLAR CASERIO EL CERRON, CANTON SAN CRISTOBAL', 'Público', false, 55);
+INSERT INTO public.centros_escolares VALUES (258, 'COMPLEJO EDUCATIVO PADRE VICENTE AGUILAR', 'Público', false, 104);
+INSERT INTO public.centros_escolares VALUES (259, 'CENTRO ESCOLAR CANTON SAN JUAN CHIQUITO', 'Público', false, 40);
+INSERT INTO public.centros_escolares VALUES (260, 'CENTRO ESCOLAR CANTON LA ARENERA', 'Público', true, 115);
+INSERT INTO public.centros_escolares VALUES (261, 'CENTRO ESCOLAR CANTON SANTA ROSA SENCA', 'Público', true, 130);
+INSERT INTO public.centros_escolares VALUES (262, 'COMPLEJO EDUCATIVO MASAHUAT', 'Público', false, 258);
+INSERT INTO public.centros_escolares VALUES (263, 'CENTRO ESCOLAR MATHIEU SAN MARTIN', 'Público', false, 188);
+INSERT INTO public.centros_escolares VALUES (264, 'CENTRO ESCOLAR PROFESORA CELINA DEL CARMEN PAZ DE MENDEZ', 'Público', true, 242);
+INSERT INTO public.centros_escolares VALUES (265, 'CENTRO ESCOLAR JARDIN INFANTIL METAPANECO ZOILA TENAS DE FIGUEROA', 'Público', true, 82);
+INSERT INTO public.centros_escolares VALUES (266, 'CENTRO ESCOLAR CASERIO BUENOS AIRES, CANTON SAN ANTONIO LA JUNTA', 'Público', true, 50);
+INSERT INTO public.centros_escolares VALUES (267, 'ESCUELA DE EDUCACION PARVULARIA DE SAN ALEJO', 'Público', false, 112);
+INSERT INTO public.centros_escolares VALUES (268, 'COMPLEJO EDUCATIVO SCHAFIK JORGE HANDAL', 'Público', true, 257);
+INSERT INTO public.centros_escolares VALUES (269, 'INSTITUTO NACIONAL PROFESORA ROSA ORBELINA CAÑAS DE FLORES', 'Público', true, 231);
+INSERT INTO public.centros_escolares VALUES (270, 'CENTRO ESCOLAR CASERIO SAN JUAN ARRIBA , CANTON SAN JUAN', 'Público', true, 89);
+INSERT INTO public.centros_escolares VALUES (271, 'COMPLEJO EDUCATIVO CIUDAD REAL CANTON LOS AMATES', 'Público', true, 231);
+INSERT INTO public.centros_escolares VALUES (272, 'CENTRO ESCOLAR CASERIO EL CARMEN, CANTON EL PANAL', 'Público', false, 211);
+INSERT INTO public.centros_escolares VALUES (273, 'CENTRO ESCOLAR REPUBLICA DE MEXICO', 'Público', true, 254);
+INSERT INTO public.centros_escolares VALUES (274, 'INSTITUTO NACIONAL BENJAMIN ESTRADA VALIENTE', 'Público', false, 256);
+INSERT INTO public.centros_escolares VALUES (275, 'CENTRO ESCOLAR CASERIO LAS TAPIAS, CANTON CAÑAS DULCES', 'Público', false, 30);
+INSERT INTO public.centros_escolares VALUES (276, 'CENTRO ESCOLAR SIHUATEPEQUE', 'Público', true, 190);
+INSERT INTO public.centros_escolares VALUES (277, 'CENTRO ESCOLAR SAN ISIDRO LABRADOR', 'Público', false, 96);
+INSERT INTO public.centros_escolares VALUES (278, 'CENTRO ESCOLAR CASERIO LOS LLANITOS CANTON SANTA RITA', 'Público', false, 36);
+INSERT INTO public.centros_escolares VALUES (279, 'CENTRO ESCOLAR REPUBLICA DE TURQUIA', 'Público', true, 154);
+INSERT INTO public.centros_escolares VALUES (280, 'CENTRO ESCOLAR CANTON MATALAPA', 'Público', false, 186);
+INSERT INTO public.centros_escolares VALUES (281, 'CENTRO ESCOLAR FRANCISCO SALGUERO LOPEZ', 'Público', true, 130);
+INSERT INTO public.centros_escolares VALUES (282, 'CENTRO ESCOLAR CASERIO EL DESPOBLADO CANTON MALPASO', 'Público', false, 80);
+INSERT INTO public.centros_escolares VALUES (283, 'COLEGIO JOHN DEWEY', 'Privado', false, 189);
+INSERT INTO public.centros_escolares VALUES (284, 'CENTRO ESCOLAR CASERIO SANTA INES, CANTON MATALAPA', 'Público', true, 71);
+INSERT INTO public.centros_escolares VALUES (285, 'CENTRO ESCOLAR CENTRAL GUAJOYO', 'Público', true, 29);
+INSERT INTO public.centros_escolares VALUES (286, 'CENTRO ESCOLAR CANTON CUYUISCAT', 'Público', true, 49);
+INSERT INTO public.centros_escolares VALUES (287, 'CENTRO ESCOLAR CANTON LA CEIBITA', 'Público', false, 254);
+INSERT INTO public.centros_escolares VALUES (288, 'CENTRO ESCOLAR CANTON LA ISLA', 'Público', true, 84);
+INSERT INTO public.centros_escolares VALUES (289, 'CENTRO ESCOLAR JOSE ANTONIO CASTRO VILLALOBOS', 'Público', true, 175);
+INSERT INTO public.centros_escolares VALUES (290, 'COLEGIO DR. LUIS FELIPE BORJA PEREZ', 'Privado', false, 40);
+INSERT INTO public.centros_escolares VALUES (291, 'CENTRO ESCOLAR CASERIO EL COLORADO CANTON LA JOYA', 'Público', false, 197);
+INSERT INTO public.centros_escolares VALUES (292, 'CENTRO ESCOLAR CANTON EL LIMO', 'Público', true, 239);
+INSERT INTO public.centros_escolares VALUES (293, 'CENTRO ESCOLAR CASERIO EL AHOGADO CANTON LA ISLA', 'Público', false, 139);
+INSERT INTO public.centros_escolares VALUES (294, 'CENTRO ESCOLAR REPUBLICA FEDERADA CENTROAMERICANA', 'Público', false, 105);
+INSERT INTO public.centros_escolares VALUES (295, 'CENTRO ESCOLAR CANTON SAN MIGUEL INGENIO', 'Público', true, 41);
+INSERT INTO public.centros_escolares VALUES (296, 'CENTRO ESCOLAR PROFESOR JOSE LUIS ERNESTO SANCHEZ', 'Público', true, 192);
+INSERT INTO public.centros_escolares VALUES (297, 'CENTRO ESCOLAR HUMBERTO PARADA SANDOVAL', 'Público', true, 74);
+INSERT INTO public.centros_escolares VALUES (298, 'CENTRO ESCOLAR FRANCISCO JAVIER GARCIA', 'Público', true, 65);
+INSERT INTO public.centros_escolares VALUES (299, 'CENTRO ESCOLAR CANTON SANTA RITA', 'Público', false, 200);
+INSERT INTO public.centros_escolares VALUES (300, 'CENTRO ESCOLAR CANTON MALPASO', 'Público', true, 196);
+INSERT INTO public.centros_escolares VALUES (301, 'CENTRO ESCOLAR CASERIO EL JICARO CANTON EL PANAL', 'Público', false, 41);
+INSERT INTO public.centros_escolares VALUES (302, 'CENTRO ESCOLAR CATOLICO PADRE ARTURO D ONOFRIO ', 'Público', true, 129);
+INSERT INTO public.centros_escolares VALUES (303, 'CENTRO ESCOLAR JESUS CORLETO VALIENTE', 'Público', true, 50);
+INSERT INTO public.centros_escolares VALUES (304, 'CENTRO ESCOLAR HACIENDA VIEJA', 'Público', true, 37);
+INSERT INTO public.centros_escolares VALUES (305, 'CENTRO ESCOLAR CASERIO SAN FRANCISCO, CANTON BELEN GUIJAT', 'Público', true, 207);
+INSERT INTO public.centros_escolares VALUES (306, 'COLEGIO GUADALUPANO DE SAN MIGUEL', 'Privado', false, 27);
+INSERT INTO public.centros_escolares VALUES (307, 'CENTRO ESCOLAR CASERIO EL COBANO, CANTON LAS PIEDRAS', 'Público', false, 144);
+INSERT INTO public.centros_escolares VALUES (308, 'CENTRO ESCOLAR CASERIO SAN DIEGO', 'Público', false, 97);
+INSERT INTO public.centros_escolares VALUES (309, 'CENTRO ESCOLAR CASERIO LA CONCHAGUA, CANTON LAS PIEDRAS', 'Público', false, 215);
+INSERT INTO public.centros_escolares VALUES (310, 'CENTRO ESCOLAR CANTON SAN JUAN', 'Público', true, 117);
+INSERT INTO public.centros_escolares VALUES (311, 'CENTRO ESCOLAR EZEQUIEL GALDAMEZ', 'Público', false, 181);
+INSERT INTO public.centros_escolares VALUES (312, 'CENTRO ESCOLAR CANTON SAN ANTONIO LA JUNTA', 'Público', true, 194);
+INSERT INTO public.centros_escolares VALUES (313, 'CENTRO ESCOLAR AGUSTIN RIVAS VALDES', 'Público', false, 125);
+INSERT INTO public.centros_escolares VALUES (314, 'CENTRO ESCOLAR CANTON SAN JOSE INGENIO', 'Público', false, 147);
+INSERT INTO public.centros_escolares VALUES (315, 'CENTRO ESCOLAR CANTON EL ROSARIO', 'Público', false, 103);
+INSERT INTO public.centros_escolares VALUES (316, 'CENTRO ESCOLAR CANTON TAHUILAPA', 'Público', false, 242);
+INSERT INTO public.centros_escolares VALUES (317, 'CENTRO ESCOLAR RODRIGO J. LEIVA', 'Público', false, 197);
+INSERT INTO public.centros_escolares VALUES (318, 'CENTRO ESCOLAR LUZ GOMEZ', 'Público', false, 129);
+INSERT INTO public.centros_escolares VALUES (319, 'CENTRO ESCOLAR REPUBLICA DE GUATEMALA', 'Público', false, 90);
+INSERT INTO public.centros_escolares VALUES (320, 'ESCUELA DE EDUCACION PARVULARIA SOR JUANA INES DE LA CRUZ', 'Público', false, 48);
+INSERT INTO public.centros_escolares VALUES (321, 'CENTRO ESCOLAR REPUBLICA DE MEXICO', 'Público', false, 249);
+INSERT INTO public.centros_escolares VALUES (322, 'CENTRO ESCOLAR CASERIO EL DESAGUE', 'Público', true, 110);
+INSERT INTO public.centros_escolares VALUES (323, 'CENTRO ESCOLAR HACIENDA OSTUA', 'Público', true, 175);
+INSERT INTO public.centros_escolares VALUES (324, 'CENTRO ESCOLAR CANTON EL TABLON', 'Público', true, 232);
+INSERT INTO public.centros_escolares VALUES (325, 'CENTRO INFANTIL EL DESARROLLO DE LOS NIÑOS', 'Privado', true, 120);
+INSERT INTO public.centros_escolares VALUES (326, 'CENTRO ESCOLAR CANTON EL ANGEL', 'Público', true, 189);
+INSERT INTO public.centros_escolares VALUES (327, 'ESCUELA CRISTIANA CANTON LA MAGDALENA', 'Privado', true, 145);
+INSERT INTO public.centros_escolares VALUES (328, 'COMPLEJO EDUCATIVO JOSE MARIA SALAZAR ESPAÑA', 'Público', false, 175);
+INSERT INTO public.centros_escolares VALUES (329, 'COMPLEJO EDUCATIVO DOCTOR ALBERTO LUNA', 'Público', false, 242);
+INSERT INTO public.centros_escolares VALUES (330, 'CENTRO ESCOLAR CANTON SAN LUIS', 'Público', true, 220);
+INSERT INTO public.centros_escolares VALUES (331, 'CENTRO ESCOLAR CANTON MONTE ALEGRE', 'Público', true, 61);
+INSERT INTO public.centros_escolares VALUES (332, 'CENTRO ESCOLAR CANTON LOS AMATES', 'Público', true, 116);
+INSERT INTO public.centros_escolares VALUES (333, 'CENTRO ESCOLAR PADRE MARIO ADIN CRUZ ZALDIVAR', 'Público', true, 224);
+INSERT INTO public.centros_escolares VALUES (334, 'CENTRO ESCOLAR JOSE ANTONIO MARTINEZ', 'Público', true, 220);
+INSERT INTO public.centros_escolares VALUES (335, 'CENTRO ESCOLAR COLONIA EL EDEN', 'Público', false, 66);
+INSERT INTO public.centros_escolares VALUES (336, 'ESCUELA DE EDUCACION PARVULARIA BARRIO SAN MIGUELITO', 'Público', false, 237);
+INSERT INTO public.centros_escolares VALUES (337, 'COMPLEJO EDUCATIVO COLONIA RIO ZARCO', 'Público', false, 78);
+INSERT INTO public.centros_escolares VALUES (338, 'CENTRO ESCOLAR COLONIA SANTA GERTRUDIS', 'Público', true, 14);
+INSERT INTO public.centros_escolares VALUES (339, 'COLEGIO NUEVO MUNDO', 'Privado', true, 111);
+INSERT INTO public.centros_escolares VALUES (340, 'ESCUELA DE EDUCACION PARVULARIA COLONIA EL PALMAR', 'Público', false, 137);
+INSERT INTO public.centros_escolares VALUES (341, 'CENTRO ESCOLAR LOMAS DEL TECANA', 'Público', false, 53);
+INSERT INTO public.centros_escolares VALUES (342, 'COLEGIO CRISTIANO "MARIA ELIZABETH CASTILLO DE MANGANDI"', 'Privado', true, 207);
+INSERT INTO public.centros_escolares VALUES (343, 'COLEGIO AMIGOS DE ISRAEL', 'Privado', true, 61);
+INSERT INTO public.centros_escolares VALUES (344, 'CENTRO ESCOLAR INSA', 'Público', true, 9);
+INSERT INTO public.centros_escolares VALUES (345, 'COLEGIO ALICIA MOREL', 'Privado', true, 107);
+INSERT INTO public.centros_escolares VALUES (346, 'COLEGIO LICENCIADO GUILLERMO GONZALEZ MARTINEZ', 'Privado', false, 61);
+INSERT INTO public.centros_escolares VALUES (347, 'CENTRO ESCOLAR CANTON EL PORTEZUELO', 'Público', false, 241);
+INSERT INTO public.centros_escolares VALUES (348, 'CENTRO ESCOLAR CANTON LOMAS DE SAN MARCELINO', 'Público', true, 93);
+INSERT INTO public.centros_escolares VALUES (349, 'CENTRO ESCOLAR MONSEÑOR JOSE LOPEZ SANDOVAL', 'Público', false, 96);
+INSERT INTO public.centros_escolares VALUES (350, 'CENTRO ESCOLAR COLONIA SANTA LEONOR', 'Público', true, 194);
+INSERT INTO public.centros_escolares VALUES (351, 'COMPLEJO EDUCATIVO PROFESOR JOSE ARNOLDO SERMEÑO', 'Público', false, 258);
+INSERT INTO public.centros_escolares VALUES (352, 'ESCUELA DE EDUCACION PARVULARIA SANTA ISABEL', 'Público', false, 113);
+INSERT INTO public.centros_escolares VALUES (353, 'CENTRO ESCOLAR MERCEDES NOVOA', 'Público', true, 157);
+INSERT INTO public.centros_escolares VALUES (354, 'CENTRO ESCOLAR COLONIA LA FORTUNA', 'Público', true, 150);
+INSERT INTO public.centros_escolares VALUES (355, 'CENTRO ESCOLAR ESCOLAR LOS GUIROLA CANTON PRIMAVERA', 'Público', false, 39);
+INSERT INTO public.centros_escolares VALUES (356, 'CENTRO ESCOLAR LICENCIADA CARMEN ELENA CALDERON DE ESCALON', 'Público', false, 65);
+INSERT INTO public.centros_escolares VALUES (357, 'COMPLEJO EDUCATIVO LLANO LARGO CANTON AYUTA', 'Público', false, 141);
+INSERT INTO public.centros_escolares VALUES (358, 'CENTRO ESCOLAR CASERIO EL COBANO', 'Público', false, 9);
+INSERT INTO public.centros_escolares VALUES (359, 'CENTRO ESCOLAR CASERIO EL TULE', 'Público', true, 138);
+INSERT INTO public.centros_escolares VALUES (360, 'CENTRO ESCOLAR DOCTOR CARLOS MAURICIO MOLINA FONSECA', 'Público', false, 115);
+INSERT INTO public.centros_escolares VALUES (361, 'CENTRO ESCOLAR TOMAS MEDINA', 'Público', true, 52);
+INSERT INTO public.centros_escolares VALUES (362, 'CENTRO ESCOLAR COLONIA SAN LUIS', 'Público', true, 3);
+INSERT INTO public.centros_escolares VALUES (363, 'CENTRO ESCOLAR CASERIO LAS CANOAS SAN JUAN BUENAVISTA', 'Público', false, 76);
+INSERT INTO public.centros_escolares VALUES (364, 'CENTRO ESCOLAR PROFESORA JUANA DEL CARMEN BARRERA AQUINO', 'Público', true, 45);
+INSERT INTO public.centros_escolares VALUES (365, 'CENTRO ESCOLAR PINAL DE GRANADA', 'Público', false, 137);
+INSERT INTO public.centros_escolares VALUES (366, 'CENTRO ESCOLAR CASERIO EL PORTEZUELO CANTON OJOS DE AGUA', 'Público', true, 243);
+INSERT INTO public.centros_escolares VALUES (367, 'COMPLEJO EDUCATIVO HACIENDA SAN CAYETANO', 'Público', false, 195);
+INSERT INTO public.centros_escolares VALUES (368, 'CENTRO ESCOLAR TRANSITO CIENFUEGOS', 'Público', false, 13);
+INSERT INTO public.centros_escolares VALUES (369, 'COMPLEJO EDUCATIVO PRESBITERO RAFAEL PAZ FUENTES', 'Público', true, 71);
+INSERT INTO public.centros_escolares VALUES (370, 'CENTRO ESCOLAR DOCTOR SALVADOR AYALA', 'Público', true, 151);
+INSERT INTO public.centros_escolares VALUES (371, 'CENTRO ESCOLAR CASERIO EL MORRO N° 2 CANTON TALCOMUNCA', 'Público', true, 70);
+INSERT INTO public.centros_escolares VALUES (372, 'CENTRO ESCOLAR REPUBLICA FEDERAL DE ALEMANIA', 'Público', false, 225);
+INSERT INTO public.centros_escolares VALUES (373, 'INSTITUTO NACIONAL DE SAN ISIDRO', 'Público', true, 77);
+INSERT INTO public.centros_escolares VALUES (374, 'ESCUELA DE EDUCACION PARVULARIA JERUSALEN', 'Público', false, 256);
+INSERT INTO public.centros_escolares VALUES (375, 'CENTRO ESCOLAR ANGELA MEDINA GOMEZ', 'Público', true, 67);
+INSERT INTO public.centros_escolares VALUES (376, 'CENTRO ESCOLAR FINCA EL PARAISO', 'Público', false, 89);
+INSERT INTO public.centros_escolares VALUES (377, 'COMPLEJO EDUCATIVO MANUEL MONEDERO', 'Público', false, 224);
+INSERT INTO public.centros_escolares VALUES (378, 'CENTRO ESCOLAR JUAN JOSE BERNAL', 'Público', true, 230);
+INSERT INTO public.centros_escolares VALUES (379, 'CENTRO ESCOLAR VALLE EL MATAZANO', 'Público', true, 261);
+INSERT INTO public.centros_escolares VALUES (380, 'CENTRO ESCOLAR VALLE LOS ELIZONDOS', 'Público', false, 36);
+INSERT INTO public.centros_escolares VALUES (381, 'CENTRO ESCOLAR RAFAEL ALVAREZ ANGEL', 'Público', true, 203);
+INSERT INTO public.centros_escolares VALUES (382, 'CENTRO ESCOLAR CANTON EL RANCHADOR', 'Público', true, 133);
+INSERT INTO public.centros_escolares VALUES (383, 'CENTRO ESCOLAR CANTON LOS APOYOS', 'Público', false, 183);
+INSERT INTO public.centros_escolares VALUES (384, 'COMPLEJO EDUCATIVO "EMILIO MARTÍNEZ"', 'Público', true, 151);
+INSERT INTO public.centros_escolares VALUES (385, 'CENTRO ESCOLAR CASERIO EL AMATILLO', 'Público', true, 230);
+INSERT INTO public.centros_escolares VALUES (386, 'CENTRO ESCOLAR CANTON OCHUPSE ABAJO', 'Público', true, 232);
+INSERT INTO public.centros_escolares VALUES (387, 'CENTRO ESCOLAR FINCA SAN FRANCISCO', 'Público', true, 26);
+INSERT INTO public.centros_escolares VALUES (388, 'COLEGIO CORONEL MILTON ANTONIO ANDRADE CABRERA', 'Privado', true, 49);
+INSERT INTO public.centros_escolares VALUES (389, 'CENTRO ESCOLAR CASERIO LA ESPERANZA CANTON PINALITO', 'Público', false, 40);
+INSERT INTO public.centros_escolares VALUES (390, 'CENTRO ESCOLAR VALLE EL CARMEN, CANTON NATIVIDAD', 'Público', false, 129);
+INSERT INTO public.centros_escolares VALUES (391, 'CENTRO ESCOLAR ANTONIA MORAN DE LOBATO', 'Público', false, 219);
+INSERT INTO public.centros_escolares VALUES (392, 'CENTRO ESCOLAR OCHUPSE ARRIBA', 'Público', false, 209);
+INSERT INTO public.centros_escolares VALUES (393, 'CENTRO ESCOLAR CANTON EL PINALON', 'Público', false, 116);
+INSERT INTO public.centros_escolares VALUES (394, 'ESCUELA DE EDUCACION PARVULARIA SAN RAFAEL', 'Público', true, 249);
+INSERT INTO public.centros_escolares VALUES (395, 'ESCUELA DE EDUCACION PARVULARIA BARRIO SAN MIGUELITO', 'Público', true, 81);
+INSERT INTO public.centros_escolares VALUES (396, 'ESCUELA DE EDUCACION PARVULARIA GUARDERIA Y REFUGIO INFANTIL', 'Público', true, 239);
+INSERT INTO public.centros_escolares VALUES (397, 'COMPLEJO EDUCATIVO DOCTOR MANUEL PARADA SALGADO', 'Público', false, 103);
+INSERT INTO public.centros_escolares VALUES (398, 'CENTRO ESCOLAR JOSE ALEJANDRO CABRERA', 'Público', false, 229);
+INSERT INTO public.centros_escolares VALUES (399, 'CENTRO ESCOLAR CANTON TABLON MATAZANO', 'Público', false, 215);
+INSERT INTO public.centros_escolares VALUES (400, 'CENTRO ESCOLAR TEODORO MORENO', 'Público', false, 13);
+INSERT INTO public.centros_escolares VALUES (401, 'CENTRO ESCOLAR CANTON FLOR AMARILLA ARRIBA', 'Público', true, 76);
+INSERT INTO public.centros_escolares VALUES (402, 'CENTRO ESCOLAR CASERIO EL BEJUCO', 'Público', false, 142);
+INSERT INTO public.centros_escolares VALUES (403, 'CENTRO ESCOLAR CANTON LAS ARADAS', 'Público', false, 175);
+INSERT INTO public.centros_escolares VALUES (404, 'CENTRO ESCOLAR JOSE LUCIO MARTINEZ', 'Público', true, 60);
+INSERT INTO public.centros_escolares VALUES (405, 'COMPLEJO EDUCATIVO FE Y ALEGRIA LA MERCED', 'Público', true, 9);
+INSERT INTO public.centros_escolares VALUES (406, 'CENTRO ESCOLAR RAFAEL ALVAREZ LALINDE', 'Público', false, 260);
+INSERT INTO public.centros_escolares VALUES (407, 'COMPLEJO EDUCATIVO PROFESOR MARTIN ROMEO MONTERROSA RODRIGUEZ', 'Público', true, 206);
+INSERT INTO public.centros_escolares VALUES (408, 'CENTRO ESCOLAR FLORINDA GONZALEZ', 'Público', false, 46);
+INSERT INTO public.centros_escolares VALUES (409, 'CENTRO ESCOLAR CATOLICO LA SANTA CRUZ AJULUCO', 'Público', false, 79);
+INSERT INTO public.centros_escolares VALUES (410, 'COLEGIO METODISTA AHUACHAPANECO', 'Privado', false, 220);
+INSERT INTO public.centros_escolares VALUES (411, 'COLEGIO RESIDENCIAL VILLA PRIMAVERA', 'Privado', false, 87);
+INSERT INTO public.centros_escolares VALUES (412, 'COLEGIO DE LAS AMERICAS', 'Privado', false, 76);
+INSERT INTO public.centros_escolares VALUES (413, 'ESCUELA DE EDUCACION PARVULARIA SANTA ANA', 'Público', false, 159);
+INSERT INTO public.centros_escolares VALUES (414, 'ESCUELA DE EDUCACION PARVULARIA PROFESORA MARIA ELVIRA SIFONTES', 'Público', true, 228);
+INSERT INTO public.centros_escolares VALUES (415, 'COLEGIO PAULA FOX', 'Privado', false, 56);
+INSERT INTO public.centros_escolares VALUES (416, 'ESCUELA DE EDUCACION PARVULARIA DOCTOR FEDERICO VIDES', 'Público', true, 82);
+INSERT INTO public.centros_escolares VALUES (417, 'ESCUELA DE EDUCACION PARVULARIA YOLANDA RAMIREZ DE DIAZ', 'Público', true, 215);
+INSERT INTO public.centros_escolares VALUES (418, 'ESCUELA DE EDUCACION PARVULARIA SANTA LUCIA', 'Público', false, 11);
+INSERT INTO public.centros_escolares VALUES (419, 'COLEGIO ANTONIO GARCIA PONCE', 'Privado', false, 110);
+INSERT INTO public.centros_escolares VALUES (420, 'CENTRO ESCOLAR SANTA ANA CALIFORNIA', 'Público', false, 119);
+INSERT INTO public.centros_escolares VALUES (421, 'COMPLEJO EDUCATIVO COLONIA QUIÑONEZ', 'Público', false, 140);
+INSERT INTO public.centros_escolares VALUES (422, 'CENTRO ESCOLAR NAPOLEON RIOS', 'Público', true, 204);
+INSERT INTO public.centros_escolares VALUES (423, 'CENTRO ESCOLAR JOSE MARTI', 'Público', false, 200);
+INSERT INTO public.centros_escolares VALUES (424, 'CENTRO ESCOLAR REPUBLICA DE VENEZUELA', 'Público', true, 158);
+INSERT INTO public.centros_escolares VALUES (425, 'CENTRO ESCOLAR GENERAL FRANCISCO MORAZAN', 'Público', true, 4);
+INSERT INTO public.centros_escolares VALUES (426, 'CENTRO ESCOLAR CLUB DE LEONES', 'Público', false, 91);
+INSERT INTO public.centros_escolares VALUES (427, 'COLEGIO "WILLIAM KILPATRICK"', 'Privado', false, 138);
+INSERT INTO public.centros_escolares VALUES (428, 'COMPLEJO EDUCATIVO CAPITAN GENERAL GERARDO BARRIOS', 'Público', true, 44);
+INSERT INTO public.centros_escolares VALUES (429, 'CENTRO ESCOLAR DOCTOR HUMBERTO QUINTERO', 'Público', true, 192);
+INSERT INTO public.centros_escolares VALUES (430, 'CENTRO ESCOLAR SANTA LUCIA', 'Público', true, 42);
+INSERT INTO public.centros_escolares VALUES (431, 'CENTRO ESCOLAR LEOPOLDO NUÑEZ', 'Público', false, 256);
+INSERT INTO public.centros_escolares VALUES (432, 'CENTRO ESCOLAR JOSE MARIANO MENDEZ', 'Público', true, 53);
+INSERT INTO public.centros_escolares VALUES (433, 'CENTRO ESCOLAR TOMAS MEDINA', 'Público', false, 237);
+INSERT INTO public.centros_escolares VALUES (434, 'CENTRO ESCOLAR PROFESOR FELIX CANIZALEZ', 'Público', true, 55);
+INSERT INTO public.centros_escolares VALUES (435, 'CENTRO ESCOLAR LEOPOLDO MAYEN TORRES', 'Público', true, 29);
+INSERT INTO public.centros_escolares VALUES (436, 'COMPLEJO EDUCATIVO SANTA ROSA GUACHIPILIN', 'Público', false, 29);
+INSERT INTO public.centros_escolares VALUES (437, 'COMPLEJO EDUCATIVO CIUDAD DE TORONTO', 'Público', true, 15);
+INSERT INTO public.centros_escolares VALUES (438, 'CENTRO ESCOLAR CANTON SAN FRANCISCO APANTA', 'Público', true, 190);
+INSERT INTO public.centros_escolares VALUES (439, 'CENTRO ESCOLAR CANTON SAN JOSE CAPULIN', 'Público', false, 49);
+INSERT INTO public.centros_escolares VALUES (440, 'COLEGIO DE ZARAGOZA', 'Privado', false, 19);
+INSERT INTO public.centros_escolares VALUES (441, 'COLEGIO GOLDA MEIR', 'Privado', true, 157);
+INSERT INTO public.centros_escolares VALUES (442, 'COLEGIO BASILEA', 'Privado', true, 241);
+INSERT INTO public.centros_escolares VALUES (443, 'CENTRO ESCOLAR CANTON PALO GALAN', 'Público', true, 49);
+INSERT INTO public.centros_escolares VALUES (444, 'CENTRO ESCOLAR CANTON PILETAS', 'Público', true, 209);
+INSERT INTO public.centros_escolares VALUES (445, 'CENTRO ESCOLAR CANTON SANTA CRUZ', 'Público', true, 234);
+INSERT INTO public.centros_escolares VALUES (446, 'COMPLEJO EDUCATIVO SANTIAGO DE LA FRONTERA', 'Público', false, 88);
+INSERT INTO public.centros_escolares VALUES (447, 'CENTRO TERNURA, MINISTERIO DE RELACIONES EXTERIORES', 'Privado', false, 205);
+INSERT INTO public.centros_escolares VALUES (448, 'ESCUELA DE EDUCACION PARVULARIA DE SAN JULIAN', 'Público', false, 112);
+INSERT INTO public.centros_escolares VALUES (449, 'COMPLEJO EDUCATIVO PROFESOR ARMANDO ACEVEDO ACEVEDO', 'Público', true, 241);
+INSERT INTO public.centros_escolares VALUES (450, 'CENTRO ESCOLAR DOCTOR CARLOS A. HERRERA REBOLLO', 'Público', true, 77);
+INSERT INTO public.centros_escolares VALUES (451, 'CENTRO ESCOLAR CASERIO SAN JOSE EL SOMPOPO', 'Público', true, 1);
+INSERT INTO public.centros_escolares VALUES (452, 'CENTRO ESCOLAR CASERIO LAS CASITAS, CANTON SANTO TOMAS', 'Público', true, 61);
+INSERT INTO public.centros_escolares VALUES (453, 'CENTRO ESCOLAR CANTON EL JUTE', 'Público', true, 181);
+INSERT INTO public.centros_escolares VALUES (454, 'COMPLEJO EDUCATIVO CANTON EL PARAISO', 'Público', false, 81);
+INSERT INTO public.centros_escolares VALUES (455, 'CENTRO ESCOLAR CASERIO TEXIS JUNCTION, CANTON CHILCUYO', 'Público', true, 260);
+INSERT INTO public.centros_escolares VALUES (456, 'CENTRO ESCOLAR CASERIO SAN JOSE EL TRIUNFO, CANTON CHILCUYO', 'Público', true, 111);
+INSERT INTO public.centros_escolares VALUES (457, 'COLEGIO TIEMPO PARA NIÑOS', 'Privado', true, 45);
+INSERT INTO public.centros_escolares VALUES (458, 'COLEGIO DE MEJICANOS', 'Privado', true, 23);
+INSERT INTO public.centros_escolares VALUES (459, 'CENTRO ESCOLAR CASERIO OJO DE AGUA CANTON SAN MIGUEL', 'Público', true, 143);
+INSERT INTO public.centros_escolares VALUES (460, 'CENTRO ESCOLAR SALVADOR MARTINEZ FIGUEROA', 'Público', true, 80);
+INSERT INTO public.centros_escolares VALUES (461, 'ESCUELA DE EDUCACION PARVULARIA JOSEFINA GUERRA VIUDA DE LINARES', 'Público', false, 112);
+INSERT INTO public.centros_escolares VALUES (462, 'CENTRO ESCOLAR CASERIO AGUACATAL', 'Público', false, 132);
+INSERT INTO public.centros_escolares VALUES (463, 'CENTRO DE DESARROLLO INFANTIL MIS PRIMEROS AMIGUITOS', 'Privado', true, 248);
+INSERT INTO public.centros_escolares VALUES (464, 'CENTRO ESCOLAR ALEJANDRO GUERRA ESCOBAR', 'Público', true, 35);
+INSERT INTO public.centros_escolares VALUES (465, 'CENTRO ESCOLAR CASERIO AZACUALPA, CANTON CHILCUYO', 'Público', false, 95);
+INSERT INTO public.centros_escolares VALUES (466, 'CENTRO ESCOLAR JOSE ABEL PERAZA', 'Público', false, 180);
+INSERT INTO public.centros_escolares VALUES (467, 'CENTRO ESCOLAR MAGDALENO BARCENAS FLORES', 'Público', true, 69);
+INSERT INTO public.centros_escolares VALUES (468, 'CENTRO ESCOLAR BERN GRABS', 'Público', true, 138);
+INSERT INTO public.centros_escolares VALUES (469, 'CENTRO ESCOLAR JULIAN VASQUEZ ROJAS', 'Público', true, 155);
+INSERT INTO public.centros_escolares VALUES (470, 'CENTRO ESCOLAR COLONIA NUEVA ACAJUTLA', 'Público', false, 180);
+INSERT INTO public.centros_escolares VALUES (471, 'COMPLEJO EDUCATIVO FE Y ALEGRIA COLONIA LOS LAURELES', 'Público', true, 182);
+INSERT INTO public.centros_escolares VALUES (472, 'CENTRO ESCOLAR SANTA AGUEDA', 'Público', true, 73);
+INSERT INTO public.centros_escolares VALUES (473, 'COLEGIO DE ACAJUTLA', 'Privado', false, 98);
+INSERT INTO public.centros_escolares VALUES (474, 'CENTRO ESCOLAR CANTON LA COQUERA', 'Público', false, 221);
+INSERT INTO public.centros_escolares VALUES (475, 'CENTRO ESCOLAR COLONIA ALVARADO', 'Público', true, 47);
+INSERT INTO public.centros_escolares VALUES (476, 'INSTITUTO NACIONAL DE ACAJUTLA', 'Público', true, 105);
+INSERT INTO public.centros_escolares VALUES (477, 'LICEO SAN CARLOS', 'Privado', false, 183);
+INSERT INTO public.centros_escolares VALUES (478, 'CENTRO ESCOLAR HACIENDA GRANDE CANTON SAN JULIAN', 'Público', true, 61);
+INSERT INTO public.centros_escolares VALUES (479, 'COLEGIO REVERENDO DONALD WILLIAM BENNER', 'Privado', false, 166);
+INSERT INTO public.centros_escolares VALUES (480, 'COMPLEJO EDUCATIVO JUAN JOSE CAÑAS', 'Público', true, 8);
+INSERT INTO public.centros_escolares VALUES (481, 'CENTRO ESCOLAR CANTON EL SUNZA', 'Público', true, 108);
+INSERT INTO public.centros_escolares VALUES (482, 'CENTRO ESCOLAR CANTON EL AMATAL', 'Público', false, 89);
+INSERT INTO public.centros_escolares VALUES (483, 'COMPLEJO EDUCATIVO RENE ARMANDO ARCE SUAREZ', 'Público', false, 131);
+INSERT INTO public.centros_escolares VALUES (484, 'COMPLEJO EDUCATIVO INGENIERO RODOLFO ENRIQUE VELA MANZANO', 'Público', true, 200);
+INSERT INTO public.centros_escolares VALUES (485, 'CENTRO ESCOLAR BARRIO EL CAMPAMENTO FE Y ALEGRIA', 'Público', false, 215);
+INSERT INTO public.centros_escolares VALUES (486, 'COMPLEJO EDUCATIVO CASERIO BELEN CANTON SUNCITA', 'Público', true, 26);
+INSERT INTO public.centros_escolares VALUES (487, 'CENTRO ESCOLAR CANTON MORRO GRANDE', 'Público', false, 244);
+INSERT INTO public.centros_escolares VALUES (488, 'CENTRO ESCOLAR CASERIO EL MORA, CANTON METALIO', 'Público', false, 205);
+INSERT INTO public.centros_escolares VALUES (489, 'CENTRO ESCOLAR PLAYA LOS COBANOS CANTON PUNTA REMEDIOS ', 'Público', true, 117);
+INSERT INTO public.centros_escolares VALUES (490, 'COMPLEJO EDUCATIVO HACIENDA METALIO', 'Público', false, 3);
+INSERT INTO public.centros_escolares VALUES (491, 'CENTRO ESCOLAR LIZANDRO LARIN ZEPEDA', 'Público', true, 211);
+INSERT INTO public.centros_escolares VALUES (492, 'ESCUELA DE EDUCACION PARVULARIA DE ACAJUTLA', 'Público', false, 42);
+INSERT INTO public.centros_escolares VALUES (493, 'COLEGIO FLAVIO JOSEFO', 'Privado', true, 262);
+INSERT INTO public.centros_escolares VALUES (494, 'CENTRO ESCOLAR DE ARMENIA', 'Público', true, 176);
+INSERT INTO public.centros_escolares VALUES (495, 'CENTRO ESCOLAR ALBERTO GUERRA TRIGUEROS', 'Público', false, 64);
+INSERT INTO public.centros_escolares VALUES (496, 'ESCUELA DE EDUCACION PARVULARIA ARMENIA', 'Público', false, 171);
+INSERT INTO public.centros_escolares VALUES (497, 'CENTRO ESCOLAR CANTON LOS MANGOS', 'Público', true, 49);
+INSERT INTO public.centros_escolares VALUES (498, 'CENTRO ESCOLAR CANTON AZACUALPA', 'Público', false, 14);
+INSERT INTO public.centros_escolares VALUES (499, 'CENTRO ESCOLAR CANTON EL ROSARIO', 'Público', true, 129);
+INSERT INTO public.centros_escolares VALUES (500, 'CENTRO ESCOLAR CANTON LA PUERTA', 'Público', true, 205);
+
+
+--
+-- TOC entry 2896 (class 0 OID 33437)
+-- Dependencies: 203
+-- Data for Name: departamento; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.departamento VALUES (1, 'AHUACHAPAN');
+INSERT INTO public.departamento VALUES (2, 'SANTA ANA');
+INSERT INTO public.departamento VALUES (3, 'SONSONATE');
+INSERT INTO public.departamento VALUES (4, 'CHALATENANGO');
+INSERT INTO public.departamento VALUES (5, 'LA LIBERTAD');
+INSERT INTO public.departamento VALUES (6, 'SAN SALVADOR');
+INSERT INTO public.departamento VALUES (7, 'CUSCATLAN');
+INSERT INTO public.departamento VALUES (8, 'LA PAZ');
+INSERT INTO public.departamento VALUES (9, 'CABANAS');
+INSERT INTO public.departamento VALUES (10, 'SAN VICENTE');
+INSERT INTO public.departamento VALUES (11, 'USULUTAN');
+INSERT INTO public.departamento VALUES (12, 'SAN MIGUEL');
+INSERT INTO public.departamento VALUES (13, 'MORAZAN');
+INSERT INTO public.departamento VALUES (14, 'LA UNION');
+
+
+--
+-- TOC entry 2906 (class 0 OID 33507)
+-- Dependencies: 213
+-- Data for Name: estudiante; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.estudiante VALUES (1, 'Prescott', 'Morston', '72177304-4', '2004-06-24', '8314 American Ash Center', '25070299', '77432231', 'Prescott Morston', 'Prescott Morston', 278);
+INSERT INTO public.estudiante VALUES (2, 'Dorie', 'Gresley', '12562227-2', '2001-10-21', '913 Beilfuss Trail', '27803095', '77169490', 'Dorie Gresley', 'Dorie Gresley', 164);
+INSERT INTO public.estudiante VALUES (3, 'Boot', 'Holdey', '64404539-3', '2007-05-11', '894 Tomscot Alley', '21649850', '75234066', 'Boot Holdey', 'Boot Holdey', 124);
+INSERT INTO public.estudiante VALUES (4, 'Sherrie', 'Tetley', '28603452-5', '2001-05-26', '21 Clyde Gallagher Parkway', '20898188', '75038326', 'Sherrie Tetley', 'Sherrie Tetley', 470);
+INSERT INTO public.estudiante VALUES (5, 'Cecily', 'Schimon', '45614855-0', '2015-01-30', '183 Burning Wood Parkway', '25624653', '70398653', 'Cecily Schimon', 'Cecily Schimon', 259);
+INSERT INTO public.estudiante VALUES (6, 'Danielle', 'Gegg', '38370770-5', '2001-07-14', '50 Claremont Place', '24500688', '74776194', 'Danielle Gegg', 'Danielle Gegg', 153);
+INSERT INTO public.estudiante VALUES (7, 'Mirella', 'Filimore', '37986033-3', '2005-04-01', '41320 Bultman Trail', '23577165', '75442386', 'Mirella Filimore', 'Mirella Filimore', 221);
+INSERT INTO public.estudiante VALUES (8, 'Morly', 'Whitcomb', '91587778-7', '2010-07-13', '9035 Waubesa Plaza', '24212735', '71731225', 'Morly Whitcomb', 'Morly Whitcomb', 126);
+INSERT INTO public.estudiante VALUES (9, 'Edlin', 'Fante', '14461510-2', '2009-07-25', '676 Fallview Point', '26187679', '73260366', 'Edlin Fante', 'Edlin Fante', 179);
+INSERT INTO public.estudiante VALUES (10, 'Jake', 'Meggison', '14582574-5', '2005-12-05', '00 Redwing Way', '22649656', '77679938', 'Jake Meggison', 'Jake Meggison', 328);
+INSERT INTO public.estudiante VALUES (11, 'Kirk', 'Adolthine', '42686163-4', '2005-09-28', '9 John Wall Circle', '20502672', '79068828', 'Kirk Adolthine', 'Kirk Adolthine', 456);
+INSERT INTO public.estudiante VALUES (12, 'Gib', 'Ramsbotham', '18989297-6', '2011-08-10', '27387 Swallow Terrace', '26419292', '71692353', 'Gib Ramsbotham', 'Gib Ramsbotham', 402);
+INSERT INTO public.estudiante VALUES (13, 'Lissa', 'Heales', '88685123-4', '2002-06-03', '22 Muir Hill', '29435694', '74029011', 'Lissa Heales', 'Lissa Heales', 143);
+INSERT INTO public.estudiante VALUES (14, 'Annemarie', 'Tellwright', '44608219-7', '2012-03-11', '39 Butternut Pass', '22843582', '74774062', 'Annemarie Tellwright', 'Annemarie Tellwright', 496);
+INSERT INTO public.estudiante VALUES (15, 'Ibby', 'Rivalant', '74005892-2', '2011-05-18', '89 David Court', '28258360', '76737914', 'Ibby Rivalant', 'Ibby Rivalant', 482);
+INSERT INTO public.estudiante VALUES (16, 'Pearle', 'Glastonbury', '51114264-9', '2007-05-30', '70408 Iowa Hill', '23327212', '73365938', 'Pearle Glastonbury', 'Pearle Glastonbury', 352);
+INSERT INTO public.estudiante VALUES (17, 'Anabel', 'McGonagle', '25154447-0', '2007-04-16', '42 Meadow Ridge Avenue', '27686201', '74615231', 'Anabel McGonagle', 'Anabel McGonagle', 423);
+INSERT INTO public.estudiante VALUES (18, 'Gallagher', 'Heap', '43892848-7', '2011-11-06', '83 Moulton Circle', '28600078', '79709750', 'Gallagher Heap', 'Gallagher Heap', 89);
+INSERT INTO public.estudiante VALUES (19, 'Calypso', 'Benit', '68304982-1', '2012-05-16', '82 Karstens Crossing', '28192349', '77617187', 'Calypso Benit', 'Calypso Benit', 356);
+INSERT INTO public.estudiante VALUES (20, 'Travers', 'Pettifor', '71414436-9', '2000-07-25', '0575 Butterfield Circle', '29787450', '71636001', 'Travers Pettifor', 'Travers Pettifor', 449);
+INSERT INTO public.estudiante VALUES (21, 'Yoshiko', 'Domingues', '56508952-0', '2001-06-03', '486 Dakota Trail', '29406681', '79579710', 'Yoshiko Domingues', 'Yoshiko Domingues', 217);
+INSERT INTO public.estudiante VALUES (22, 'Alie', 'Aneley', '43122148-5', '2004-08-01', '8 Scofield Trail', '20861676', '74115095', 'Alie Aneley', 'Alie Aneley', 487);
+INSERT INTO public.estudiante VALUES (23, 'Findley', 'Dowles', '72073218-2', '2010-05-04', '09001 Pankratz Avenue', '22599373', '77816805', 'Findley Dowles', 'Findley Dowles', 36);
+INSERT INTO public.estudiante VALUES (24, 'Kelci', 'Kubach', '01184795-3', '2004-07-05', '6 Amoth Way', '28801281', '78443985', 'Kelci Kubach', 'Kelci Kubach', 40);
+INSERT INTO public.estudiante VALUES (25, 'Clarey', 'Matzkaitis', '58630518-3', '2004-04-27', '60 West Road', '26124095', '74002131', 'Clarey Matzkaitis', 'Clarey Matzkaitis', 355);
+INSERT INTO public.estudiante VALUES (26, 'Gasper', 'Mingasson', '26215501-8', '2002-10-31', '7107 Canary Plaza', '28851811', '74533745', 'Gasper Mingasson', 'Gasper Mingasson', 8);
+INSERT INTO public.estudiante VALUES (27, 'Brandtr', 'Kubu', '97276612-5', '2011-01-04', '04354 Sage Court', '25129869', '70827341', 'Brandtr Kubu', 'Brandtr Kubu', 275);
+INSERT INTO public.estudiante VALUES (28, 'Ezra', 'Christie', '24923403-9', '2008-03-27', '840 Karstens Circle', '23422481', '70169011', 'Ezra Christie', 'Ezra Christie', 481);
+INSERT INTO public.estudiante VALUES (29, 'Tadeo', 'Murtimer', '41498254-9', '2005-09-05', '2266 Shelley Place', '22941068', '71616759', 'Tadeo Murtimer', 'Tadeo Murtimer', 172);
+INSERT INTO public.estudiante VALUES (30, 'Florri', 'Beddow', '12895633-7', '2010-12-26', '62790 Morning Point', '20319620', '71188491', 'Florri Beddow', 'Florri Beddow', 387);
+INSERT INTO public.estudiante VALUES (31, 'Colin', 'Dilleston', '12285753-7', '2010-02-26', '2 Stoughton Plaza', '24787975', '72289889', 'Colin Dilleston', 'Colin Dilleston', 286);
+INSERT INTO public.estudiante VALUES (32, 'Gardiner', 'Janecki', '41122777-6', '2005-11-28', '7267 Thierer Junction', '28757970', '76484211', 'Gardiner Janecki', 'Gardiner Janecki', 195);
+INSERT INTO public.estudiante VALUES (33, 'Dominick', 'Sandifer', '08132079-5', '2011-01-25', '9830 Armistice Plaza', '23511370', '74680060', 'Dominick Sandifer', 'Dominick Sandifer', 58);
+INSERT INTO public.estudiante VALUES (34, 'Shep', 'Glassborow', '63938679-4', '2012-03-14', '4 Golf Center', '25127751', '77954268', 'Shep Glassborow', 'Shep Glassborow', 231);
+INSERT INTO public.estudiante VALUES (35, 'Saxon', 'Sagg', '06963188-2', '2006-05-23', '9836 Waywood Plaza', '24892729', '78062067', 'Saxon Sagg', 'Saxon Sagg', 406);
+INSERT INTO public.estudiante VALUES (36, 'Deborah', 'Gannan', '48637084-7', '2008-04-26', '49851 Stang Way', '26510524', '76444717', 'Deborah Gannan', 'Deborah Gannan', 359);
+INSERT INTO public.estudiante VALUES (37, 'Eolande', 'Cawthra', '31216762-3', '2002-01-02', '92850 Debs Way', '29038735', '74806901', 'Eolande Cawthra', 'Eolande Cawthra', 420);
+INSERT INTO public.estudiante VALUES (38, 'Graeme', 'Botfield', '42715566-3', '2002-01-07', '26 Monument Plaza', '28509011', '72062033', 'Graeme Botfield', 'Graeme Botfield', 488);
+INSERT INTO public.estudiante VALUES (39, 'Corabella', 'Sesons', '58995054-8', '2004-06-19', '7 Mccormick Drive', '21458981', '76853593', 'Corabella Sesons', 'Corabella Sesons', 21);
+INSERT INTO public.estudiante VALUES (40, 'Malvina', 'Smewing', '04499523-9', '2007-06-04', '1 Del Sol Hill', '20941840', '74071496', 'Malvina Smewing', 'Malvina Smewing', 473);
+INSERT INTO public.estudiante VALUES (41, 'Diane', 'De La Salle', '36958038-1', '2011-07-22', '0642 Di Loreto Terrace', '22783540', '75135984', 'Diane De La Salle', 'Diane De La Salle', 354);
+INSERT INTO public.estudiante VALUES (42, 'Ferrell', 'Trencher', '97789677-6', '2003-07-10', '78 Golf Circle', '23889015', '70823178', 'Ferrell Trencher', 'Ferrell Trencher', 360);
+INSERT INTO public.estudiante VALUES (43, 'Collie', 'Chern', '55461831-9', '2007-01-17', '3 Nevada Lane', '22128793', '74791721', 'Collie Chern', 'Collie Chern', 450);
+INSERT INTO public.estudiante VALUES (44, 'Noe', 'Guppy', '12223968-4', '2013-04-03', '75 Truax Alley', '28164594', '71046481', 'Noe Guppy', 'Noe Guppy', 30);
+INSERT INTO public.estudiante VALUES (45, 'Yorker', 'Bulcock', '30089492-7', '2015-11-29', '210 Messerschmidt Pass', '23626470', '71767113', 'Yorker Bulcock', 'Yorker Bulcock', 498);
+INSERT INTO public.estudiante VALUES (46, 'Chev', 'Bertot', '63165053-2', '2001-03-08', '50649 Carioca Center', '22862931', '72440531', 'Chev Bertot', 'Chev Bertot', 228);
+INSERT INTO public.estudiante VALUES (47, 'Hazel', 'Dericot', '87735034-1', '2008-06-27', '3 Hovde Street', '27581998', '76794731', 'Hazel Dericot', 'Hazel Dericot', 252);
+INSERT INTO public.estudiante VALUES (48, 'Sylvia', 'Rome', '98766952-5', '2008-08-29', '0591 Stang Parkway', '28985522', '72110548', 'Sylvia Rome', 'Sylvia Rome', 314);
+INSERT INTO public.estudiante VALUES (49, 'Binni', 'Kybert', '87239510-2', '2002-05-02', '9 Del Mar Crossing', '29821846', '72683116', 'Binni Kybert', 'Binni Kybert', 206);
+INSERT INTO public.estudiante VALUES (50, 'Carney', 'Bradfield', '97213480-7', '2010-02-25', '311 Hauk Crossing', '27124555', '71624178', 'Carney Bradfield', 'Carney Bradfield', 189);
+INSERT INTO public.estudiante VALUES (51, 'Crystal', 'Yard', '74711816-2', '2013-04-07', '6 Basil Court', '25715056', '79656073', 'Crystal Yard', 'Crystal Yard', 348);
+INSERT INTO public.estudiante VALUES (52, 'Katey', 'Geharke', '44481046-1', '2015-04-07', '8722 Havey Center', '26451976', '79530382', 'Katey Geharke', 'Katey Geharke', 65);
+INSERT INTO public.estudiante VALUES (53, 'Pauly', 'Marrett', '55662654-0', '2003-02-24', '2 Old Shore Crossing', '21404267', '74819984', 'Pauly Marrett', 'Pauly Marrett', 358);
+INSERT INTO public.estudiante VALUES (54, 'Marje', 'McCarver', '10495992-7', '2011-06-25', '48140 Monument Terrace', '28720666', '75796563', 'Marje McCarver', 'Marje McCarver', 252);
+INSERT INTO public.estudiante VALUES (55, 'Paulie', 'Pyatt', '27368244-7', '2004-08-11', '0121 Corscot Parkway', '28960241', '74316918', 'Paulie Pyatt', 'Paulie Pyatt', 199);
+INSERT INTO public.estudiante VALUES (56, 'Joachim', 'Marten', '01854117-1', '2002-10-21', '1 Melody Center', '24791109', '78439944', 'Joachim Marten', 'Joachim Marten', 432);
+INSERT INTO public.estudiante VALUES (57, 'Lianna', 'Hyman', '05528143-7', '2015-06-01', '789 Loeprich Center', '20997680', '72168040', 'Lianna Hyman', 'Lianna Hyman', 234);
+INSERT INTO public.estudiante VALUES (58, 'Dennison', 'Redrup', '08505848-2', '2008-12-20', '9 Crownhardt Junction', '26243417', '71082485', 'Dennison Redrup', 'Dennison Redrup', 21);
+INSERT INTO public.estudiante VALUES (59, 'Tootsie', 'Bullough', '43414774-1', '2013-12-15', '74 Forest Run Lane', '21498894', '77206981', 'Tootsie Bullough', 'Tootsie Bullough', 34);
+INSERT INTO public.estudiante VALUES (60, 'Stesha', 'Balogh', '61909807-2', '2011-04-24', '6457 Burrows Center', '26047533', '72738363', 'Stesha Balogh', 'Stesha Balogh', 101);
+INSERT INTO public.estudiante VALUES (61, 'Bob', 'Kivelhan', '41613111-6', '2009-04-19', '8590 Moose Terrace', '25964169', '72340822', 'Bob Kivelhan', 'Bob Kivelhan', 25);
+INSERT INTO public.estudiante VALUES (62, 'Natal', 'Collinwood', '49635829-6', '2004-12-26', '7870 Anzinger Plaza', '26187554', '78897351', 'Natal Collinwood', 'Natal Collinwood', 12);
+INSERT INTO public.estudiante VALUES (63, 'Chet', 'Heistermann', '92514744-3', '2004-02-03', '98710 Lakewood Gardens Way', '29167831', '72356802', 'Chet Heistermann', 'Chet Heistermann', 179);
+INSERT INTO public.estudiante VALUES (64, 'Jeanne', 'Tarbard', '98150422-2', '2007-06-14', '0 Northport Junction', '26362249', '79320527', 'Jeanne Tarbard', 'Jeanne Tarbard', 69);
+INSERT INTO public.estudiante VALUES (65, 'Berta', 'Bernaert', '70337594-5', '2013-08-04', '46531 John Wall Plaza', '21887261', '73010409', 'Berta Bernaert', 'Berta Bernaert', 266);
+INSERT INTO public.estudiante VALUES (66, 'Abdel', 'MacSkeaghan', '44137466-6', '2000-09-16', '01441 Dixon Drive', '20863696', '78164675', 'Abdel MacSkeaghan', 'Abdel MacSkeaghan', 17);
+INSERT INTO public.estudiante VALUES (67, 'Alard', 'Ferfulle', '22890452-6', '2001-07-14', '8 Sundown Trail', '21282986', '76588719', 'Alard Ferfulle', 'Alard Ferfulle', 50);
+INSERT INTO public.estudiante VALUES (68, 'Ardyce', 'Mountfort', '57894979-5', '2006-12-11', '1183 Corscot Circle', '29565554', '78593227', 'Ardyce Mountfort', 'Ardyce Mountfort', 406);
+INSERT INTO public.estudiante VALUES (69, 'Ashlen', 'Killough', '18738879-1', '2014-10-28', '96636 Hoard Crossing', '29356108', '73312680', 'Ashlen Killough', 'Ashlen Killough', 95);
+INSERT INTO public.estudiante VALUES (70, 'Danny', 'Krochmann', '10639231-2', '2011-06-06', '46327 Randy Center', '22873120', '72773953', 'Danny Krochmann', 'Danny Krochmann', 231);
+INSERT INTO public.estudiante VALUES (71, 'Drake', 'Hares', '40107147-6', '2014-08-02', '9869 Clyde Gallagher Trail', '28473227', '70779435', 'Drake Hares', 'Drake Hares', 292);
+INSERT INTO public.estudiante VALUES (72, 'Wally', 'Ellerey', '59055048-6', '2015-06-25', '8343 Fuller Street', '25338133', '77802301', 'Wally Ellerey', 'Wally Ellerey', 447);
+INSERT INTO public.estudiante VALUES (73, 'Mohandis', 'Muat', '53405633-2', '2011-08-28', '5 Spohn Street', '20796246', '78493529', 'Mohandis Muat', 'Mohandis Muat', 335);
+INSERT INTO public.estudiante VALUES (74, 'Prinz', 'Bonifazio', '88792464-2', '2010-10-20', '51201 Meadow Vale Crossing', '21420132', '74777684', 'Prinz Bonifazio', 'Prinz Bonifazio', 384);
+INSERT INTO public.estudiante VALUES (75, 'Sigfrid', 'Yoell', '39278587-4', '2001-12-06', '87 Hudson Hill', '27754413', '78323613', 'Sigfrid Yoell', 'Sigfrid Yoell', 194);
+INSERT INTO public.estudiante VALUES (76, 'Georgianne', 'Pennings', '25586207-9', '2003-12-11', '257 Emmet Pass', '27240824', '77064421', 'Georgianne Pennings', 'Georgianne Pennings', 89);
+INSERT INTO public.estudiante VALUES (77, 'Christel', 'Gammet', '02993414-5', '2012-12-21', '756 Pleasure Lane', '26278191', '73783153', 'Christel Gammet', 'Christel Gammet', 432);
+INSERT INTO public.estudiante VALUES (78, 'Elsie', 'Whitaker', '41738313-1', '2015-06-05', '167 Glacier Hill Terrace', '20154686', '70364725', 'Elsie Whitaker', 'Elsie Whitaker', 214);
+INSERT INTO public.estudiante VALUES (79, 'Sean', 'Compton', '79334874-4', '2008-05-19', '883 Cambridge Junction', '20559457', '74665323', 'Sean Compton', 'Sean Compton', 373);
+INSERT INTO public.estudiante VALUES (80, 'Suzette', 'Heims', '42087570-9', '2015-03-13', '7651 Haas Place', '26247344', '79282805', 'Suzette Heims', 'Suzette Heims', 303);
+INSERT INTO public.estudiante VALUES (81, 'Jerrylee', 'Loud', '13378826-9', '2009-07-17', '9182 Westridge Place', '28523833', '76295686', 'Jerrylee Loud', 'Jerrylee Loud', 337);
+INSERT INTO public.estudiante VALUES (82, 'Oralle', 'Grady', '16410149-4', '2003-12-14', '936 Dottie Way', '26023251', '70756482', 'Oralle Grady', 'Oralle Grady', 2);
+INSERT INTO public.estudiante VALUES (83, 'Michel', 'Lung', '40535831-9', '2004-01-19', '2 Mariners Cove Street', '28257378', '70459122', 'Michel Lung', 'Michel Lung', 354);
+INSERT INTO public.estudiante VALUES (84, 'Lynnett', 'Vaz', '54440734-5', '2000-12-22', '35 Dunning Center', '23169833', '70925857', 'Lynnett Vaz', 'Lynnett Vaz', 152);
+INSERT INTO public.estudiante VALUES (85, 'Derek', 'Lambole', '12260660-7', '2003-07-27', '2394 Delladonna Alley', '28158464', '78098557', 'Derek Lambole', 'Derek Lambole', 474);
+INSERT INTO public.estudiante VALUES (86, 'Belle', 'De Gogay', '63425277-1', '2014-01-03', '38 Vahlen Crossing', '24639492', '72049271', 'Belle De Gogay', 'Belle De Gogay', 221);
+INSERT INTO public.estudiante VALUES (87, 'Robinetta', 'McIlwreath', '36228444-8', '2007-08-24', '589 Service Terrace', '21529166', '74778920', 'Robinetta McIlwreath', 'Robinetta McIlwreath', 329);
+INSERT INTO public.estudiante VALUES (88, 'Winny', 'Burstowe', '71623577-8', '2014-02-09', '2 Daystar Park', '22941125', '72338006', 'Winny Burstowe', 'Winny Burstowe', 474);
+INSERT INTO public.estudiante VALUES (89, 'Beltran', 'Karpf', '76629612-9', '2008-12-09', '94695 Rutledge Junction', '27296467', '75267834', 'Beltran Karpf', 'Beltran Karpf', 378);
+INSERT INTO public.estudiante VALUES (90, 'Chilton', 'Baldcock', '30171593-4', '2008-01-25', '16 Nevada Place', '26028545', '78383954', 'Chilton Baldcock', 'Chilton Baldcock', 111);
+INSERT INTO public.estudiante VALUES (91, 'Kalina', 'Heyward', '25768842-9', '2005-09-30', '6559 Havey Pass', '21037887', '78274027', 'Kalina Heyward', 'Kalina Heyward', 295);
+INSERT INTO public.estudiante VALUES (92, 'Brew', 'Moncaster', '73213739-5', '2012-09-20', '056 Shoshone Parkway', '22470563', '76465278', 'Brew Moncaster', 'Brew Moncaster', 297);
+INSERT INTO public.estudiante VALUES (93, 'Lesley', 'Frenchum', '41659064-7', '2005-08-20', '9 Stuart Terrace', '27956836', '73087226', 'Lesley Frenchum', 'Lesley Frenchum', 417);
+INSERT INTO public.estudiante VALUES (94, 'Marve', 'Jenno', '50182961-1', '2004-08-23', '50 Vernon Hill', '26760247', '75358731', 'Marve Jenno', 'Marve Jenno', 293);
+INSERT INTO public.estudiante VALUES (95, 'Theodosia', 'Donneely', '70963352-5', '2012-03-01', '3 Atwood Crossing', '25023230', '71903864', 'Theodosia Donneely', 'Theodosia Donneely', 187);
+INSERT INTO public.estudiante VALUES (96, 'Brena', 'Saltern', '06305901-5', '2009-07-30', '74749 Brentwood Court', '26658196', '78673079', 'Brena Saltern', 'Brena Saltern', 57);
+INSERT INTO public.estudiante VALUES (97, 'Ulises', 'Mingotti', '37543676-3', '2001-05-27', '7572 Novick Terrace', '25438668', '70021054', 'Ulises Mingotti', 'Ulises Mingotti', 169);
+INSERT INTO public.estudiante VALUES (98, 'Ruperta', 'Antalffy', '93202638-9', '2008-11-02', '3 Hoard Road', '28154235', '77221897', 'Ruperta Antalffy', 'Ruperta Antalffy', 468);
+INSERT INTO public.estudiante VALUES (99, 'Nada', 'Crimmins', '02334923-0', '2013-09-28', '777 Buena Vista Road', '26408422', '77164230', 'Nada Crimmins', 'Nada Crimmins', 355);
+INSERT INTO public.estudiante VALUES (100, 'Llewellyn', 'Jewise', '78851901-2', '2014-06-08', '07826 Sunfield Hill', '22391058', '71373898', 'Llewellyn Jewise', 'Llewellyn Jewise', 125);
+
+
+--
+-- TOC entry 2908 (class 0 OID 33523)
+-- Dependencies: 215
+-- Data for Name: materia; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.materia VALUES (1, 'MATEMATICA', 'El enfoque de la asignatura responde a la naturaleza de la Matemática: resolver problemas en los ámbitos científicos, técnicos, sociales y de la vida cotidiana', true);
+INSERT INTO public.materia VALUES (2, 'LENGUAJE', 'Lenguaje y Literatura es el enfoque comunicativo, cuya meta es que los estudiantes aprendan a comunicarse con eficacia y eficiencia en una variedad de situaciones comunicativas', true);
+INSERT INTO public.materia VALUES (3, 'QUÍMICA', 'Se estudian las bases de la teoría atómica, las dispersiones y las soluciones, los enlaces y los compuestos químicos tanto su estructura como su nomenclatura', true);
+INSERT INTO public.materia VALUES (4, 'FÍSICA', 'Se profundiza en el estudio de la cinemática y estática de la partícula, además de estudiar algunas nociones básicas de termodinámica, los principios básicos de los fluidos y de la electricidad', true);
+INSERT INTO public.materia VALUES (5, 'BIOLOGÍA', 'Se estudia la evolución de la vida, la estructura y funciones vitales de la célula, así como el maravilloso mundo de los genes', true);
+INSERT INTO public.materia VALUES (6, 'ESTUDIOS SOCIALES', 'El objetivo principal es la formación de ciudadanos y ciudadanas con visión histórica, ideales democráticos, sentido de pertenencia a una nación y con competencias que les permitan actuar en su entorno y transformarlo.', true);
+INSERT INTO public.materia VALUES (7, 'INGLÉS', 'The English Curriculum for High School focuses on the development of language competencies essential for communicating and properly interacting with the environment.', true);
+INSERT INTO public.materia VALUES (8, 'ORIENTACIÓN', 'Potenciar saberes, habilidades, destrezas y actitudes fundamentales para el desarrollo de la propia identidad a partir de la independencia del pensamiento', true);
+INSERT INTO public.materia VALUES (9, 'INFORMÁTICA', 'Tiene como finalidad que los estudiantes comprendan la naturaleza de las Tecnologías de Información y Comunicación (TIC)', true);
+
+
+--
+-- TOC entry 2910 (class 0 OID 33534)
+-- Dependencies: 217
+-- Data for Name: materia_cursada; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.materia_cursada VALUES (1, 8, 35, '2013', '02', 6.3);
+INSERT INTO public.materia_cursada VALUES (2, 8, 68, '2015', '02', 7.4);
+INSERT INTO public.materia_cursada VALUES (3, 2, 86, '2013', '01', 5.3);
+INSERT INTO public.materia_cursada VALUES (4, 9, 62, '2018', '01', 6.4);
+INSERT INTO public.materia_cursada VALUES (5, 1, 82, '2012', '02', 5.3);
+INSERT INTO public.materia_cursada VALUES (6, 4, 38, '2011', '02', 8.5);
+INSERT INTO public.materia_cursada VALUES (7, 5, 63, '2014', '02', 5.5);
+INSERT INTO public.materia_cursada VALUES (8, 7, 85, '2017', '01', 8.6);
+INSERT INTO public.materia_cursada VALUES (9, 4, 87, '2014', '02', 7.2);
+INSERT INTO public.materia_cursada VALUES (10, 6, 41, '2011', '02', 8.1);
+INSERT INTO public.materia_cursada VALUES (11, 1, 22, '2016', '02', 5.5);
+INSERT INTO public.materia_cursada VALUES (12, 5, 53, '2012', '01', 7.5);
+INSERT INTO public.materia_cursada VALUES (13, 5, 88, '2013', '02', 6.1);
+INSERT INTO public.materia_cursada VALUES (14, 1, 13, '2018', '01', 5.2);
+INSERT INTO public.materia_cursada VALUES (15, 2, 4, '2013', '02', 5.7);
+INSERT INTO public.materia_cursada VALUES (16, 8, 37, '2014', '02', 4.6);
+INSERT INTO public.materia_cursada VALUES (17, 9, 59, '2018', '01', 6.3);
+INSERT INTO public.materia_cursada VALUES (18, 6, 39, '2019', '02', 8.2);
+INSERT INTO public.materia_cursada VALUES (19, 4, 45, '2013', '02', 8.8);
+INSERT INTO public.materia_cursada VALUES (20, 6, 36, '2010', '01', 4.2);
+INSERT INTO public.materia_cursada VALUES (21, 4, 23, '2020', '02', 7.2);
+INSERT INTO public.materia_cursada VALUES (22, 3, 60, '2010', '02', 9.5);
+INSERT INTO public.materia_cursada VALUES (23, 6, 66, '2020', '01', 6.0);
+INSERT INTO public.materia_cursada VALUES (24, 3, 91, '2016', '01', 6.2);
+INSERT INTO public.materia_cursada VALUES (25, 3, 1, '2020', '01', 6.5);
+INSERT INTO public.materia_cursada VALUES (26, 4, 47, '2014', '02', 6.6);
+INSERT INTO public.materia_cursada VALUES (27, 3, 3, '2017', '01', 5.9);
+INSERT INTO public.materia_cursada VALUES (28, 2, 19, '2011', '02', 6.4);
+INSERT INTO public.materia_cursada VALUES (29, 4, 3, '2018', '01', 9.0);
+INSERT INTO public.materia_cursada VALUES (30, 1, 23, '2011', '02', 8.2);
+INSERT INTO public.materia_cursada VALUES (31, 8, 32, '2017', '01', 9.4);
+INSERT INTO public.materia_cursada VALUES (32, 5, 92, '2014', '02', 9.8);
+INSERT INTO public.materia_cursada VALUES (33, 1, 41, '2012', '02', 6.3);
+INSERT INTO public.materia_cursada VALUES (34, 6, 45, '2012', '02', 9.5);
+INSERT INTO public.materia_cursada VALUES (35, 5, 100, '2014', '02', 5.2);
+INSERT INTO public.materia_cursada VALUES (36, 6, 97, '2019', '02', 6.5);
+INSERT INTO public.materia_cursada VALUES (37, 4, 73, '2016', '01', 4.6);
+INSERT INTO public.materia_cursada VALUES (38, 5, 29, '2016', '02', 8.4);
+INSERT INTO public.materia_cursada VALUES (39, 6, 22, '2011', '02', 8.4);
+INSERT INTO public.materia_cursada VALUES (40, 6, 14, '2017', '02', 4.5);
+INSERT INTO public.materia_cursada VALUES (41, 5, 93, '2016', '01', 6.7);
+INSERT INTO public.materia_cursada VALUES (42, 1, 100, '2014', '02', 4.1);
+INSERT INTO public.materia_cursada VALUES (43, 6, 95, '2017', '01', 6.7);
+INSERT INTO public.materia_cursada VALUES (44, 4, 53, '2010', '02', 4.1);
+INSERT INTO public.materia_cursada VALUES (45, 2, 23, '2018', '02', 8.9);
+INSERT INTO public.materia_cursada VALUES (46, 2, 9, '2014', '01', 6.2);
+INSERT INTO public.materia_cursada VALUES (47, 8, 57, '2016', '02', 6.9);
+INSERT INTO public.materia_cursada VALUES (48, 3, 96, '2016', '02', 6.4);
+INSERT INTO public.materia_cursada VALUES (49, 2, 66, '2020', '02', 6.7);
+INSERT INTO public.materia_cursada VALUES (50, 9, 55, '2013', '02', 7.8);
+INSERT INTO public.materia_cursada VALUES (51, 8, 26, '2013', '02', 6.9);
+INSERT INTO public.materia_cursada VALUES (52, 3, 81, '2011', '01', 6.6);
+INSERT INTO public.materia_cursada VALUES (53, 4, 69, '2015', '02', 4.1);
+INSERT INTO public.materia_cursada VALUES (54, 8, 59, '2010', '02', 4.3);
+INSERT INTO public.materia_cursada VALUES (55, 2, 56, '2015', '01', 8.1);
+INSERT INTO public.materia_cursada VALUES (56, 1, 63, '2017', '01', 8.8);
+INSERT INTO public.materia_cursada VALUES (57, 5, 67, '2018', '01', 9.0);
+INSERT INTO public.materia_cursada VALUES (58, 5, 1, '2010', '01', 8.8);
+INSERT INTO public.materia_cursada VALUES (59, 4, 86, '2016', '01', 6.5);
+INSERT INTO public.materia_cursada VALUES (60, 9, 31, '2011', '01', 5.8);
+INSERT INTO public.materia_cursada VALUES (61, 9, 9, '2016', '01', 5.9);
+INSERT INTO public.materia_cursada VALUES (62, 1, 16, '2020', '02', 4.8);
+INSERT INTO public.materia_cursada VALUES (63, 7, 39, '2014', '01', 4.0);
+INSERT INTO public.materia_cursada VALUES (64, 2, 92, '2011', '02', 5.8);
+INSERT INTO public.materia_cursada VALUES (65, 9, 41, '2018', '01', 8.6);
+INSERT INTO public.materia_cursada VALUES (66, 5, 61, '2019', '02', 6.7);
+INSERT INTO public.materia_cursada VALUES (67, 3, 55, '2020', '01', 7.7);
+INSERT INTO public.materia_cursada VALUES (68, 2, 55, '2018', '01', 4.5);
+INSERT INTO public.materia_cursada VALUES (69, 8, 33, '2016', '01', 5.0);
+INSERT INTO public.materia_cursada VALUES (70, 4, 21, '2020', '01', 4.1);
+INSERT INTO public.materia_cursada VALUES (71, 6, 53, '2015', '02', 8.9);
+INSERT INTO public.materia_cursada VALUES (72, 4, 20, '2018', '01', 9.4);
+INSERT INTO public.materia_cursada VALUES (73, 3, 64, '2019', '02', 9.3);
+INSERT INTO public.materia_cursada VALUES (74, 5, 76, '2020', '01', 9.1);
+INSERT INTO public.materia_cursada VALUES (75, 8, 73, '2012', '02', 6.0);
+INSERT INTO public.materia_cursada VALUES (76, 5, 66, '2018', '02', 7.1);
+INSERT INTO public.materia_cursada VALUES (77, 5, 85, '2016', '01', 6.2);
+INSERT INTO public.materia_cursada VALUES (78, 9, 85, '2012', '02', 4.1);
+INSERT INTO public.materia_cursada VALUES (79, 2, 39, '2010', '02', 7.5);
+INSERT INTO public.materia_cursada VALUES (80, 1, 40, '2019', '02', 9.0);
+INSERT INTO public.materia_cursada VALUES (81, 9, 31, '2014', '02', 6.6);
+INSERT INTO public.materia_cursada VALUES (82, 6, 82, '2010', '01', 9.2);
+INSERT INTO public.materia_cursada VALUES (83, 5, 18, '2015', '01', 9.3);
+INSERT INTO public.materia_cursada VALUES (84, 1, 26, '2018', '02', 4.9);
+INSERT INTO public.materia_cursada VALUES (85, 2, 16, '2015', '01', 6.2);
+INSERT INTO public.materia_cursada VALUES (86, 3, 63, '2013', '02', 5.1);
+INSERT INTO public.materia_cursada VALUES (87, 4, 24, '2017', '01', 5.0);
+INSERT INTO public.materia_cursada VALUES (88, 1, 38, '2014', '02', 7.1);
+INSERT INTO public.materia_cursada VALUES (89, 6, 23, '2017', '02', 7.7);
+INSERT INTO public.materia_cursada VALUES (90, 1, 7, '2015', '01', 6.6);
+INSERT INTO public.materia_cursada VALUES (91, 3, 77, '2017', '01', 9.9);
+INSERT INTO public.materia_cursada VALUES (92, 8, 3, '2017', '01', 5.4);
+INSERT INTO public.materia_cursada VALUES (93, 2, 1, '2020', '03', 7.3);
+INSERT INTO public.materia_cursada VALUES (94, 8, 24, '2016', '03', 7.0);
+INSERT INTO public.materia_cursada VALUES (95, 3, 93, '2014', '03', 7.9);
+INSERT INTO public.materia_cursada VALUES (96, 5, 11, '2018', '03', 9.5);
+INSERT INTO public.materia_cursada VALUES (97, 6, 74, '2020', '03', 9.6);
+INSERT INTO public.materia_cursada VALUES (98, 3, 35, '2013', '03', 4.9);
+INSERT INTO public.materia_cursada VALUES (99, 5, 66, '2017', '01', 5.2);
+INSERT INTO public.materia_cursada VALUES (100, 5, 13, '2012', '02', 6.9);
+INSERT INTO public.materia_cursada VALUES (101, 5, 40, '2011', '01', 4.7);
+INSERT INTO public.materia_cursada VALUES (102, 4, 15, '2020', '01', 6.5);
+INSERT INTO public.materia_cursada VALUES (103, 3, 28, '2014', '02', 6.2);
+INSERT INTO public.materia_cursada VALUES (104, 8, 64, '2011', '01', 4.4);
+INSERT INTO public.materia_cursada VALUES (105, 8, 74, '2018', '01', 8.7);
+INSERT INTO public.materia_cursada VALUES (106, 1, 49, '2011', '02', 7.2);
+INSERT INTO public.materia_cursada VALUES (107, 2, 14, '2019', '02', 4.1);
+INSERT INTO public.materia_cursada VALUES (108, 5, 41, '2014', '03', 6.6);
+INSERT INTO public.materia_cursada VALUES (109, 3, 13, '2018', '02', 6.8);
+INSERT INTO public.materia_cursada VALUES (110, 8, 20, '2016', '02', 6.0);
+INSERT INTO public.materia_cursada VALUES (111, 6, 53, '2017', '03', 9.9);
+INSERT INTO public.materia_cursada VALUES (112, 2, 1, '2012', '02', 6.9);
+INSERT INTO public.materia_cursada VALUES (113, 7, 50, '2013', '01', 8.7);
+INSERT INTO public.materia_cursada VALUES (114, 1, 34, '2013', '02', 8.9);
+INSERT INTO public.materia_cursada VALUES (115, 5, 18, '2010', '02', 4.1);
+INSERT INTO public.materia_cursada VALUES (116, 2, 36, '2017', '01', 6.5);
+INSERT INTO public.materia_cursada VALUES (117, 7, 38, '2012', '01', 4.0);
+INSERT INTO public.materia_cursada VALUES (118, 3, 21, '2014', '01', 6.4);
+INSERT INTO public.materia_cursada VALUES (119, 1, 4, '2012', '02', 8.8);
+INSERT INTO public.materia_cursada VALUES (120, 3, 51, '2013', '02', 9.1);
+INSERT INTO public.materia_cursada VALUES (121, 1, 100, '2010', '02', 6.8);
+INSERT INTO public.materia_cursada VALUES (122, 3, 90, '2019', '01', 5.5);
+INSERT INTO public.materia_cursada VALUES (123, 3, 67, '2017', '02', 9.3);
+INSERT INTO public.materia_cursada VALUES (124, 1, 7, '2011', '02', 5.6);
+INSERT INTO public.materia_cursada VALUES (125, 6, 12, '2017', '01', 9.3);
+INSERT INTO public.materia_cursada VALUES (126, 3, 93, '2011', '02', 9.9);
+INSERT INTO public.materia_cursada VALUES (127, 1, 90, '2015', '02', 9.3);
+INSERT INTO public.materia_cursada VALUES (128, 8, 91, '2018', '03', 7.4);
+INSERT INTO public.materia_cursada VALUES (129, 1, 50, '2012', '03', 7.9);
+INSERT INTO public.materia_cursada VALUES (130, 8, 40, '2020', '03', 7.7);
+INSERT INTO public.materia_cursada VALUES (131, 1, 16, '2015', '01', 9.8);
+INSERT INTO public.materia_cursada VALUES (132, 7, 96, '2015', '03', 6.7);
+INSERT INTO public.materia_cursada VALUES (133, 2, 97, '2015', '01', 8.0);
+INSERT INTO public.materia_cursada VALUES (134, 6, 100, '2015', '02', 4.9);
+INSERT INTO public.materia_cursada VALUES (135, 3, 20, '2019', '01', 4.8);
+INSERT INTO public.materia_cursada VALUES (136, 2, 37, '2016', '01', 9.1);
+INSERT INTO public.materia_cursada VALUES (137, 4, 76, '2018', '02', 8.2);
+INSERT INTO public.materia_cursada VALUES (138, 9, 36, '2019', '01', 9.2);
+INSERT INTO public.materia_cursada VALUES (139, 2, 88, '2018', '02', 6.9);
+INSERT INTO public.materia_cursada VALUES (140, 5, 92, '2014', '01', 5.0);
+INSERT INTO public.materia_cursada VALUES (141, 1, 88, '2019', '02', 6.6);
+INSERT INTO public.materia_cursada VALUES (142, 1, 33, '2013', '01', 8.1);
+INSERT INTO public.materia_cursada VALUES (143, 9, 6, '2016', '02', 6.6);
+INSERT INTO public.materia_cursada VALUES (144, 7, 24, '2017', '02', 9.8);
+INSERT INTO public.materia_cursada VALUES (145, 4, 24, '2011', '01', 9.7);
+INSERT INTO public.materia_cursada VALUES (146, 2, 36, '2017', '01', 7.8);
+INSERT INTO public.materia_cursada VALUES (147, 5, 60, '2012', '01', 7.3);
+INSERT INTO public.materia_cursada VALUES (148, 2, 97, '2019', '02', 7.5);
+INSERT INTO public.materia_cursada VALUES (149, 6, 37, '2018', '01', 4.5);
+INSERT INTO public.materia_cursada VALUES (150, 4, 45, '2012', '02', 5.0);
+INSERT INTO public.materia_cursada VALUES (151, 9, 16, '2019', '02', 6.8);
+INSERT INTO public.materia_cursada VALUES (152, 9, 4, '2016', '02', 4.6);
+INSERT INTO public.materia_cursada VALUES (153, 5, 77, '2016', '01', 8.0);
+INSERT INTO public.materia_cursada VALUES (154, 2, 64, '2017', '02', 9.9);
+INSERT INTO public.materia_cursada VALUES (155, 2, 45, '2016', '01', 6.8);
+INSERT INTO public.materia_cursada VALUES (156, 8, 15, '2018', '01', 9.8);
+INSERT INTO public.materia_cursada VALUES (157, 3, 47, '2019', '01', 5.0);
+INSERT INTO public.materia_cursada VALUES (158, 3, 50, '2018', '01', 6.0);
+INSERT INTO public.materia_cursada VALUES (159, 3, 66, '2015', '02', 6.3);
+INSERT INTO public.materia_cursada VALUES (160, 6, 95, '2020', '01', 9.4);
+INSERT INTO public.materia_cursada VALUES (161, 8, 69, '2014', '02', 6.4);
+INSERT INTO public.materia_cursada VALUES (162, 5, 38, '2011', '03', 6.0);
+INSERT INTO public.materia_cursada VALUES (163, 7, 14, '2014', '02', 9.7);
+INSERT INTO public.materia_cursada VALUES (164, 4, 85, '2015', '01', 8.0);
+INSERT INTO public.materia_cursada VALUES (165, 4, 100, '2018', '02', 4.8);
+INSERT INTO public.materia_cursada VALUES (166, 5, 36, '2012', '01', 4.8);
+INSERT INTO public.materia_cursada VALUES (167, 2, 47, '2015', '01', 4.6);
+INSERT INTO public.materia_cursada VALUES (168, 1, 66, '2016', '01', 9.2);
+INSERT INTO public.materia_cursada VALUES (169, 8, 3, '2017', '02', 4.5);
+INSERT INTO public.materia_cursada VALUES (170, 3, 54, '2015', '01', 7.1);
+INSERT INTO public.materia_cursada VALUES (171, 6, 58, '2019', '01', 8.9);
+INSERT INTO public.materia_cursada VALUES (172, 5, 32, '2010', '01', 6.2);
+INSERT INTO public.materia_cursada VALUES (173, 9, 84, '2011', '02', 9.4);
+INSERT INTO public.materia_cursada VALUES (174, 9, 28, '2010', '02', 6.5);
+INSERT INTO public.materia_cursada VALUES (175, 7, 37, '2015', '01', 7.6);
+INSERT INTO public.materia_cursada VALUES (176, 2, 52, '2019', '01', 6.7);
+INSERT INTO public.materia_cursada VALUES (177, 9, 91, '2018', '02', 9.5);
+INSERT INTO public.materia_cursada VALUES (178, 6, 34, '2018', '01', 4.8);
+INSERT INTO public.materia_cursada VALUES (179, 3, 40, '2012', '01', 4.3);
+INSERT INTO public.materia_cursada VALUES (180, 4, 25, '2013', '02', 9.1);
+INSERT INTO public.materia_cursada VALUES (181, 1, 68, '2016', '02', 9.2);
+INSERT INTO public.materia_cursada VALUES (182, 4, 39, '2019', '02', 9.4);
+INSERT INTO public.materia_cursada VALUES (183, 8, 84, '2017', '03', 5.9);
+INSERT INTO public.materia_cursada VALUES (184, 4, 27, '2016', '02', 7.0);
+INSERT INTO public.materia_cursada VALUES (185, 4, 11, '2019', '01', 7.4);
+
+
+--
+-- TOC entry 2898 (class 0 OID 33447)
+-- Dependencies: 205
+-- Data for Name: municipio; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.municipio VALUES (1, 'AHUACHAPAN', 1);
+INSERT INTO public.municipio VALUES (2, 'APANECA', 1);
+INSERT INTO public.municipio VALUES (3, 'ATIQUIZAYA', 1);
+INSERT INTO public.municipio VALUES (4, 'CONCEPCION DE ATACO', 1);
+INSERT INTO public.municipio VALUES (5, 'EL REFUGIO', 1);
+INSERT INTO public.municipio VALUES (6, 'GUAYMANGO', 1);
+INSERT INTO public.municipio VALUES (7, 'JUJUTLA', 1);
+INSERT INTO public.municipio VALUES (8, 'SAN FRANCISCO MENENDEZ', 1);
+INSERT INTO public.municipio VALUES (9, 'SAN LORENZO', 1);
+INSERT INTO public.municipio VALUES (10, 'SAN PEDRO PUXTLA', 1);
+INSERT INTO public.municipio VALUES (11, 'TACUBA', 1);
+INSERT INTO public.municipio VALUES (12, 'TURIN', 1);
+INSERT INTO public.municipio VALUES (13, 'CANDELARIA DE LA FRONTERA', 2);
+INSERT INTO public.municipio VALUES (14, 'COATEPEQUE', 2);
+INSERT INTO public.municipio VALUES (15, 'CHALCHUAPA', 2);
+INSERT INTO public.municipio VALUES (16, 'EL CONGO', 2);
+INSERT INTO public.municipio VALUES (17, 'EL PORVENIR', 2);
+INSERT INTO public.municipio VALUES (18, 'MASAHUAT', 2);
+INSERT INTO public.municipio VALUES (19, 'METAPAN', 2);
+INSERT INTO public.municipio VALUES (20, 'SAN ANTONIO PAJONAL', 2);
+INSERT INTO public.municipio VALUES (21, 'SAN SEBASTIAN SALITRILLO', 2);
+INSERT INTO public.municipio VALUES (22, 'SANTA ANA', 2);
+INSERT INTO public.municipio VALUES (23, 'SANTA ROSA GUACHIPILIN', 2);
+INSERT INTO public.municipio VALUES (24, 'SANTIAGO DE LA FRONTERA', 2);
+INSERT INTO public.municipio VALUES (25, 'TEXISTEPEQUE', 2);
+INSERT INTO public.municipio VALUES (26, 'ACAJUTLA', 3);
+INSERT INTO public.municipio VALUES (27, 'ARMENIA', 3);
+INSERT INTO public.municipio VALUES (28, 'CALUCO', 3);
+INSERT INTO public.municipio VALUES (29, 'CUISNAHUAT', 3);
+INSERT INTO public.municipio VALUES (30, 'SANTA ISABEL ISHUATAN', 3);
+INSERT INTO public.municipio VALUES (31, 'IZALCO', 3);
+INSERT INTO public.municipio VALUES (32, 'JUAYUA', 3);
+INSERT INTO public.municipio VALUES (33, 'NAHUIZALCO', 3);
+INSERT INTO public.municipio VALUES (34, 'NAHULINGO', 3);
+INSERT INTO public.municipio VALUES (35, 'SALCOATITAN', 3);
+INSERT INTO public.municipio VALUES (36, 'SAN ANTONIO DEL MONTE', 3);
+INSERT INTO public.municipio VALUES (37, 'SAN JULIAN', 3);
+INSERT INTO public.municipio VALUES (38, 'SANTA CATARINA MASAHUAT', 3);
+INSERT INTO public.municipio VALUES (39, 'SANTO DOMINGO DE GUZMAN', 3);
+INSERT INTO public.municipio VALUES (40, 'SONSONATE', 3);
+INSERT INTO public.municipio VALUES (41, 'SONZACATE', 3);
+INSERT INTO public.municipio VALUES (42, 'AGUA CALIENTE', 4);
+INSERT INTO public.municipio VALUES (43, 'ARCATAO', 4);
+INSERT INTO public.municipio VALUES (44, 'AZACUALPA', 4);
+INSERT INTO public.municipio VALUES (45, 'CITALA', 4);
+INSERT INTO public.municipio VALUES (46, 'COMALAPA', 4);
+INSERT INTO public.municipio VALUES (47, 'CONCEPCION QUEZALTEPEQUE', 4);
+INSERT INTO public.municipio VALUES (48, 'CHALATENANGO', 4);
+INSERT INTO public.municipio VALUES (49, 'DULCE NOMBRE DE MARIA', 4);
+INSERT INTO public.municipio VALUES (50, 'EL CARRIZAL', 4);
+INSERT INTO public.municipio VALUES (51, 'EL PARAISO', 4);
+INSERT INTO public.municipio VALUES (52, 'LA LAGUNA', 4);
+INSERT INTO public.municipio VALUES (53, 'LA PALMA', 4);
+INSERT INTO public.municipio VALUES (54, 'LA REINA', 4);
+INSERT INTO public.municipio VALUES (55, 'LAS VUELTAS', 4);
+INSERT INTO public.municipio VALUES (56, 'NOMBRE DE JESUS', 4);
+INSERT INTO public.municipio VALUES (57, 'NUEVA CONCEPCION', 4);
+INSERT INTO public.municipio VALUES (58, 'NUEVA TRINIDAD', 4);
+INSERT INTO public.municipio VALUES (59, 'OJOS DE AGUA', 4);
+INSERT INTO public.municipio VALUES (60, 'POTONICO', 4);
+INSERT INTO public.municipio VALUES (61, 'SAN ANTONIO DE LA CRUZ', 4);
+INSERT INTO public.municipio VALUES (62, 'SAN ANTONIO LOS RANCHOS', 4);
+INSERT INTO public.municipio VALUES (63, 'SAN FERNANDO', 4);
+INSERT INTO public.municipio VALUES (64, 'SAN FRANCISCO LEMPA', 4);
+INSERT INTO public.municipio VALUES (65, 'SAN FRANCISCO MORAZAN', 4);
+INSERT INTO public.municipio VALUES (66, 'SAN IGNACIO', 4);
+INSERT INTO public.municipio VALUES (67, 'SAN ISIDRO LABRADOR', 4);
+INSERT INTO public.municipio VALUES (68, 'CANCASQUE', 4);
+INSERT INTO public.municipio VALUES (69, 'LAS FLORES', 4);
+INSERT INTO public.municipio VALUES (70, 'SAN LUIS DEL CARMEN', 4);
+INSERT INTO public.municipio VALUES (71, 'SAN MIGUEL DE MERCEDES', 4);
+INSERT INTO public.municipio VALUES (72, 'SAN RAFAEL', 4);
+INSERT INTO public.municipio VALUES (73, 'SANTA RITA', 4);
+INSERT INTO public.municipio VALUES (74, 'TEJUTLA', 4);
+INSERT INTO public.municipio VALUES (75, 'ANTIGUO CUSCATLAN', 5);
+INSERT INTO public.municipio VALUES (76, 'CIUDAD ARCE', 5);
+INSERT INTO public.municipio VALUES (77, 'COLON', 5);
+INSERT INTO public.municipio VALUES (78, 'COMASAGUA', 5);
+INSERT INTO public.municipio VALUES (79, 'CHILTIUPAN', 5);
+INSERT INTO public.municipio VALUES (80, 'HUIZUCAR', 5);
+INSERT INTO public.municipio VALUES (81, 'JAYAQUE', 5);
+INSERT INTO public.municipio VALUES (82, 'JICALAPA', 5);
+INSERT INTO public.municipio VALUES (83, 'LA LIBERTAD', 5);
+INSERT INTO public.municipio VALUES (84, 'NUEVO CUSCATLAN', 5);
+INSERT INTO public.municipio VALUES (85, 'SANTA TECLA', 5);
+INSERT INTO public.municipio VALUES (86, 'QUEZALTEPEQUE', 5);
+INSERT INTO public.municipio VALUES (87, 'SACACOYO', 5);
+INSERT INTO public.municipio VALUES (88, 'SAN JOSE VILLANUEVA', 5);
+INSERT INTO public.municipio VALUES (89, 'SAN JUAN OPICO', 5);
+INSERT INTO public.municipio VALUES (90, 'SAN MATIAS', 5);
+INSERT INTO public.municipio VALUES (91, 'SAN PABLO TACACHICO', 5);
+INSERT INTO public.municipio VALUES (92, 'TAMANIQUE', 5);
+INSERT INTO public.municipio VALUES (93, 'TALNIQUE', 5);
+INSERT INTO public.municipio VALUES (94, 'TEOTEPEQUE', 5);
+INSERT INTO public.municipio VALUES (95, 'TEPECOYO', 5);
+INSERT INTO public.municipio VALUES (96, 'ZARAGOZA', 5);
+INSERT INTO public.municipio VALUES (97, 'AGUILARES', 6);
+INSERT INTO public.municipio VALUES (98, 'APOPA', 6);
+INSERT INTO public.municipio VALUES (99, 'AYUTUXTEPEQUE', 6);
+INSERT INTO public.municipio VALUES (100, 'CUSCATANCINGO', 6);
+INSERT INTO public.municipio VALUES (101, 'EL PAISNAL', 6);
+INSERT INTO public.municipio VALUES (102, 'GUAZAPA', 6);
+INSERT INTO public.municipio VALUES (103, 'ILOPANGO', 6);
+INSERT INTO public.municipio VALUES (104, 'MEJICANOS', 6);
+INSERT INTO public.municipio VALUES (105, 'NEJAPA', 6);
+INSERT INTO public.municipio VALUES (106, 'PANCHIMALCO', 6);
+INSERT INTO public.municipio VALUES (107, 'ROSARIO DE MORA', 6);
+INSERT INTO public.municipio VALUES (108, 'SAN MARCOS', 6);
+INSERT INTO public.municipio VALUES (109, 'SAN MARTIN', 6);
+INSERT INTO public.municipio VALUES (110, 'SAN SALVADOR', 6);
+INSERT INTO public.municipio VALUES (111, 'SANTIAGO TEXACUANGOS', 6);
+INSERT INTO public.municipio VALUES (112, 'SANTO TOMAS', 6);
+INSERT INTO public.municipio VALUES (113, 'SOYAPANGO', 6);
+INSERT INTO public.municipio VALUES (114, 'TONACATEPEQUE', 6);
+INSERT INTO public.municipio VALUES (115, 'CIUDAD DELGADO', 6);
+INSERT INTO public.municipio VALUES (116, 'CANDELARIA', 7);
+INSERT INTO public.municipio VALUES (117, 'COJUTEPEQUE', 7);
+INSERT INTO public.municipio VALUES (118, 'EL CARMEN', 7);
+INSERT INTO public.municipio VALUES (119, 'EL ROSARIO', 7);
+INSERT INTO public.municipio VALUES (120, 'MONTE SAN JUAN', 7);
+INSERT INTO public.municipio VALUES (121, 'ORATORIO DE CONCEPCION', 7);
+INSERT INTO public.municipio VALUES (122, 'SAN BARTOLOME PERULAPIA', 7);
+INSERT INTO public.municipio VALUES (123, 'SAN CRISTOBAL', 7);
+INSERT INTO public.municipio VALUES (124, 'SAN JOSE GUAYABAL', 7);
+INSERT INTO public.municipio VALUES (125, 'SAN PEDRO PERULAPAN', 7);
+INSERT INTO public.municipio VALUES (126, 'SAN RAFAEL CEDROS', 7);
+INSERT INTO public.municipio VALUES (127, 'SAN RAMON', 7);
+INSERT INTO public.municipio VALUES (128, 'SANTA CRUZ ANALQUITO', 7);
+INSERT INTO public.municipio VALUES (129, 'SANTA CRUZ MICHAPA', 7);
+INSERT INTO public.municipio VALUES (130, 'SUCHITOTO', 7);
+INSERT INTO public.municipio VALUES (131, 'TENANCINGO', 7);
+INSERT INTO public.municipio VALUES (132, 'CUYULTITAN', 8);
+INSERT INTO public.municipio VALUES (133, 'EL  ROSARIO', 8);
+INSERT INTO public.municipio VALUES (134, 'JERUSALEN', 8);
+INSERT INTO public.municipio VALUES (135, 'MERCEDES LA CEIBA', 8);
+INSERT INTO public.municipio VALUES (136, 'OLOCUILTA', 8);
+INSERT INTO public.municipio VALUES (137, 'PARAISO DE OSORIO', 8);
+INSERT INTO public.municipio VALUES (138, 'SAN ANTONIO MASAHUAT', 8);
+INSERT INTO public.municipio VALUES (139, 'SAN EMIGDIO', 8);
+INSERT INTO public.municipio VALUES (140, 'SAN FRANCISCO CHINAMECA', 8);
+INSERT INTO public.municipio VALUES (141, 'SAN JUAN NONUALCO', 8);
+INSERT INTO public.municipio VALUES (142, 'SAN JUAN TALPA', 8);
+INSERT INTO public.municipio VALUES (143, 'SAN JUAN TEPEZONTES', 8);
+INSERT INTO public.municipio VALUES (144, 'SAN LUIS TALPA', 8);
+INSERT INTO public.municipio VALUES (145, 'SAN MIGUEL TEPEZONTES', 8);
+INSERT INTO public.municipio VALUES (146, 'SAN PEDRO MASAHUAT', 8);
+INSERT INTO public.municipio VALUES (147, 'SAN PEDRO NONUALCO', 8);
+INSERT INTO public.municipio VALUES (148, 'SAN RAFAEL OBRAJUELO', 8);
+INSERT INTO public.municipio VALUES (149, 'SANTA MARIA OSTUMA', 8);
+INSERT INTO public.municipio VALUES (150, 'SANTIAGO NONUALCO', 8);
+INSERT INTO public.municipio VALUES (151, 'TAPALHUACA', 8);
+INSERT INTO public.municipio VALUES (152, 'ZACATECOLUCA', 8);
+INSERT INTO public.municipio VALUES (153, 'SAN LUIS LA HERRADURA', 8);
+INSERT INTO public.municipio VALUES (154, 'CINQUERA', 9);
+INSERT INTO public.municipio VALUES (155, 'GUACOTECTI', 9);
+INSERT INTO public.municipio VALUES (156, 'ILOBASCO', 9);
+INSERT INTO public.municipio VALUES (157, 'JUTIAPA', 9);
+INSERT INTO public.municipio VALUES (158, 'SAN ISIDRO', 9);
+INSERT INTO public.municipio VALUES (159, 'SENSUNTEPEQUE', 9);
+INSERT INTO public.municipio VALUES (160, 'TEJUTEPEQUE', 9);
+INSERT INTO public.municipio VALUES (161, 'VICTORIA', 9);
+INSERT INTO public.municipio VALUES (162, 'DOLORES', 9);
+INSERT INTO public.municipio VALUES (163, 'APASTEPEQUE', 10);
+INSERT INTO public.municipio VALUES (164, 'GUADALUPE', 10);
+INSERT INTO public.municipio VALUES (165, 'SAN CAYETANO ISTEPEQUE', 10);
+INSERT INTO public.municipio VALUES (166, 'SANTA CLARA', 10);
+INSERT INTO public.municipio VALUES (167, 'SANTO DOMINGO', 10);
+INSERT INTO public.municipio VALUES (168, 'SAN ESTEBAN CATARINA', 10);
+INSERT INTO public.municipio VALUES (169, 'SAN ILDEFONSO', 10);
+INSERT INTO public.municipio VALUES (170, 'SAN  LORENZO', 10);
+INSERT INTO public.municipio VALUES (171, 'SAN SEBASTIAN', 10);
+INSERT INTO public.municipio VALUES (172, 'SAN VICENTE', 10);
+INSERT INTO public.municipio VALUES (173, 'TECOLUCA', 10);
+INSERT INTO public.municipio VALUES (174, 'TEPETITAN', 10);
+INSERT INTO public.municipio VALUES (175, 'VERAPAZ', 10);
+INSERT INTO public.municipio VALUES (176, 'ALEGRIA', 11);
+INSERT INTO public.municipio VALUES (177, 'BERLIN', 11);
+INSERT INTO public.municipio VALUES (178, 'CALIFORNIA', 11);
+INSERT INTO public.municipio VALUES (179, 'CONCEPCION BATRES', 11);
+INSERT INTO public.municipio VALUES (180, 'EL TRIUNFO', 11);
+INSERT INTO public.municipio VALUES (181, 'EREGUAYQUIN', 11);
+INSERT INTO public.municipio VALUES (182, 'ESTANZUELAS', 11);
+INSERT INTO public.municipio VALUES (183, 'JIQUILISCO', 11);
+INSERT INTO public.municipio VALUES (184, 'JUCUAPA', 11);
+INSERT INTO public.municipio VALUES (185, 'JUCUARAN', 11);
+INSERT INTO public.municipio VALUES (186, 'MERCEDES UMAÑA', 11);
+INSERT INTO public.municipio VALUES (187, 'NUEVA GRANADA', 11);
+INSERT INTO public.municipio VALUES (188, 'OZATLAN', 11);
+INSERT INTO public.municipio VALUES (189, 'PUERTO EL TRIUNFO', 11);
+INSERT INTO public.municipio VALUES (190, 'SAN AGUSTIN', 11);
+INSERT INTO public.municipio VALUES (191, 'SAN BUENA VENTURA', 11);
+INSERT INTO public.municipio VALUES (192, 'SAN DIONISIO', 11);
+INSERT INTO public.municipio VALUES (193, 'SANTA ELENA', 11);
+INSERT INTO public.municipio VALUES (194, 'SAN FRANCISCO JAVIER', 11);
+INSERT INTO public.municipio VALUES (195, 'SANTA MARIA', 11);
+INSERT INTO public.municipio VALUES (196, 'SANTIAGO DE MARIA', 11);
+INSERT INTO public.municipio VALUES (197, 'TECAPAN', 11);
+INSERT INTO public.municipio VALUES (198, 'USULUTAN', 11);
+INSERT INTO public.municipio VALUES (199, 'CAROLINA', 12);
+INSERT INTO public.municipio VALUES (200, 'CIUDAD BARRIOS', 12);
+INSERT INTO public.municipio VALUES (201, 'COMACARAN', 12);
+INSERT INTO public.municipio VALUES (202, 'CHAPELTIQUE', 12);
+INSERT INTO public.municipio VALUES (203, 'CHINAMECA', 12);
+INSERT INTO public.municipio VALUES (204, 'CHIRILAGUA', 12);
+INSERT INTO public.municipio VALUES (205, 'EL TRANSITO', 12);
+INSERT INTO public.municipio VALUES (206, 'LOLOTIQUE', 12);
+INSERT INTO public.municipio VALUES (207, 'MONCAGUA', 12);
+INSERT INTO public.municipio VALUES (208, 'NUEVA GUADALUPE', 12);
+INSERT INTO public.municipio VALUES (209, 'NUEVO EDEN DE SAN JUAN', 12);
+INSERT INTO public.municipio VALUES (210, 'QUELEPA', 12);
+INSERT INTO public.municipio VALUES (211, 'SAN ANTONIO', 12);
+INSERT INTO public.municipio VALUES (212, 'SAN GERARDO', 12);
+INSERT INTO public.municipio VALUES (213, 'SAN JORGE', 12);
+INSERT INTO public.municipio VALUES (214, 'SAN LUIS DE LA REINA', 12);
+INSERT INTO public.municipio VALUES (215, 'SAN MIGUEL', 12);
+INSERT INTO public.municipio VALUES (216, 'SAN RAFAEL ORIENTE', 12);
+INSERT INTO public.municipio VALUES (217, 'SESORI', 12);
+INSERT INTO public.municipio VALUES (218, 'ULUAZAPA', 12);
+INSERT INTO public.municipio VALUES (219, 'ARAMBALA', 13);
+INSERT INTO public.municipio VALUES (220, 'CACAOPERA', 13);
+INSERT INTO public.municipio VALUES (221, 'CORINTO', 13);
+INSERT INTO public.municipio VALUES (222, 'CHILANGA', 13);
+INSERT INTO public.municipio VALUES (223, 'DELICIAS DE CONCEPCION', 13);
+INSERT INTO public.municipio VALUES (224, 'EL DIVISADERO', 13);
+INSERT INTO public.municipio VALUES (225, 'El ROSARIO', 13);
+INSERT INTO public.municipio VALUES (226, 'GUALOCOCTI', 13);
+INSERT INTO public.municipio VALUES (227, 'GUATAJIAGUA', 13);
+INSERT INTO public.municipio VALUES (228, 'JOATECA', 13);
+INSERT INTO public.municipio VALUES (229, 'JOCOAITIQUE', 13);
+INSERT INTO public.municipio VALUES (230, 'JOCORO', 13);
+INSERT INTO public.municipio VALUES (231, 'LOLOTIQUILLO', 13);
+INSERT INTO public.municipio VALUES (232, 'MEANGUERA', 13);
+INSERT INTO public.municipio VALUES (233, 'OSCICALA', 13);
+INSERT INTO public.municipio VALUES (234, 'PERQUIN', 13);
+INSERT INTO public.municipio VALUES (235, 'SAN CARLOS', 13);
+INSERT INTO public.municipio VALUES (236, 'SAN  FERNANDO', 13);
+INSERT INTO public.municipio VALUES (237, 'SAN FRANCISCO GOTERA', 13);
+INSERT INTO public.municipio VALUES (238, 'SAN  ISIDRO', 13);
+INSERT INTO public.municipio VALUES (239, 'SAN SIMON', 13);
+INSERT INTO public.municipio VALUES (240, 'SENSEMBRA', 13);
+INSERT INTO public.municipio VALUES (241, 'SOCIEDAD', 13);
+INSERT INTO public.municipio VALUES (242, 'TOROLA', 13);
+INSERT INTO public.municipio VALUES (243, 'YAMABAL', 13);
+INSERT INTO public.municipio VALUES (244, 'YOLOAIQUIN', 13);
+INSERT INTO public.municipio VALUES (245, 'ANAMOROS', 14);
+INSERT INTO public.municipio VALUES (246, 'BOLIVAR', 14);
+INSERT INTO public.municipio VALUES (247, 'CONCEPCION DE ORIENTE', 14);
+INSERT INTO public.municipio VALUES (248, 'CONCHAGUA', 14);
+INSERT INTO public.municipio VALUES (249, 'EL  CARMEN', 14);
+INSERT INTO public.municipio VALUES (250, 'EL SAUCE', 14);
+INSERT INTO public.municipio VALUES (251, 'INTIPUCA', 14);
+INSERT INTO public.municipio VALUES (252, 'LA UNION', 14);
+INSERT INTO public.municipio VALUES (253, 'LISLIQUE', 14);
+INSERT INTO public.municipio VALUES (254, 'MEANGUERA DEL GOLFO', 14);
+INSERT INTO public.municipio VALUES (255, 'NUEVA ESPARTA', 14);
+INSERT INTO public.municipio VALUES (256, 'PASAQUINA', 14);
+INSERT INTO public.municipio VALUES (257, 'POLOROS', 14);
+INSERT INTO public.municipio VALUES (258, 'SAN ALEJO', 14);
+INSERT INTO public.municipio VALUES (259, 'SAN JOSE', 14);
+INSERT INTO public.municipio VALUES (260, 'SANTA ROSA DE LIMA', 14);
+INSERT INTO public.municipio VALUES (261, 'YAYANTIQUE', 14);
+INSERT INTO public.municipio VALUES (262, 'YUCUAIQUIN', 14);
+
+
+--
+-- TOC entry 2900 (class 0 OID 33462)
+-- Dependencies: 207
+-- Data for Name: roles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.roles VALUES (1, 'ROLE_ADMIN');
+INSERT INTO public.roles VALUES (2, 'ROLE_USER');
+
+
+--
+-- TOC entry 2902 (class 0 OID 33470)
+-- Dependencies: 209
+-- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.usuario VALUES (1, 1, 'mmackriell0', 'AXqFY0Yxzs', true, 'Michal', 'Mackriell', '1971-06-11', '77164 Utah Point', '24288434', '71902708', 205);
+INSERT INTO public.usuario VALUES (2, 1, 'bbroscombe1', 'L9K7CB', false, 'Beniamino', 'Broscombe', '1988-05-22', '1 Bayside Center', '22127069', '76878404', 175);
+INSERT INTO public.usuario VALUES (3, 2, 'ewiltshear2', 'NLSFPX', true, 'Emyle', 'Wiltshear', '1989-07-24', '62025 Mosinee Crossing', '26806828', '77234178', 182);
+INSERT INTO public.usuario VALUES (4, 1, 'mdebrett3', '0Pdb6D414U', true, 'Melania', 'De Brett', '1972-04-22', '6895 Becker Street', '26909610', '74331462', 150);
+INSERT INTO public.usuario VALUES (5, 1, 'ttattersall4', 'KVW2nt', false, 'Tallie', 'Tattersall', '1975-10-13', '941 Sullivan Alley', '23393340', '78719884', 202);
+INSERT INTO public.usuario VALUES (6, 1, 'hrenad5', 'L5lDv5', false, 'Harlen', 'Renad', '1988-09-15', '69619 Jay Parkway', '23949226', '74858265', 97);
+INSERT INTO public.usuario VALUES (7, 2, 'cdahill6', 'sD2JsG', true, 'Charlotte', 'Dahill', '1987-05-01', '4731 Oakridge Center', '23488581', '74408432', 259);
+INSERT INTO public.usuario VALUES (8, 2, 'akench7', 'zdl0T8YL', false, 'Ange', 'Kench', '1974-08-21', '54327 Arkansas Road', '26670162', '74649119', 45);
+INSERT INTO public.usuario VALUES (9, 1, 'tfellos8', 'Qg08Mj', false, 'Tamarah', 'Fellos', '1976-10-19', '5462 Bultman Road', '22763638', '72237316', 30);
+INSERT INTO public.usuario VALUES (10, 2, 'rarndt9', 'ubvNGsl6t', false, 'Roxanne', 'Arndt', '1971-10-26', '601 Emmet Street', '23458903', '79981493', 143);
+INSERT INTO public.usuario VALUES (11, 2, 'hgaynesforda', '0xjnkTaaVN9', true, 'Heddie', 'Gaynesford', '1985-04-13', '62370 Duke Junction', '20190803', '73497099', 116);
+INSERT INTO public.usuario VALUES (12, 2, 'amatuszynskib', 'R3iG6t9', true, 'Antonina', 'Matuszynski', '1980-08-11', '800 Bashford Drive', '26811526', '74471414', 156);
+INSERT INTO public.usuario VALUES (13, 2, 'bhawsbyc', 'qAFvcwWepQth', true, 'Beatrisa', 'Hawsby', '1980-04-02', '3946 Prairieview Junction', '27387196', '76581048', 91);
+INSERT INTO public.usuario VALUES (14, 2, 'tmaund', 'vrgnytcUxD7F', true, 'Thalia', 'Maun', '1990-03-12', '37 Arizona Point', '21007576', '70140325', 245);
+INSERT INTO public.usuario VALUES (15, 1, 'dmcgaugiee', 'xNYbpDreM', true, 'Danyelle', 'McGaugie', '1987-08-23', '7527 Oakridge Way', '24345796', '70211181', 245);
+
+
+--
+-- TOC entry 2924 (class 0 OID 0)
+-- Dependencies: 210
+-- Name: centros_escolares_id_centro_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.centros_escolares_id_centro_seq', 500, true);
+
+
+--
+-- TOC entry 2925 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: departamento_id_departamento_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.departamento_id_departamento_seq', 14, true);
+
+
+--
+-- TOC entry 2926 (class 0 OID 0)
+-- Dependencies: 212
+-- Name: estudiante_id_estudiante_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.estudiante_id_estudiante_seq', 100, true);
+
+
+--
+-- TOC entry 2927 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: materia_cursada_id_materiacursada_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.materia_cursada_id_materiacursada_seq', 185, true);
+
+
+--
+-- TOC entry 2928 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: materia_id_materia_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.materia_id_materia_seq', 9, true);
+
+
+--
+-- TOC entry 2929 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: municipio_id_municipio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.municipio_id_municipio_seq', 262, true);
+
+
+--
+-- TOC entry 2930 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: roles_id_rol_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.roles_id_rol_seq', 2, true);
+
+
+--
+-- TOC entry 2931 (class 0 OID 0)
+-- Dependencies: 208
+-- Name: usuario_id_usuario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.usuario_id_usuario_seq', 15, true);
+
+
+--
+-- TOC entry 2755 (class 2606 OID 33499)
+-- Name: centros_escolares centros_escolares_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.centros_escolares
+    ADD CONSTRAINT centros_escolares_pkey PRIMARY KEY (id_centro);
+
+
+--
+-- TOC entry 2743 (class 2606 OID 33444)
+-- Name: departamento departamento_departamento_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.departamento
+    ADD CONSTRAINT departamento_departamento_key UNIQUE (departamento);
+
+
+--
+-- TOC entry 2745 (class 2606 OID 33442)
+-- Name: departamento departamento_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.departamento
+    ADD CONSTRAINT departamento_pkey PRIMARY KEY (id_departamento);
+
+
+--
+-- TOC entry 2757 (class 2606 OID 33515)
+-- Name: estudiante estudiante_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.estudiante
+    ADD CONSTRAINT estudiante_pkey PRIMARY KEY (id_estudiante);
+
+
+--
+-- TOC entry 2761 (class 2606 OID 33542)
+-- Name: materia_cursada materia_cursada_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.materia_cursada
+    ADD CONSTRAINT materia_cursada_pkey PRIMARY KEY (id_materiacursada);
+
+
+--
+-- TOC entry 2759 (class 2606 OID 33531)
+-- Name: materia materia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.materia
+    ADD CONSTRAINT materia_pkey PRIMARY KEY (id_materia);
+
+
+--
+-- TOC entry 2747 (class 2606 OID 33454)
+-- Name: municipio municipio_municipio_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.municipio
+    ADD CONSTRAINT municipio_municipio_key UNIQUE (municipio);
+
+
+--
+-- TOC entry 2749 (class 2606 OID 33452)
+-- Name: municipio municipio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.municipio
+    ADD CONSTRAINT municipio_pkey PRIMARY KEY (id_municipio);
+
+
+--
+-- TOC entry 2751 (class 2606 OID 33467)
+-- Name: roles roles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.roles
+    ADD CONSTRAINT roles_pkey PRIMARY KEY (id_rol);
+
+
+--
+-- TOC entry 2753 (class 2606 OID 33478)
+-- Name: usuario usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuario
+    ADD CONSTRAINT usuario_pkey PRIMARY KEY (id_usuario);
+
+
+--
+-- TOC entry 2765 (class 2606 OID 33500)
+-- Name: centros_escolares centros_escolares_id_municipio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.centros_escolares
+    ADD CONSTRAINT centros_escolares_id_municipio_fkey FOREIGN KEY (id_municipio) REFERENCES public.municipio(id_municipio);
+
+
+--
+-- TOC entry 2766 (class 2606 OID 33516)
+-- Name: estudiante estudiante_id_centro_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.estudiante
+    ADD CONSTRAINT estudiante_id_centro_fkey FOREIGN KEY (id_centro) REFERENCES public.centros_escolares(id_centro);
+
+
+--
+-- TOC entry 2768 (class 2606 OID 33548)
+-- Name: materia_cursada materia_cursada_id_estudiante_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.materia_cursada
+    ADD CONSTRAINT materia_cursada_id_estudiante_fkey FOREIGN KEY (id_estudiante) REFERENCES public.estudiante(id_estudiante);
+
+
+--
+-- TOC entry 2767 (class 2606 OID 33543)
+-- Name: materia_cursada materia_cursada_id_materia_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.materia_cursada
+    ADD CONSTRAINT materia_cursada_id_materia_fkey FOREIGN KEY (id_materia) REFERENCES public.materia(id_materia);
+
+
+--
+-- TOC entry 2762 (class 2606 OID 33455)
+-- Name: municipio municipio_id_depart_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.municipio
+    ADD CONSTRAINT municipio_id_depart_fkey FOREIGN KEY (id_depart) REFERENCES public.departamento(id_departamento);
+
+
+--
+-- TOC entry 2763 (class 2606 OID 33479)
+-- Name: usuario usuario_id_municipio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuario
+    ADD CONSTRAINT usuario_id_municipio_fkey FOREIGN KEY (id_municipio) REFERENCES public.municipio(id_municipio);
+
+
+--
+-- TOC entry 2764 (class 2606 OID 33484)
+-- Name: usuario usuario_id_rol_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuario
+    ADD CONSTRAINT usuario_id_rol_fkey FOREIGN KEY (id_rol) REFERENCES public.roles(id_rol);
+
+
+-- Completed on 2020-07-10 00:58:14
+
+--
+-- PostgreSQL database dump complete
+--
+
