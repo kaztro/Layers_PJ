@@ -34,14 +34,14 @@ public class MainController {
 	@Autowired
 	private DepartamentoService departamento;
 	
-	//@Autowired
-	//private CentroEscolarService cEscolar;
-	
 	@Autowired
 	private MateriaService materia;
 	
 	@Autowired
 	private MunicipioService municipio;
+	
+	@Autowired
+	private DepartamentoService departamentoService;
 	
 	@Autowired
 	private UsuarioService usuarioService;
@@ -66,10 +66,15 @@ public class MainController {
 		
 		List<Roles> roles = null;
 		List<Municipio> municipios = null;
+		List<Departamento> departamentos = null;
 		try {roles = rolesService.findAll();
-			 municipios = municipio.findAll();}
+			 municipios = municipio.findAll();
+			 departamentos = departamentoService.findAll();
+			 
+		}
 		catch(Exception e) {e.printStackTrace();}
 		
+		mav.addObject("departamentos", departamentos);
 		mav.addObject("municipios", municipios);
 		mav.addObject("roles",roles);
 		mav.addObject("usuario", usuario);
@@ -87,11 +92,14 @@ public class MainController {
 			mav.setViewName("createUsuario");
 			List<Roles> roles = null;
 			List<Municipio> municipios = null;
+			List<Departamento> departamentos = null;
 			try {roles = rolesService.findAll();
 				 municipios = municipio.findAll();
+				 departamentos = departamentoService.findAll();
 				}
 			catch(Exception e) {e.printStackTrace();}
 			
+			mav.addObject("departamentos", departamentos);
 			mav.addObject("municipios", municipios);
 			mav.addObject("roles", roles);
 			mav.addObject("usuario", usuario);

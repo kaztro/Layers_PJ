@@ -1,25 +1,28 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en"></html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+</html>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actualizando...</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-		integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="../static/style/css/main.css" th:href="@{/style/css/main.css}" type="text/css">
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-		crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-		crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-		crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+        integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/style/css/main.css" th:href="@{/style/css/main.css}" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand mb-0 h1" href="#">Mod&uacute;lo de Administracion</a>
@@ -66,13 +69,13 @@
                 &nbsp;
                 <i><span class="text-white" sec:authentication="principal.authorities">Roles</span></i>
                 <form th:action="@{/logout}" method="post">
-                    <input type="submit" value="Logout" class="btn btn-primary bEdit"/>
+                    <input type="submit" value="Logout" class="btn btn-primary bEdit" />
                 </form>
             </div>
         </div>
     </nav>
     <div class="container">
-        <div class="card"  id="formsCont">
+        <div class="card" id="formsCont">
             <div class="card-block">
                 <form action="#" th:action="@{/actualizar/usuario/{id_usuario}(id_usuario=${usuario.id_usuario})}"
                     th:object="${usuario}" method="GET">
@@ -120,7 +123,6 @@
                     <span th:errors="*{telMovil}" style="color: red;"></span>
                     <br>
                     <input type="hidden" th:field="${usuario.roles.id_rol}">
-                    <input type="hidden" th:field="${usuario.municipio.id_municipio}">
 
                     <!-- FALTAN LOS MUNICIPIOS Y FALTA TAMBIEN CAMBIAR QUE TIPO DE USUARIO ES -->
 
@@ -130,13 +132,38 @@
                         <option th:value="${false}">Inactivo</option>
                     </select>
                     <br>
+
+                    <label class="col-form-label">Departamento:</label>
+                    <select class="form-control" id="deptoSelect">
+                        <option value="col">Selecciona una opci&oacute;n</option>
+                        <option th:each="departamento, row: ${departamentos}" th:value="${departamento.id_departamento}"
+                            th:id="${departamento.id_departamento}" th:text="${departamento.departamento}"></option>
+                    </select>
+
+                    <label for="centroEscolar" class="col-form-label">Municipio:</label>
+                    <select class="form-control" id="municipioSelect" th:field="${usuario.municipio.id_municipio}">
+                        <option th:each="municipio, row: ${municipios}"
+                            th:id="${municipio.departamento.id_departamento}" th:value="${municipio.id_municipio}"
+                            th:text="${municipio.municipio}"></option>
+                    </select>
+                    <br>
+
                     <input type="submit" value="Actualizar" class="btn btn-primary bEdit">
                 </form>
                 <a th:href="@{/admin/listUsuarios}" type="submit">Regresar</a>
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $("#municipioSelect").children('option:gt(0)').hide();
+            $("#deptoSelect").change(function () {
+                $("#municipioSelect").children('option').hide();
+                $("#municipioSelect").children("option[id=" + $("#deptoSelect").val() + "]").show()
+            })
+        });
 
+    </script>
 </body>
 
 </html>

@@ -18,11 +18,13 @@ import com.uca.capas.domain.CentroEscolar;
 import com.uca.capas.domain.Departamento;
 import com.uca.capas.domain.Materia;
 import com.uca.capas.domain.Municipio;
+import com.uca.capas.domain.Roles;
 import com.uca.capas.domain.Usuario;
 import com.uca.capas.service.CentroEscolarService;
 import com.uca.capas.service.DepartamentoService;
 import com.uca.capas.service.MateriaService;
 import com.uca.capas.service.MunicipioService;
+import com.uca.capas.service.RolesService;
 import com.uca.capas.service.UsuarioService;
 
 @Controller
@@ -42,6 +44,10 @@ public class AdminController {
 	
 	@Autowired
 	private DepartamentoService departamentoService;
+	
+	@Autowired
+	private RolesService rolesService;
+
 
 	/*--------LISTAS QUE SE MOSTRARAN-----------*/
 
@@ -219,20 +225,46 @@ public class AdminController {
 		return mav;
 	}
 
-	// update - Usuarios
+	// update - Usuarios -----------------------------------------------------------------------------------------------------
 
 	@GetMapping("editar/usuario/{id_usuario}")
-	public String formularioActualizacionU(@PathVariable("id_usuario") int id, Model model) {
+	public ModelAndView formularioActualizacionU(@PathVariable("id_usuario") int id, Model model) {
+		ModelAndView mav = new ModelAndView();
 		Usuario usuario = this.usuarioService.findOne(id);
+		List<Roles> roles = null;
+		List<Municipio> municipios = null;
+		List<Departamento> departamentos = null;
+		try {roles = rolesService.findAll();
+			 municipios = municipioService.findAll();
+			 departamentos = departamentoService.findAll();
+			 
+		}
+		catch(Exception e) {e.printStackTrace();}
 
 		model.addAttribute("usuario", usuario);
-		return "updateU";
+		
+		mav.addObject("departamentos", departamentos);
+		mav.addObject("municipios", municipios);
+		mav.addObject("roles",roles);
+		mav.setViewName("updateU");
+		
+		return mav;
 	}
 
 	@GetMapping("actualizar/usuario/{id_usuario}")
 	public ModelAndView updateU(@Valid @ModelAttribute Usuario usuario, BindingResult result, Model model) {
 		ModelAndView mav = new ModelAndView();
 		if (result.hasErrors()) {
+			List<Roles> roles = null;
+			List<Municipio> municipios = null;
+			List<Departamento> departamentos = null;
+			roles = rolesService.findAll();
+			municipios = municipioService.findAll();
+			departamentos = departamentoService.findAll();
+			
+			mav.addObject("departamentos", departamentos);
+			mav.addObject("municipios", municipios);
+			mav.addObject("roles",roles);
 			mav.setViewName("updateU");
 		} else {
 			usuarioService.save(usuario);
