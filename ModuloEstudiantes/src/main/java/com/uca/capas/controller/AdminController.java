@@ -165,11 +165,20 @@ public class AdminController {
 	@GetMapping("editar/centro/{id_centro}")
 	public ModelAndView formularioActualizacionCE(@PathVariable("id_centro") int id, Model model) {
 		ModelAndView mav = new ModelAndView();
-		CentroEscolar centroEscolar = this.centroEscolarService.findOne(id);
+		
 		List<Departamento> departamentos = null;
-		departamentos = departamentoService.findAll();
 		List<Municipio> municipios = null;
-		municipios = municipioService.findAll();
+		CentroEscolar centroEscolar = new CentroEscolar();
+		
+		try {
+			centroEscolar =	centroEscolarService.findOne(id);
+			departamentos = departamentoService.findAll();
+			municipios = municipioService.findAll();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 		model.addAttribute("centroEscolar", centroEscolar);
 		
 		mav.addObject("centroEscolar", centroEscolar);
