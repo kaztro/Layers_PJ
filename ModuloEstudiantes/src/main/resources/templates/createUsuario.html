@@ -14,9 +14,11 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
     integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
     crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-    crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script> 
 </head>
 
 <body>
@@ -87,9 +89,16 @@
           <br />
 
           <label for="fNac">Fecha de Nacimiento: </label>
-          <td><input type="text" th:field="${usuario.fNac}" class="form-control" /></td>
-          <!-- <span th:errors="*{usuario}" style="color: red;"></span>-->
-          <br />
+          <input type="text" id="datepicker" th:field="${usuario.fNac}" class="form-control" />
+          <span th:errors="*{fNac}" style="color: red;"></span>
+          <script type="text/javascript">
+					        $(function () {
+					            $('#datepicker').datepicker({
+					            	format: 'dd/mm/yyyy'
+					            });
+					        });
+					    </script>
+          <br/>
 
           <label for="username">Nombre de usuario: </label>
           <input type="text" th:field="${usuario.username}" class="form-control" />

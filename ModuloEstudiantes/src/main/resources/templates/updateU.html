@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
-</html>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +19,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script> 
 </head>
 
 <body>
@@ -93,8 +93,14 @@
                     <br>
 
                     <label for="fNac">Fecha de Nacimiento: </label>
-                    <td><input type="text" th:field="${usuario.fNac}" class="form-control">
-                    </td>
+                    <input type="text" id="datepicker" th:field="${usuario.fNac}" class="form-control">
+                    <script type="text/javascript">
+					        $(function () {
+					            $('#datepicker').datepicker({
+					            	format: 'dd/mm/yyyy'
+					            });
+					        });
+					    </script>
                     <!-- <span th:errors="*{usuario}" style="color: red;"></span>-->
                     <br>
 
